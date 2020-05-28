@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">阴阳历</string>
+    <string name="action_settings">设置</string>
+    <string name="saved_to_album">保存到相册</string>
+    <string name="error_internet">网络错误</string>
+    <string name="login_time_out">登录超时</string>
+    <string name="jump_googleplay_fail">打开应用商店失败</string>
+</resources>
