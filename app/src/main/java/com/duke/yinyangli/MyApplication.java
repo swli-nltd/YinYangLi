@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.bytedance.boost_multidex.BoostMultiDex;
 import com.bytedance.boost_multidex.Result;
+import com.tencent.mmkv.MMKV;
 
 public class MyApplication extends Application {
 
@@ -25,6 +26,8 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         sInstance = this;
+        String rootDir = MMKV.initialize(this);
+        System.out.println("mmkv root: " + rootDir);
     }
 
     public static Context getInstance() {

@@ -147,13 +147,19 @@
 
     </com.haibin.calendarview.library.CalendarLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/fab_margin"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+    <com.duke.yinyangli.view.FloatViewBall
+        android:id="@+id/float_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
+        <ImageView
+            android:id="@+id/fab"
+            android:layout_height="60dp"
+            android:layout_width="60dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="@dimen/ball_default_bottom"
+            android:layout_marginEnd="@dimen/ball_default_end"
+            android:src="@mipmap/taiji" />
+    </com.duke.yinyangli.view.FloatViewBall>
 </RelativeLayout>

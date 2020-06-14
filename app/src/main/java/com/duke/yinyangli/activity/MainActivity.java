@@ -4,6 +4,9 @@ import com.duke.yinyangli.R;
 import com.duke.yinyangli.adapter.MainInfoAdapter;
 import com.duke.yinyangli.base.BaseActivity;
 import com.duke.yinyangli.calendar.Lunar;
+import com.duke.yinyangli.constants.Constants;
+import com.duke.yinyangli.utils.LogUtils;
+import com.duke.yinyangli.view.FloatViewBall;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.gyf.immersionbar.ImmersionBar;
@@ -14,6 +17,7 @@ import com.haibin.calendarview.library.ArticleAdapter;
 import com.haibin.calendarview.library.Calendar;
 import com.haibin.calendarview.library.CalendarLayout;
 import com.haibin.calendarview.library.CalendarView;
+import com.tencent.mmkv.MMKV;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -22,6 +26,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -37,8 +42,6 @@ public class MainActivity extends BaseActivity implements
         CalendarView.OnYearChangeListener,
         View.OnClickListener {
 
-    @BindView(R.id.fab)
-    FloatingActionButton fab;
     @BindView(R.id.tv_month_day)
     TextView mTextMonthDay;
     @BindView(R.id.tv_year)
@@ -55,6 +58,11 @@ public class MainActivity extends BaseActivity implements
     CalendarLayout mCalendarLayout;
     @BindView(R.id.recyclerView)
     GroupRecyclerView mRecyclerView;
+
+    @BindView(R.id.float_view)
+    FloatViewBall floatViewBall;
+    @BindView(R.id.fab)
+    ImageView fab;
 
     private int mYear;
     private Lunar mCurrentLunar;
@@ -77,6 +85,8 @@ public class MainActivity extends BaseActivity implements
     @Override
     public void initView() {
         super.initView();
+
+        initBall();
         mTextMonthDay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -120,6 +130,20 @@ public class MainActivity extends BaseActivity implements
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.addItemDecoration(new GroupItemDecoration<String, Article>());
         mRecyclerView.setAdapter(mAdapter = new MainInfoAdapter(this));
+    }
+
+    private void initBall() {
+        floatViewBall.setVisibility(View.VISIBLE);
+        int left = MMKV.defaultMMKV().decodeInt(Constants.SP_KEY.MAIN_LEFT, 0);
+        int top = MMKV.defaultMMKV().decodeInt(Constants.SP_KEY.MAIN_TOP, 0);
+        int right = MMKV.defaultMMKV().decodeInt(Constants.SP_KEY.MAIN_RIGHT, 0);
+        int bottom = MMKV.defaultMMKV().decodeInt(Constants.SP_KEY.MAIN_BOTTOM, 0);
+        LogUtils.e("ball margin:" + left + ", " + top +", " + right + ", " + bottom);
+        fab.setLeft(left);
+        fab.setTop(top);
+        fab.setRight(right);
+        fab.setBottom(bottom);
+        floatViewBall.bringToFront();
     }
 
     @Override
@@ -210,6 +234,9 @@ public class MainActivity extends BaseActivity implements
         mTextYear.setText(String.valueOf(calendar.getYear()));
         mTextLunar.setText(calendar.getLunar());
         mYear = calendar.getYear();
+        mCurrentLunar = Lunar.fromDate(calendar.getDate());
+        mAdapter.setLunar(mCurrentLunar);
+        mRecyclerView.notifyDataSetChanged();
 
         Log.e("onDateSelected", "  -- " + calendar.getYear() +
                 "  --  " + calendar.getMonth() +

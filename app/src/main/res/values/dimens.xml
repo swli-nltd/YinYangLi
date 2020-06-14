@@ -1,3 +1,5 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="ball_default_bottom">16dp</dimen>
+    <dimen name="ball_default_end">16dp</dimen>
 </resources>

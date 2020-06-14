@@ -35,7 +35,6 @@ dependencies {
     implementation project(path: ':calendarview')
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.annotation:annotation:1.1.0'
-    implementation 'com.google.android.material:material:1.1.0'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
 
     //statusbar
@@ -72,4 +71,6 @@ dependencies {
 
     //https://github.com/donkingliang/ConsecutiveScroller
     implementation 'com.github.donkingliang:ConsecutiveScroller:2.5.1'
+
+    implementation 'com.tencent:mmkv-static:1.1.2'
 }
