@@ -12,13 +12,13 @@
         android:orientation="vertical"
         android:visibility="visible">
 
-        <com.haibin.calendarview.MonthViewPager
+        <com.haibin.calendarview.library.MonthViewPager
             android:id="@+id/vp_month"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="41dp" />
 
-        <com.haibin.calendarview.WeekViewPager
+        <com.haibin.calendarview.library.WeekViewPager
             android:id="@+id/vp_week"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -36,7 +36,7 @@
 
     </FrameLayout>
 
-    <com.haibin.calendarview.YearViewPager
+    <com.haibin.calendarview.library.YearViewPager
         android:id="@+id/selectLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -1,1 +1,6 @@
-<manifest package="com.haibin.calendarview" />
+<manifest package="com.haibin.calendarview" >
+
+    <application>
+        <activity name=".simple.SimpleActivity" />
+    </application>
+</manifest>
