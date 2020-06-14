@@ -104,19 +104,6 @@ public class MainActivity extends BaseActivity implements
             @Override
             public void onClick(View v) {
                 mCalendarView.scrollToCurrent();
-                //mCalendarView.addSchemeDate(getSchemeCalendar(2019, 6, 1, 0xFF40db25, "假"));
-//                int year = 2019;
-//                int month = 6;
-//                Map<String, Calendar> map = new HashMap<>();
-//                map.put(getSchemeCalendar(year, month, 3, 0xFF40db25, "假").toString(),
-//                        getSchemeCalendar(year, month, 3, 0xFF40db25, "假"));
-//                map.put(getSchemeCalendar(year, month, 6, 0xFFe69138, "事").toString(),
-//                        getSchemeCalendar(year, month, 6, 0xFFe69138, "事"));
-//                map.put(getSchemeCalendar(year, month, 9, 0xFFdf1356, "议").toString(),
-//                        getSchemeCalendar(year, month, 9, 0xFFdf1356, "议"));
-//                map.put(getSchemeCalendar(year, month, 13, 0xFFedc56d, "记").toString(),
-//                        getSchemeCalendar(year, month, 13, 0xFFedc56d, "记"));
-//                mCalendarView.addSchemeDate(map);
             }
         });
         mCalendarView.setOnCalendarSelectListener(this);
@@ -156,26 +143,9 @@ public class MainActivity extends BaseActivity implements
         mRecyclerView.notifyDataSetChanged();
 
         String ji = mCurrentLunar.getDayTianShenLuck();
-
         Map<String, Calendar> map = new HashMap<>();
         map.put(getSchemeCalendar(year, month, currentDay, 0xFF40db25, ji).toString(),
                 getSchemeCalendar(year, month, currentDay, 0xFF40db25, ji));
-//        map.put(getSchemeCalendar(year, month, 6, 0xFFe69138, "事").toString(),
-//                getSchemeCalendar(year, month, 6, 0xFFe69138, "事"));
-//        map.put(getSchemeCalendar(year, month, 9, 0xFFdf1356, "议").toString(),
-//                getSchemeCalendar(year, month, 9, 0xFFdf1356, "议"));
-//        map.put(getSchemeCalendar(year, month, 13, 0xFFedc56d, "记").toString(),
-//                getSchemeCalendar(year, month, 13, 0xFFedc56d, "记"));
-//        map.put(getSchemeCalendar(year, month, 14, 0xFFedc56d, "记").toString(),
-//                getSchemeCalendar(year, month, 14, 0xFFedc56d, "记"));
-//        map.put(getSchemeCalendar(year, month, 15, 0xFFaacc44, "假").toString(),
-//                getSchemeCalendar(year, month, 15, 0xFFaacc44, "假"));
-//        map.put(getSchemeCalendar(year, month, 18, 0xFFbc13f0, "记").toString(),
-//                getSchemeCalendar(year, month, 18, 0xFFbc13f0, "记"));
-//        map.put(getSchemeCalendar(year, month, 25, 0xFF13acf0, "假").toString(),
-//                getSchemeCalendar(year, month, 25, 0xFF13acf0, "假"));
-//        map.put(getSchemeCalendar(year, month, 27, 0xFF13acf0, "多").toString(),
-//                getSchemeCalendar(year, month, 27, 0xFF13acf0, "多"));
         //此方法在巨大的数据量上不影响遍历性能，推荐使用
         mCalendarView.setSchemeDate(map);
     }
@@ -198,8 +168,7 @@ public class MainActivity extends BaseActivity implements
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.fab:
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                ChooseActivity.start(this);
                 break;
             default:break;
         }

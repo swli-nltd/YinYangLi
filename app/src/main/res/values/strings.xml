@@ -5,4 +5,5 @@
     <string name="error_internet">网络错误</string>
     <string name="login_time_out">登录超时</string>
     <string name="jump_googleplay_fail">打开应用商店失败</string>
+    <string name="select">选择</string>
 </resources>

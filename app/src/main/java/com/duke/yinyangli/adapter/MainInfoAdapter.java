@@ -79,49 +79,17 @@ public class MainInfoAdapter extends GroupRecyclerAdapter<String, Article> {
         }
     }
 
-
-    private Article create(String title, String content, String imgUrl) {
-        Article article = new Article();
-        article.setTitle(title);
-        article.setContent(content);
-        article.setImgUrl(imgUrl);
-        return article;
-    }
-    private Article create(String title, List<String> list, int imgRes) {
-        Article article = new Article();
-        article.setTitle(title);
-        StringBuilder sb = new StringBuilder();
-        if (list != null && list.size() > 0) {
-            for (int i = 0; i < list.size(); i ++) {
-                sb.append(list.get(i));
-                if (i < list.size() - 1) {
-                    sb.append(",");
-                }
-            }
-            article.setContent(sb.toString());
-        }
-        article.setImgResource(imgRes);
-        return article;
-    }
-    private Article create(String title, String content, int imgRes) {
-        Article article = new Article();
-        article.setTitle(title);
-        article.setContent(content);
-        article.setImgResource(imgRes);
-        return article;
-    }
-
     private List<Article> create(int p) {
         List<Article> list = new ArrayList<>();
         if (p == 0) {
-            list.add(create("今日宜", mLunar.getDayYi(), R.mipmap.jinriyi));
-            list.add(create("今日忌", mLunar.getDayJi(), R.mipmap.jinriji));
+            list.add(Article.create("今日宜", mLunar.getDayYi(), R.mipmap.jinriyi));
+            list.add(Article.create("今日忌", mLunar.getDayJi(), R.mipmap.jinriji));
         } else if (p == 1) {
-            list.add(create("当前时辰宜", mLunar.getTimeYi(), R.mipmap.jinriyi));
-            list.add(create("当前时辰忌", mLunar.getTimeYi(), R.mipmap.jinriji));
+            list.add(Article.create("当前时辰宜", mLunar.getTimeYi(), R.mipmap.jinriyi));
+            list.add(Article.create("当前时辰忌", mLunar.getTimeYi(), R.mipmap.jinriji));
         } else if (p == 2) {
-            list.add(create("今日吉神", mLunar.getDayJiShen(), R.mipmap.ji));
-            list.add(create("今日凶煞", mLunar.getDayXiongSha(), R.mipmap.xiong));
+            list.add(Article.create("今日吉神", mLunar.getDayJiShen(), R.mipmap.ji));
+            list.add(Article.create("今日凶煞", mLunar.getDayXiongSha(), R.mipmap.xiong));
         } else if (p == 3) {
             int image = R.mipmap.ji;
             if ("吉".equals(mLunar.getXiuLuck())) {
@@ -130,7 +98,8 @@ public class MainInfoAdapter extends GroupRecyclerAdapter<String, Article> {
                 image = R.mipmap.xiong;
             }
             String title = "宿：" + mLunar.getXiu() + "  " + mLunar.getAnimal() + "  " + mLunar.getXiuLuck();
-            list.add(create(title, mLunar.getXiuSong(), image));
+            list.add(Article.create(title, mLunar.getXiuSong().replace(",", ",\n")
+                    .replace("，", "，\n"), image));
         }
 
 

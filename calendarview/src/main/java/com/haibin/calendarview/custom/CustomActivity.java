@@ -8,12 +8,12 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.haibin.calendarview.R;
 import com.haibin.calendarview.library.Article;
 import com.haibin.calendarview.library.ArticleAdapter;
 import com.haibin.calendarview.library.Calendar;
 import com.haibin.calendarview.library.CalendarLayout;
 import com.haibin.calendarview.library.CalendarView;
-import com.haibin.calendarview.R;
 import com.haibin.calendarview.base.activity.BaseActivity;
 import com.haibin.calendarview.colorful.ColorfulActivity;
 import com.haibin.calendarview.group.GroupItemDecoration;
