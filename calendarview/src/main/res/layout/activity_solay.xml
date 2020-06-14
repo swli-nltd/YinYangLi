@@ -7,7 +7,7 @@
     android:background="@color/solar_background"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    tools:context="com.haibin.calendarviewproject.MainActivity"
+    tools:context="com.haibin.calendarview.MainActivity"
     tools:ignore="RtlHardcoded,HardcodedText,RtlSymmetry,SmallSp">
 
 
@@ -107,7 +107,7 @@
             app:current_month_text_color="#FFFFFF"
             app:max_year="2020"
             app:min_year="2004"
-            app:month_view="com.haibin.calendarviewproject.solay.SolarMonthView"
+            app:month_view="com.haibin.calendarview.solay.SolarMonthView"
             app:month_view_show_mode="mode_only_current"
             app:other_month_lunar_text_color="#FFFFFF"
             app:other_month_text_color="#FFFFFF"
@@ -118,16 +118,16 @@
             app:selected_text_color="@color/solar_background"
             app:selected_theme_color="#FFFFFF"
             app:week_background="@color/solar_background"
-            app:week_bar_view="com.haibin.calendarviewproject.solay.SolarWeekBar"
+            app:week_bar_view="com.haibin.calendarview.solay.SolarWeekBar"
             app:week_text_color="#FFFFFF"
-            app:week_view="com.haibin.calendarviewproject.solay.SolarWeekView"
+            app:week_view="com.haibin.calendarview.solay.SolarWeekView"
             app:year_view_day_text_color="#333333"
             app:year_view_day_text_size="9sp"
             app:year_view_month_text_color="#ff0000"
             app:year_view_month_text_size="20sp"
             app:year_view_scheme_color="#f17706" />
 
-        <com.haibin.calendarviewproject.group.GroupRecyclerView
+        <com.haibin.calendarview.group.GroupRecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

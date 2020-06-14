@@ -4,8 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.widget.TextView;
 
+import com.haibin.calendarview.R;
 import com.haibin.calendarview.library.WeekBar;
-import com.haibin.calendarviewproject.R;
 
 /**
  * 自定义英文栏

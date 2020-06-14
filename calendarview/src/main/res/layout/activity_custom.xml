@@ -7,7 +7,6 @@
     android:background="#ffffff"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    tools:context="com.haibin.calendarviewproject.MainActivity"
     tools:ignore="RtlHardcoded,HardcodedText,RtlSymmetry,SmallSp">
 
 
@@ -108,7 +107,7 @@
             app:current_month_text_color="#333333"
             app:max_year="2020"
             app:min_year="2004"
-            app:month_view="com.haibin.calendarviewproject.custom.CustomMonthView"
+            app:month_view="com.haibin.calendarview.custom.CustomMonthView"
             app:month_view_show_mode="mode_fix"
             app:other_month_lunar_text_color="#e1e1e1"
             app:other_month_text_color="#e1e1e1"
@@ -121,8 +120,8 @@
             app:week_background="#fff"
             app:week_start_with="sun"
             app:week_text_color="#e1e1e1"
-            app:week_view="com.haibin.calendarviewproject.custom.CustomWeekView"
-            app:year_view="com.haibin.calendarviewproject.custom.CustomYearView"
+            app:week_view="com.haibin.calendarview.custom.CustomWeekView"
+            app:year_view="com.haibin.calendarview.custom.CustomYearView"
             app:year_view_day_text_color="#333333"
             app:year_view_day_text_size="7sp"
             app:year_view_month_text_color="#ff0000"
@@ -133,7 +132,7 @@
             app:year_view_week_text_color="#e1e1e1"
             app:year_view_week_text_size="6sp" />
 
-        <com.haibin.calendarviewproject.group.GroupRecyclerView
+        <com.haibin.calendarview.group.GroupRecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -148,6 +147,5 @@
             app:group_text_size="14sp" />
 
     </com.haibin.calendarview.library.CalendarLayout>
-
 
 </LinearLayout>

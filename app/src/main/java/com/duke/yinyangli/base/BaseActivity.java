@@ -30,8 +30,10 @@ public abstract class BaseActivity extends AppCompatActivity {
             unbinder = ButterKnife.bind(this);
         }
         initView();
+        initData();
     }
 
+    public void initData() {};
     public void initView() {};
     public abstract int getLayoutId();
     public boolean useEventBus() {
