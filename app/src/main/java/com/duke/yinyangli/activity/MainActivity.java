@@ -1,7 +1,9 @@
 package com.duke.yinyangli.activity;
 
 import com.duke.yinyangli.R;
+import com.duke.yinyangli.adapter.MainInfoAdapter;
 import com.duke.yinyangli.base.BaseActivity;
+import com.duke.yinyangli.calendar.Lunar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.gyf.immersionbar.ImmersionBar;
@@ -55,6 +57,8 @@ public class MainActivity extends BaseActivity implements
     GroupRecyclerView mRecyclerView;
 
     private int mYear;
+    private Lunar mCurrentLunar;
+    private MainInfoAdapter mAdapter;
 
     public static void show(Context context) {
         context.startActivity(new Intent(context, MainActivity.class));
@@ -86,7 +90,7 @@ public class MainActivity extends BaseActivity implements
                 mTextMonthDay.setText(String.valueOf(mYear));
             }
         });
-        findViewById(com.haibin.calendarview.R.id.fl_current).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.fl_current).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mCalendarView.scrollToCurrent();
@@ -112,16 +116,26 @@ public class MainActivity extends BaseActivity implements
         mTextMonthDay.setText(mCalendarView.getCurMonth() + "月" + mCalendarView.getCurDay() + "日");
         mTextLunar.setText("今日");
         mTextCurrentDay.setText(String.valueOf(mCalendarView.getCurDay()));
+
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.addItemDecoration(new GroupItemDecoration<String, Article>());
+        mRecyclerView.setAdapter(mAdapter = new MainInfoAdapter(this));
     }
 
     @Override
     public void initData() {
         int year = mCalendarView.getCurYear();
         int month = mCalendarView.getCurMonth();
+        int currentDay = mCalendarView.getCurDay();
+        mCurrentLunar = Lunar.fromDate(mCalendarView.getSelectedCalendar().getDate());
+        mAdapter.setLunar(mCurrentLunar);
+        mRecyclerView.notifyDataSetChanged();
+
+        String ji = mCurrentLunar.getDayTianShenLuck();
 
         Map<String, Calendar> map = new HashMap<>();
-//        map.put(getSchemeCalendar(year, month, 3, 0xFF40db25, "假").toString(),
-//                getSchemeCalendar(year, month, 3, 0xFF40db25, "假"));
+        map.put(getSchemeCalendar(year, month, currentDay, 0xFF40db25, ji).toString(),
+                getSchemeCalendar(year, month, currentDay, 0xFF40db25, ji));
 //        map.put(getSchemeCalendar(year, month, 6, 0xFFe69138, "事").toString(),
 //                getSchemeCalendar(year, month, 6, 0xFFe69138, "事"));
 //        map.put(getSchemeCalendar(year, month, 9, 0xFFdf1356, "议").toString(),
@@ -140,12 +154,6 @@ public class MainActivity extends BaseActivity implements
 //                getSchemeCalendar(year, month, 27, 0xFF13acf0, "多"));
         //此方法在巨大的数据量上不影响遍历性能，推荐使用
         mCalendarView.setSchemeDate(map);
-
-
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mRecyclerView.addItemDecoration(new GroupItemDecoration<String, Article>());
-        mRecyclerView.setAdapter(new ArticleAdapter(this));
-        mRecyclerView.notifyDataSetChanged();
     }
 
     private Calendar getSchemeCalendar(int year, int month, int day, int color, String text) {

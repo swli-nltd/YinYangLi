@@ -19,6 +19,7 @@ import android.text.TextUtils;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -364,6 +365,19 @@ public final class Calendar implements Serializable, Comparable<Calendar> {
         calendar.set(java.util.Calendar.MONTH, month - 1);
         calendar.set(java.util.Calendar.DAY_OF_MONTH, day);
         return calendar.getTimeInMillis();
+    }
+
+    /**
+     * 获取当前日历对应date
+     *
+     * @return getTimeInMillis
+     */
+    public Date getDate() {
+        java.util.Calendar calendar = java.util.Calendar.getInstance();
+        calendar.set(java.util.Calendar.YEAR, year);
+        calendar.set(java.util.Calendar.MONTH, month - 1);
+        calendar.set(java.util.Calendar.DAY_OF_MONTH, day);
+        return calendar.getTime();
     }
 
     @Override

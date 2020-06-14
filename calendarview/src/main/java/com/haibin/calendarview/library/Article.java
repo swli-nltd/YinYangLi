@@ -15,6 +15,7 @@ public class Article implements Serializable {
     private String desc;
     private String date;
     private int type;
+    private int imgRes;
 
     public int getId() {
         return id;
@@ -70,5 +71,17 @@ public class Article implements Serializable {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public int getImgRes() {
+        return imgRes;
+    }
+
+    public void setImgRes(int imgRes) {
+        this.imgRes = imgRes;
+    }
+
+    public void setImgResource(int imgRes) {
+        this.imgRes = imgRes;
     }
 }
