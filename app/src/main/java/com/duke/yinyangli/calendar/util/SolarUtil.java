@@ -1,11 +1,6 @@
 package com.duke.yinyangli.calendar.util;
 
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 阳历工具，基准日期为1901年1月1日，对应农历1900年十一月十一
@@ -56,10 +51,10 @@ public class SolarUtil{
     }
   };
   /** 日期对应的非正式节日 */
-  public static final Map<String, List<String>> OTHER_FESTIVAL = new HashMap<String,List<String>>(){
+  public static final Map<String,List<String>> OTHER_FESTIVAL = new HashMap<String,List<String>>(){
     private static final long serialVersionUID = -1;
     {
-      put("1-8", Collections.nCopies(1,"周恩来逝世纪念日"));
+      put("1-8",Collections.nCopies(1,"周恩来逝世纪念日"));
       put("1-10",Collections.nCopies(1,"中国公安110宣传日"));
       put("1-21",Collections.nCopies(1,"列宁逝世纪念日"));
       put("1-26",Collections.nCopies(1,"国际海关日"));
@@ -72,7 +67,7 @@ public class SolarUtil{
       put("2-24",Collections.nCopies(1,"第三世界青年日"));
       put("3-1",Collections.nCopies(1,"国际海豹日"));
       put("3-3",Collections.nCopies(1,"全国爱耳日"));
-      put("3-5", Arrays.asList("周恩来诞辰纪念日","中国青年志愿者服务日"));
+      put("3-5",Arrays.asList("周恩来诞辰纪念日","中国青年志愿者服务日"));
       put("3-6",Collections.nCopies(1,"世界青光眼日"));
       put("3-12",Collections.nCopies(1,"孙中山逝世纪念日"));
       put("3-14",Collections.nCopies(1,"马克思逝世纪念日"));
@@ -160,7 +155,7 @@ public class SolarUtil{
     int m = month-1;
     int d = DAYS_OF_MONTH[m];
     //公历闰年2月多一天
-    if(m == Calendar.FEBRUARY&&isLeapYear(year)){
+    if(m==Calendar.FEBRUARY&&isLeapYear(year)){
       d++;
     }
     return d;

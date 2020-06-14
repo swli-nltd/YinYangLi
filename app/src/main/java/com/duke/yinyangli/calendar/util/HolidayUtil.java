@@ -1,6 +1,5 @@
 package com.duke.yinyangli.calendar.util;
 
-
 import com.duke.yinyangli.calendar.Holiday;
 
 import java.util.ArrayList;
