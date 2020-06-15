@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="24dp"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <View
+        android:id="@+id/yang"
+        android:layout_width="@dimen/guaxiang_width"
+        android:layout_height="@dimen/guaxiang_height"
+        android:visibility="gone"
+        android:background="#333333"/>
+
+    <LinearLayout
+        android:id="@+id/yin"
+        android:layout_width="@dimen/guaxiang_width"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+        <View
+            android:layout_width="@dimen/guaxiang_width_item"
+            android:layout_height="@dimen/guaxiang_height"
+            android:background="#333333"/>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/guaxiang_height"
+            android:layout_weight="1"/>
+        <View
+            android:layout_width="@dimen/guaxiang_width_item"
+            android:layout_height="@dimen/guaxiang_height"
+            android:background="#333333"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/old"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#333333"
+        android:text="O"/>
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#333333"
+        android:layout_marginStart="12dp"
+        android:text="少阳"/>
+</LinearLayout>

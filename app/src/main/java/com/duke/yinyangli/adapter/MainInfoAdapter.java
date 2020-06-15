@@ -86,7 +86,7 @@ public class MainInfoAdapter extends GroupRecyclerAdapter<String, Article> {
             list.add(Article.create("今日忌", mLunar.getDayJi(), R.mipmap.jinriji));
         } else if (p == 1) {
             list.add(Article.create("当前时辰宜", mLunar.getTimeYi(), R.mipmap.jinriyi));
-            list.add(Article.create("当前时辰忌", mLunar.getTimeYi(), R.mipmap.jinriji));
+            list.add(Article.create("当前时辰忌", mLunar.getTimeJi(), R.mipmap.jinriji));
         } else if (p == 2) {
             list.add(Article.create("今日吉神", mLunar.getDayJiShen(), R.mipmap.ji));
             list.add(Article.create("今日凶煞", mLunar.getDayXiongSha(), R.mipmap.xiong));

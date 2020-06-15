@@ -1,8 +1,67 @@
 package com.duke.yinyangli.utils;
 
+import com.duke.yinyangli.bean.GuaXiangItem;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class ZhanBuUtils {
+
+    public static String getGua(List<Integer> list, boolean bian) {
+        StringBuilder sb = new StringBuilder();
+        for (Integer result : list) {
+            sb.append(getGua(result, bian));
+            sb.append("\n");
+        }
+        return sb.toString();
+    }
+
+    public static String getGua(int result, boolean bian) {
+        switch (result) {
+            case 24:
+                return bian ? "——-" :"— —";
+            case 28:
+                return "——-";
+            case 32:
+                return "— —";
+            case 36:
+                return bian ? "— —" : "——-";
+            default:break;
+        }
+        return "— —";
+    }
+
+    public static int getGua(int result) {
+        switch (result) {
+            case 24:
+                return 0;
+            case 28:
+                return 1;
+            case 32:
+                return 0;
+            case 36:
+                return 1;
+            default:break;
+        }
+        return 0;
+    }
+
+    public static int getBianGua(int result) {
+        switch (result) {
+            case 24:
+                return 1;
+            case 28:
+                return 1;
+            case 32:
+                return 0;
+            case 36:
+                return 0;
+            default:break;
+        }
+        return 0;
+    }
+
 
     public static String getResultCaoString(int result) {
         switch (result) {
@@ -61,5 +120,19 @@ public class ZhanBuUtils {
             }
         }
         return fourth;
+    }
+
+    public static List<GuaXiangItem> getGua(List<Integer> list, int type) {
+        List<GuaXiangItem> guaList = new ArrayList<>();
+        if (type == 0) {
+            for (int i = list.size() - 1; i >= 0; i --) {
+                guaList.add(new GuaXiangItem(list.get(i), false));
+            }
+        } else {
+            for (int i = 0; i < list.size(); i ++) {
+                guaList.add(new GuaXiangItem(list.get(i), type == 3));
+            }
+        }
+        return guaList;
     }
 }
