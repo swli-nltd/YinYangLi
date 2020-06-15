@@ -160,6 +160,6 @@
             android:layout_alignParentEnd="true"
             android:layout_marginBottom="@dimen/ball_default_bottom"
             android:layout_marginEnd="@dimen/ball_default_end"
-            android:src="@mipmap/taiji" />
+            android:src="@mipmap/ic_launcher" />
     </com.duke.yinyangli.view.FloatViewBall>
 </RelativeLayout>

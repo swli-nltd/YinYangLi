@@ -11,7 +11,6 @@ android {
         versionName "1.0"
 
         multiDexEnabled true
-        multiDexKeepProguard file('maindex-keep.pro')
     }
     buildTypes {
         release {
@@ -32,10 +31,16 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+    implementation project(path: ':lunarLibrary')
     implementation project(path: ':calendarview')
-    implementation 'androidx.appcompat:appcompat:1.1.0'
+
+    implementation 'com.bytedance.boost_multidex:boost_multidex:1.0.0'
+
     implementation 'androidx.annotation:annotation:1.1.0'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    implementation 'com.google.android.material:material:1.1.0'
 
     //statusbar
     // 基础依赖包，必须要依赖
@@ -66,8 +71,6 @@ dependencies {
 
     implementation 'com.jakewharton:butterknife:10.2.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
-    implementation 'com.github.bumptech.glide:glide:4.11.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 
     //https://github.com/donkingliang/ConsecutiveScroller
     implementation 'com.github.donkingliang:ConsecutiveScroller:2.5.1'

@@ -15,6 +15,7 @@ public class MyApplication extends Application {
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
+        BoostMultiDex.install(base);
 
         Result result = BoostMultiDex.install(this);
         if (result != null && result.fatalThrowable != null) {
