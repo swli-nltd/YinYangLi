@@ -2,7 +2,7 @@ package com.duke.yinyangli.bean;
 
 public class JieGuaItem {
 
-    private int value;
+    private String code;
     private String name;
     private String description;
     private String level;
@@ -10,15 +10,15 @@ public class JieGuaItem {
     private String guaci;
     private String result;
 
-    public JieGuaItem(int value, String name, String description, String level, String secondName) {
-        this.value = value;
+    public JieGuaItem(String code, String name, String description, String level, String secondName) {
+        this.code = code;
         this.name = name;
         this.description = description;
         this.level = level;
         this.secondName = secondName;
     }
-    public JieGuaItem(int value, String name, String description, String level) {
-        this.value = value;
+    public JieGuaItem(String code, String name, String description, String level) {
+        this.code = code;
         this.name = name;
         this.description = description;
         this.level = level;
@@ -63,12 +63,12 @@ public class JieGuaItem {
         return this;
     }
 
-    public int getValue() {
-        return value;
+    public String getCode() {
+        return code;
     }
 
-    public JieGuaItem setValue(int value) {
-        this.value = value;
+    public JieGuaItem setCode(String code) {
+        this.code = code;
         return this;
     }
 

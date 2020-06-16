@@ -218,4 +218,8 @@ public class MainActivity extends BaseActivity implements
         mTextMonthDay.setText(String.valueOf(year));
     }
 
+    private void initMyData() {
+
+    }
+
 }
