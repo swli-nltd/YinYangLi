@@ -6,4 +6,6 @@
     <string name="login_time_out">登录超时</string>
     <string name="jump_googleplay_fail">打开应用商店失败</string>
     <string name="select">选择</string>
+    <string name="slogen">一卦，一天一卦</string>
+    <string name="tips_main">本应用仅用于弘扬交流传统文化，切勿迷信传播</string>
 </resources>
