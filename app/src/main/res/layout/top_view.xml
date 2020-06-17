@@ -26,5 +26,7 @@
     <ImageView
         android:id="@+id/right"
         android:layout_width="@dimen/top_view_height"
-        android:layout_height="@dimen/top_view_height"/>
+        android:layout_height="@dimen/top_view_height"
+        android:src="@mipmap/help"
+        android:scaleType="center"/>
 </LinearLayout>

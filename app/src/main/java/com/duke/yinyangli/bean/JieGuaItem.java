@@ -7,22 +7,12 @@ public class JieGuaItem {
     private String description;
     private String level;
     private String secondName;
-    private String guaci;
-    private String result;
 
-    public JieGuaItem(String code, String name, String description, String level, String secondName) {
-        this.code = code;
-        this.name = name;
-        this.description = description;
-        this.level = level;
-        this.secondName = secondName;
-    }
-    public JieGuaItem(String code, String name, String description, String level) {
-        this.code = code;
-        this.name = name;
-        this.description = description;
-        this.level = level;
-    }
+    private String jiegua;
+    private String yuanwen;
+    private String jiewen;
+    private String zhujie;
+    private String guacishi;
 
     public JieGuaItem() {
     }
@@ -36,13 +26,44 @@ public class JieGuaItem {
         return this;
     }
 
-    public String getGuaci() {
-        return guaci;
+    public String getJiegua() {
+        return jiegua;
     }
 
-    public JieGuaItem setGuaci(String guaci) {
-        this.guaci = guaci;
-        return this;
+    public void setJiegua(String jiegua) {
+        this.jiegua = jiegua;
+    }
+
+    public String getYuanwen() {
+        return yuanwen;
+    }
+
+    public void setYuanwen(String yuanwen) {
+        this.yuanwen = yuanwen;
+    }
+
+    public String getJiewen() {
+        return jiewen;
+    }
+
+    public void setJiewen(String jiewen) {
+        this.jiewen = jiewen;
+    }
+
+    public String getZhujie() {
+        return zhujie;
+    }
+
+    public void setZhujie(String zhujie) {
+        this.zhujie = zhujie;
+    }
+
+    public String getGuacishi() {
+        return guacishi;
+    }
+
+    public void setGuacishi(String guacishi) {
+        this.guacishi = guacishi;
     }
 
     public String getLevel() {
@@ -51,15 +72,6 @@ public class JieGuaItem {
 
     public JieGuaItem setLevel(String level) {
         this.level = level;
-        return this;
-    }
-
-    public String getResult() {
-        return result;
-    }
-
-    public JieGuaItem setResult(String result) {
-        this.result = result;
         return this;
     }
 

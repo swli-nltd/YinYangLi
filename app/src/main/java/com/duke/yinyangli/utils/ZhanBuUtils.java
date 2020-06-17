@@ -135,4 +135,12 @@ public class ZhanBuUtils {
         }
         return guaList;
     }
+
+    public static String getCode(List<Integer> list, boolean bian) {
+        StringBuilder sb = new StringBuilder();
+        for (Integer integer : list) {
+            sb.append(bian ? getBianGua(integer) : getGua(integer));
+        }
+        return sb.toString();
+    }
 }

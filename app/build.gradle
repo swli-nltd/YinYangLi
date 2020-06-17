@@ -12,6 +12,11 @@ android {
 
         multiDexEnabled true
     }
+    sourceSets {
+        main {
+            assets.srcDirs = ['assets']
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -76,4 +81,6 @@ dependencies {
     implementation 'com.github.donkingliang:ConsecutiveScroller:2.5.1'
 
     implementation 'com.tencent:mmkv-static:1.1.2'
+    // For developers using AndroidX in their applications
+    implementation 'pub.devrel:easypermissions:3.0.0'
 }

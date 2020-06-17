@@ -5,6 +5,7 @@ import com.duke.yinyangli.adapter.MainInfoAdapter;
 import com.duke.yinyangli.base.BaseActivity;
 import com.duke.yinyangli.calendar.Lunar;
 import com.duke.yinyangli.constants.Constants;
+import com.duke.yinyangli.utils.JieGuaUtils;
 import com.duke.yinyangli.utils.LogUtils;
 import com.duke.yinyangli.view.FloatViewBall;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -19,6 +20,7 @@ import com.haibin.calendarview.library.CalendarLayout;
 import com.haibin.calendarview.library.CalendarView;
 import com.tencent.mmkv.MMKV;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -31,16 +33,23 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import butterknife.BindView;
 import butterknife.OnClick;
+import pub.devrel.easypermissions.EasyPermissions;
 
 public class MainActivity extends BaseActivity implements
         CalendarView.OnCalendarSelectListener,
         CalendarView.OnYearChangeListener,
+        EasyPermissions.PermissionCallbacks,
         View.OnClickListener {
+
+    private static final int RC_PERMISSIONS = 1001;
 
     @BindView(R.id.tv_month_day)
     TextView mTextMonthDay;
@@ -87,6 +96,7 @@ public class MainActivity extends BaseActivity implements
         super.initView();
 
         initBall();
+        requiresPermissions();
         mTextMonthDay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -117,6 +127,34 @@ public class MainActivity extends BaseActivity implements
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.addItemDecoration(new GroupItemDecoration<String, Article>());
         mRecyclerView.setAdapter(mAdapter = new MainInfoAdapter(this));
+    }
+
+    private void requiresPermissions() {
+        String[] perms = {Manifest.permission.READ_EXTERNAL_STORAGE
+                , Manifest.permission.WRITE_EXTERNAL_STORAGE};
+        if (EasyPermissions.hasPermissions(this, perms)) {
+            // Already have permission, do the thing
+            // ...
+        } else {
+            // Do not have permissions, request them now
+            ActivityCompat.requestPermissions(this, perms, RC_PERMISSIONS);
+        }
+    }
+
+    @Override
+    public void onPermissionsGranted(int requestCode, @NonNull List<String> perms) {
+    }
+
+    @Override
+    public void onPermissionsDenied(int requestCode, List<String> perms) {
+        LogUtils.d("onPermissionsDenied:" + requestCode + ":" + perms.size());
+
+        // (Optional) Check whether the user denied any permissions and checked "NEVER ASK AGAIN."
+        // This will display a dialog directing them to enable the permission in app settings.
+        if (EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
+//            new AppSettingsDialog.Builder(this).build().show();
+//            EasyPermissions.requestPermissions(this, getString(R.string.apply_for_permission_content), RC_PERMISSIONS, perms.toArray(new String[perms.size()]));
+        }
     }
 
     private void initBall() {
@@ -216,10 +254,6 @@ public class MainActivity extends BaseActivity implements
     @Override
     public void onYearChange(int year) {
         mTextMonthDay.setText(String.valueOf(year));
-    }
-
-    private void initMyData() {
-
     }
 
 }
