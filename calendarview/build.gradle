@@ -10,6 +10,8 @@ android {
         versionName "1.0.0"
 
         multiDexEnabled true
+        renderscriptTargetApi 18
+        renderscriptSupportModeEnabled true
     }
     // Butterknife requires Java 8.
     compileOptions {
