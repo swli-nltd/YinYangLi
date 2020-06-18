@@ -8,6 +8,7 @@ import android.os.Message;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LinearInterpolator;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -34,12 +35,6 @@ import butterknife.ButterKnife;
 public class ResultActivity extends BaseActivity {
 
 
-    @BindView(R.id.background_1)
-    ImageView background1;
-    @BindView(R.id.background_2)
-    ImageView background2;
-    @BindView(R.id.background_3)
-    ImageView background3;
     @BindView(R.id.image)
     ImageView image;
     @BindView(R.id.result_origin)
@@ -85,15 +80,6 @@ public class ResultActivity extends BaseActivity {
         resultChangedList.setAdapter(mChangedAdapter = new GuaXiangAdapter(this, false));
         resultAll.setLayoutManager(new LinearLayoutManager(this));
         resultAll.setAdapter(mAllAdapter = new AllResultAdapter(this));
-        background1.setImageBitmap(ImageUtils.blur(this, BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher), 25));
-        background2.setImageBitmap(ImageUtils.blur(this, BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher), 25));
-        background3.setImageBitmap(ImageUtils.blur(this, BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher), 25));
-        Animation operatingAnim = AnimationUtils.loadAnimation(this, R.anim.rotate_man);
-        LinearInterpolator lin = new LinearInterpolator();
-        operatingAnim.setInterpolator(lin);
-        background1.startAnimation(operatingAnim);
-        background2.startAnimation(operatingAnim);
-        background3.startAnimation(operatingAnim);
     }
 
     @Override
