@@ -1,5 +1,9 @@
 package com.duke.yinyangli.activity;
 
+import android.animation.Animator;
+import android.animation.AnimatorInflater;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
@@ -21,6 +25,7 @@ import com.duke.yinyangli.constants.Constants;
 import com.duke.yinyangli.utils.ImageUtils;
 import com.duke.yinyangli.utils.JieGuaUtils;
 import com.duke.yinyangli.utils.ZhanBuUtils;
+import com.duke.yinyangli.view.spiderview.SpiderWebView;
 import com.haibin.calendarview.library.Article;
 
 import java.util.ArrayList;
@@ -35,8 +40,13 @@ import butterknife.ButterKnife;
 public class ResultActivity extends BaseActivity {
 
 
+    private static final long DURATION_DALEY_NRXT = 800;
+    @BindView(R.id.image_left)
+    ImageView imageLeft;
     @BindView(R.id.image)
     ImageView image;
+    @BindView(R.id.image_right)
+    ImageView imageRight;
     @BindView(R.id.result_origin)
     TextView resultView;
     @BindView(R.id.result_master)
@@ -51,6 +61,8 @@ public class ResultActivity extends BaseActivity {
     RecyclerView resultMasterList;
     @BindView(R.id.result_changed_list)
     RecyclerView resultChangedList;
+    @BindView(R.id.spider_view)
+    SpiderWebView spiderView;
 
     private int mCaoCount;
     private List<Integer> list;
@@ -58,6 +70,7 @@ public class ResultActivity extends BaseActivity {
     private GuaXiangAdapter mMasterAdapter;
     private GuaXiangAdapter mChangedAdapter;
     private AllResultAdapter mAllAdapter;
+    private Article mAriticle;
 
     public static void start(Context context, Article article) {
         context.startActivity(new Intent(context, ResultActivity.class)
@@ -86,21 +99,71 @@ public class ResultActivity extends BaseActivity {
     public void initData() {
         super.initData();
         mHandler = new MyHandler(this);
-        Article article = (Article) getIntent().getSerializableExtra(Constants.INTENT_KEY.KEY_MODEL);
-        title.setText(article.getTitle());
-
-        image.setImageResource(R.mipmap.zhanbushicao);
-        setResult(article);
+        mAriticle = (Article) getIntent().getSerializableExtra(Constants.INTENT_KEY.KEY_MODEL);
+        title.setText(mAriticle.getTitle());
+        image.setImageResource(mAriticle.getImgRes());
+        setResult();
+        if (mAriticle.getType() == Constants.TYPE.TYPE_QIAN) {
+            imageLeft.setImageResource(mAriticle.getImgRes());
+            imageRight.setImageResource(mAriticle.getImgRes());
+            playFlip(imageLeft);
+            playFlip(image);
+            playFlip(imageRight);
+        }
     }
 
-    private void setResult(Article article) {
-        switch (article.getId()) {
+    private void playFlip(ImageView imageView) {
+        AnimatorSet animatorSetOut = (AnimatorSet) AnimatorInflater
+                .loadAnimator(this, R.animator.flip_out);
+
+        final AnimatorSet animatorSetIn = (AnimatorSet) AnimatorInflater
+                .loadAnimator(this, R.animator.flip_in);
+
+        animatorSetOut.setTarget(imageView);
+        animatorSetIn.setTarget(imageView);
+
+        animatorSetOut.addListener(new AnimatorListenerAdapter() {
+
+            @Override
+            public void onAnimationEnd(Animator animation) {// 翻转90度之后，换图
+                animatorSetIn.start();
+            }
+        });
+
+        animatorSetIn.addListener(new AnimatorListenerAdapter() {
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                animatorSetOut.start();
+            }
+        });
+        animatorSetOut.start();
+    }
+
+    private void setResult() {
+        switch (mAriticle.getType()) {
             case Constants.TYPE.TYPE_CAO:
                 getResultCao();
+                break;
+            case Constants.TYPE.TYPE_QIAN:
+                getResultQian();
                 break;
             default:
                 break;
         }
+    }
+
+    private void getResultQian() {
+        mCaoCount = 0;
+        if (list == null) {
+            list = new ArrayList<>();
+        } else {
+            list.clear();
+        }
+        int result = ZhanBuUtils.getResultQian();
+        list.add(result);
+        mOriginAdapter.refreshData(ZhanBuUtils.getGua(list, 0));
+        mHandler.sendEmptyMessageDelayed(0, DURATION_DALEY_NRXT);
     }
 
     private void getResultCao() {
@@ -113,7 +176,7 @@ public class ResultActivity extends BaseActivity {
         int result = ZhanBuUtils.getResultCao();
         list.add(result);
         mOriginAdapter.refreshData(ZhanBuUtils.getGua(list, 0));
-        mHandler.sendEmptyMessageDelayed(0, 400);
+        mHandler.sendEmptyMessageDelayed(0, DURATION_DALEY_NRXT);
     }
 
     @Override
@@ -145,10 +208,11 @@ public class ResultActivity extends BaseActivity {
                 }
             });
         } else {
-            int result = ZhanBuUtils.getResultCao();
+            int result = mAriticle.getType() == Constants.TYPE.TYPE_CAO ? ZhanBuUtils.getResultCao()
+                    : ZhanBuUtils.getResultQian();
             list.add(result);
             mOriginAdapter.refreshData(ZhanBuUtils.getGua(list, 0));
-            mHandler.sendEmptyMessageDelayed(0, 400);
+            mHandler.sendEmptyMessageDelayed(0, DURATION_DALEY_NRXT);
         }
     }
 

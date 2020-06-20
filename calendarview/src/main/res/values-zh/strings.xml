@@ -199,7 +199,6 @@
     <string name="thu">四</string>
     <string name="fri">五</string>
     <string name="sat">六</string>
-    <string name="app_name">阴阳历</string>
 
 
     <string-array name="week_string_array">

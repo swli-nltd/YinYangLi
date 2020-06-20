@@ -34,12 +34,16 @@ public class ZhanBuUtils {
 
     public static int getGua(int result) {
         switch (result) {
+            case 6:
             case 24:
                 return 0;
+            case 7:
             case 28:
                 return 1;
+            case 8:
             case 32:
                 return 0;
+            case 9:
             case 36:
                 return 1;
             default:break;
@@ -49,12 +53,16 @@ public class ZhanBuUtils {
 
     public static int getBianGua(int result) {
         switch (result) {
+            case 6:
             case 24:
                 return 1;
+            case 7:
             case 28:
                 return 1;
+            case 8:
             case 32:
                 return 0;
+            case 9:
             case 36:
                 return 0;
             default:break;
@@ -65,12 +73,16 @@ public class ZhanBuUtils {
 
     public static String getResultCaoString(int result) {
         switch (result) {
+            case 6:
             case 24:
                 return "老阴";
             case 28:
+            case 7:
                 return "少阳";
+            case 8:
             case 32:
                 return "少阴";
+            case 9:
             case 36:
                 return "老阳";
                 default:break;
@@ -142,5 +154,14 @@ public class ZhanBuUtils {
             sb.append(bian ? getBianGua(integer) : getGua(integer));
         }
         return sb.toString();
+    }
+
+    public static int getResultQian() {
+        Random random = new Random();
+        int total = 0;
+        for (int i = 0; i < 3; i ++) {
+            total += random.nextInt(2) + 2;
+        }
+        return total;
     }
 }

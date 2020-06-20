@@ -201,7 +201,6 @@
     <string name="thu">Thu</string>
     <string name="fri">Fri</string>
     <string name="sat">Sat</string>
-    <string name="app_name">阴阳历</string>
 
     <string-array name="week_string_array">
         <item>Sun</item>
