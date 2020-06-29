@@ -29,8 +29,10 @@ public class ChooseAdapter extends RecyclerView.Adapter<ChooseAdapter.ViewHolder
     }
 
     private void loadRes() {
-        mData.add(Article.create("蓍草占卜法", "", R.mipmap.zhanbushicao).setType(Constants.TYPE.TYPE_CAO));
-        mData.add(Article.create("掷钱法", "", R.mipmap.qian).setType(Constants.TYPE.TYPE_QIAN));
+        mData.add(Article.create("蓍草占卜", "", R.mipmap.zhanbushicao).setType(Constants.TYPE.TYPE_CAO));
+        mData.add(Article.create("掷钱占卜", "", R.mipmap.qian).setType(Constants.TYPE.TYPE_QIAN));
+        mData.add(Article.create("称骨算命", "", R.mipmap.qian).setType(Constants.TYPE.TYPE_QIAN));
+        mData.add(Article.create("生辰八字", "", R.mipmap.qian).setType(Constants.TYPE.TYPE_QIAN));
         notifyDataSetChanged();
     }
 
