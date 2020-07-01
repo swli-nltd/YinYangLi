@@ -8,4 +8,7 @@
     <string name="select">选择</string>
     <string name="slogen">一卦，一天一卦</string>
     <string name="tips_main">本应用仅用于弘扬交流传统文化，切勿迷信传播</string>
+    <string name="update">更新</string>
+    <string name="cancel">取消</string>
+    <string name="go_download">去下载</string>
 </resources>

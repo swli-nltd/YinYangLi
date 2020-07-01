@@ -8,6 +8,8 @@ import com.bytedance.boost_multidex.BoostMultiDex;
 import com.bytedance.boost_multidex.Result;
 import com.tencent.mmkv.MMKV;
 
+import cn.jpush.android.api.JPushInterface;
+
 public class MyApplication extends Application {
 
     private static MyApplication sInstance;
@@ -29,6 +31,9 @@ public class MyApplication extends Application {
         sInstance = this;
         String rootDir = MMKV.initialize(this);
         System.out.println("mmkv root: " + rootDir);
+
+        JPushInterface.setDebugMode(true);
+        JPushInterface.init(this);
     }
 
     public static Context getInstance() {
