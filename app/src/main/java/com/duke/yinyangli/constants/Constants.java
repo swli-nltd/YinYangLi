@@ -17,5 +17,7 @@ public class Constants {
     public interface TYPE {
         int TYPE_CAO = 0;
         int TYPE_QIAN = 1;
+        int TYPE_CHENGGU = 2;
+        int TYPE_BAZI = 3;
     }
 }
