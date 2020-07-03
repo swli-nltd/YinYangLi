@@ -57,7 +57,7 @@
             android:theme="@style/AppTheme">
         </activity>
         <activity android:name=".activity.ChooseActivity" />
-        <activity android:name=".activity.ResultActivity" />
+        <activity android:name=".activity.GuaResultActivity" />
         <activity android:name=".activity.StartActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -232,6 +232,7 @@
                 <category android:name="com.duke.yinyangli" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.ChengGuActivity" />
 
         <!-- Required. For publish channel feature -->
         <!-- JPUSH_CHANNEL 是为了方便开发者统计 APK 分发渠道。-->

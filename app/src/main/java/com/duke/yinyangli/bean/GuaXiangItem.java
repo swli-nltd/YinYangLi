@@ -1,6 +1,6 @@
 package com.duke.yinyangli.bean;
 
-import com.duke.yinyangli.utils.ZhanBuUtils;
+import com.duke.yinyangli.utils.core.ZhanBuUtils;
 
 public class GuaXiangItem {
 

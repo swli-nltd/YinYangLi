@@ -1,5 +1,6 @@
 package com.duke.yinyangli.base;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -21,6 +22,7 @@ import com.duke.yinyangli.BuildConfig;
 import com.duke.yinyangli.R;
 import com.duke.yinyangli.bean.VersionResponse;
 import com.duke.yinyangli.constants.Event;
+import com.duke.yinyangli.dialog.DialogUtils;
 import com.duke.yinyangli.dialog.SimpleDialog;
 import com.duke.yinyangli.utils.AppUtils;
 import com.duke.yinyangli.utils.JsonUtils;
@@ -45,6 +47,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     public ImageView right;
     public MyHandler mHandler;
     private SimpleDialog mDialog;
+    private Dialog progressDialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -63,8 +66,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     public void initData() {
     }
 
-    ;
-
     public void initView() {
         title = findViewById(R.id.title);
         left = findViewById(R.id.left);
@@ -77,8 +78,6 @@ public abstract class BaseActivity extends AppCompatActivity {
             });
         }
     }
-
-    ;
 
     public abstract int getLayoutId();
 
@@ -96,6 +95,17 @@ public abstract class BaseActivity extends AppCompatActivity {
         EventBus.getDefault().unregister(this);
     }
 
+
+    public void dismissProgressDialog() {
+        if (progressDialog != null && progressDialog.isShowing()) {
+            progressDialog.dismiss();
+        }
+    }
+
+    public void showProgressDialog() {
+        dismissProgressDialog();
+        progressDialog = DialogUtils.progress(this);
+    }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onReceiveEvent(BaseEvent event) {

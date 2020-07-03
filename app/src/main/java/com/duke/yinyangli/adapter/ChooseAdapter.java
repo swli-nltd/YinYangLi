@@ -8,7 +8,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.duke.yinyangli.R;
-import com.duke.yinyangli.activity.ResultActivity;
+import com.duke.yinyangli.activity.ChengGuActivity;
+import com.duke.yinyangli.activity.GuaResultActivity;
 import com.duke.yinyangli.constants.Constants;
 import com.haibin.calendarview.library.Article;
 
@@ -31,8 +32,8 @@ public class ChooseAdapter extends RecyclerView.Adapter<ChooseAdapter.ViewHolder
     private void loadRes() {
         mData.add(Article.create("蓍草占卜", "", R.mipmap.zhanbushicao).setType(Constants.TYPE.TYPE_CAO));
         mData.add(Article.create("掷钱占卜", "", R.mipmap.qian).setType(Constants.TYPE.TYPE_QIAN));
-        mData.add(Article.create("称骨算命", "", R.mipmap.qian).setType(Constants.TYPE.TYPE_QIAN));
-        mData.add(Article.create("生辰八字", "", R.mipmap.qian).setType(Constants.TYPE.TYPE_QIAN));
+        mData.add(Article.create("称骨算命", "", R.mipmap.chenggu).setType(Constants.TYPE.TYPE_CHENGGU));
+        mData.add(Article.create("生辰八字", "", R.mipmap.bazi).setType(Constants.TYPE.TYPE_BAZI));
         notifyDataSetChanged();
     }
 
@@ -50,7 +51,19 @@ public class ChooseAdapter extends RecyclerView.Adapter<ChooseAdapter.ViewHolder
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ResultActivity.start(mContext, article);
+                switch (article.getType()) {
+                    case Constants.TYPE.TYPE_CAO:
+                    case Constants.TYPE.TYPE_QIAN:
+                        GuaResultActivity.start(mContext, article);
+                        break;
+                    case Constants.TYPE.TYPE_CHENGGU:
+                        ChengGuActivity.start(mContext, article);
+                        break;
+                    case Constants.TYPE.TYPE_BAZI:
+                        break;
+                        default:break;
+                }
+
             }
         });
     }

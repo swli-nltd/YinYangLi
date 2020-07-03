@@ -1,6 +1,7 @@
 package com.duke.yinyangli.adapter;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,11 +11,14 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.duke.yinyangli.R;
-import com.duke.yinyangli.activity.ResultActivity;
+import com.duke.yinyangli.bean.ChengGuItem;
 import com.duke.yinyangli.bean.JieGuaItem;
+import com.duke.yinyangli.calendar.Lunar;
+import com.duke.yinyangli.utils.core.ChengguUtils;
 import com.haibin.calendarview.library.Article;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class AllResultAdapter extends RecyclerView.Adapter<AllResultAdapter.ViewHolder> {
@@ -41,6 +45,26 @@ public class AllResultAdapter extends RecyclerView.Adapter<AllResultAdapter.View
         notifyDataSetChanged();
     }
 
+    public void setResult(Calendar calendar, int[] result, ChengGuItem chengGuItem) {
+        if (mData == null) {
+            mData = new ArrayList<>();
+        } else {
+            mData.clear();
+        }
+        Lunar lunar = Lunar.fromDate(calendar.getTime());
+        mData.add(Article.create("出生时间", lunar.getYearInChinese()
+                + " " + lunar.getMonthInChinese()
+                + " " + lunar.getDayInChinese()
+                + " " + lunar.getTimeZhi() + "时", 0));
+        mData.add(Article.create("骨重", "你的命有" + result[0] + "两" + result[1]
+                + "钱\n\n", 0));
+        mData.add(Article.create("称骨歌", chengGuItem.getChengguge(), 0));
+        if (!TextUtils.isEmpty(chengGuItem.getZhujie())) {
+            mData.add(Article.create("注解", chengGuItem.getZhujie(), 0));
+        }
+        notifyDataSetChanged();
+    }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -56,7 +80,6 @@ public class AllResultAdapter extends RecyclerView.Adapter<AllResultAdapter.View
     public int getItemCount() {
         return mData != null ? mData.size() : 0;
     }
-
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
