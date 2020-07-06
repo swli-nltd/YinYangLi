@@ -12,6 +12,7 @@ import com.haibin.calendarview.group.GroupRecyclerView;
 import com.haibin.calendarview.library.Article;
 import com.haibin.calendarview.library.Calendar;
 import com.haibin.calendarview.library.CalendarLayout;
+import com.haibin.calendarview.library.CalendarUtil;
 import com.haibin.calendarview.library.CalendarView;
 import com.tencent.mmkv.MMKV;
 
@@ -41,6 +42,7 @@ import pub.devrel.easypermissions.EasyPermissions;
 public class MainActivity extends BaseActivity implements
         CalendarView.OnCalendarSelectListener,
         CalendarView.OnYearChangeListener,
+        CalendarView.OnMonthChangeListener,
         EasyPermissions.PermissionCallbacks,
         View.OnClickListener {
 
@@ -113,6 +115,7 @@ public class MainActivity extends BaseActivity implements
         });
         mCalendarView.setOnCalendarSelectListener(this);
         mCalendarView.setOnYearChangeListener(this);
+        mCalendarView.setOnMonthChangeListener(this);
         mTextYear.setText(String.valueOf(mCalendarView.getCurYear()));
         mYear = mCalendarView.getCurYear();
         mTextMonthDay.setText(mCalendarView.getCurMonth() + "月" + mCalendarView.getCurDay() + "日");
@@ -175,10 +178,26 @@ public class MainActivity extends BaseActivity implements
         mAdapter.setLunar(mCurrentLunar);
         mRecyclerView.notifyDataSetChanged();
 
-        String ji = mCurrentLunar.getDayTianShenLuck();
+        onSetMonthJiXiong(year, month);
+    }
+
+    private void onSetMonthJiXiong(int year, int month) {
         Map<String, Calendar> map = new HashMap<>();
-        map.put(getSchemeCalendar(year, month, currentDay, 0xFF40db25, ji).toString(),
-                getSchemeCalendar(year, month, currentDay, 0xFF40db25, ji));
+        int monthDaysCount = CalendarUtil.getMonthDaysCount(year, month);
+        java.util.Calendar tempCalendar = java.util.Calendar.getInstance();
+        String ji;
+        Lunar tempLunar;
+        int redColor = 0xFFD81B60;
+        int greenColor = 0xFF40db25;
+        int color;
+        for (int i = 0; i < monthDaysCount; i ++) {
+            tempCalendar.set(year, month, i);
+            tempLunar = Lunar.fromDate(tempCalendar.getTime());
+            ji = tempLunar.getDayTianShenLuck();
+            color = "吉".equals(ji) ? greenColor : redColor;
+            map.put(getSchemeCalendar(year, month, i, color, ji).toString(),
+                    getSchemeCalendar(year, month, i, color, ji));
+        }
         //此方法在巨大的数据量上不影响遍历性能，推荐使用
         mCalendarView.setSchemeDate(map);
     }
@@ -191,8 +210,6 @@ public class MainActivity extends BaseActivity implements
         calendar.setSchemeColor(color);//如果单独标记颜色、则会使用这个颜色
         calendar.setScheme(text);
         calendar.addScheme(new Calendar.Scheme());
-        calendar.addScheme(0xFF008800, "假");
-        calendar.addScheme(0xFF008800, "节");
         return calendar;
     }
 
@@ -248,7 +265,13 @@ public class MainActivity extends BaseActivity implements
 
     @Override
     public void onYearChange(int year) {
+        Log.e("onYearChange", "  -- " + year);
         mTextMonthDay.setText(String.valueOf(year));
     }
 
+    @Override
+    public void onMonthChange(int year, int month) {
+        Log.e("onMonthChange", "  -- " + year + ", " + month);
+        onSetMonthJiXiong(year, month);
+    }
 }
