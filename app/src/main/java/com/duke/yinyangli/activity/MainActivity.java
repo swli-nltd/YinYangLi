@@ -1,13 +1,16 @@
 package com.duke.yinyangli.activity;
 
+import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.duke.yinyangli.R;
 import com.duke.yinyangli.adapter.HomeSettingAdapter;
 import com.duke.yinyangli.adapter.MainInfoAdapter;
 import com.duke.yinyangli.base.BaseActivity;
 import com.duke.yinyangli.calendar.Lunar;
 import com.duke.yinyangli.constants.Constants;
+import com.duke.yinyangli.dialog.DialogUtils;
 import com.duke.yinyangli.utils.DisplayUtils;
 import com.duke.yinyangli.utils.LogUtils;
+import com.duke.yinyangli.utils.core.ChengguUtils;
 import com.duke.yinyangli.view.FloatViewBall;
 import com.haibin.calendarview.group.GroupItemDecoration;
 import com.haibin.calendarview.group.GroupRecyclerView;
@@ -34,6 +37,7 @@ import android.widget.ListPopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -80,6 +84,7 @@ public class MainActivity extends BaseActivity implements
     private Lunar mCurrentLunar;
     private MainInfoAdapter mAdapter;
     private ListPopupWindow mSettingWindow;
+    private HomeSettingAdapter mSettingAdapter;
 
     public static void show(Context context) {
         context.startActivity(new Intent(context, MainActivity.class));
@@ -273,7 +278,7 @@ public class MainActivity extends BaseActivity implements
     private void showSettingWindow(View view) {
         if (null == mSettingWindow) {
             mSettingWindow = new ListPopupWindow(this);
-            mSettingWindow.setAdapter(new HomeSettingAdapter(this));
+            mSettingWindow.setAdapter(mSettingAdapter = new HomeSettingAdapter(this));
             mSettingWindow.setBackgroundDrawable(
                     getDrawable(R.drawable.home_bg_setting_popubwindow));
             mSettingWindow.setAnchorView(view);
@@ -287,6 +292,27 @@ public class MainActivity extends BaseActivity implements
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 mSettingWindow.dismiss();
+                String text = mSettingAdapter.getItem(position);
+                if (getResources().getString(R.string.date_scroll).equals(text)) {
+                    showSelectDatePicker();
+                } else if (getResources().getString(R.string.date_calculate).equals(text)) {
+
+                } else if (getResources().getString(R.string.setting).equals(text)) {
+
+                }
+            }
+        });
+    }
+
+    private void showSelectDatePicker() {
+        DialogUtils.showDatePicker(this, new OnTimeSelectListener() {
+            @Override
+            public void onTimeSelect(Date date, View v) {
+                final java.util.Calendar calendar = java.util.Calendar.getInstance();
+                calendar.setTime(date);
+                mCalendarView.scrollToCalendar(calendar.get(java.util.Calendar.YEAR)
+                        , calendar.get(java.util.Calendar.MONTH) + 1
+                        , calendar.get(java.util.Calendar.DAY_OF_MONTH));
             }
         });
     }

@@ -38,6 +38,44 @@ public class DialogUtils {
     public static Dialog showDatePicker(Context context, OnTimeSelectListener listener) {
         Dialog dialog = null;
         Calendar start = Calendar.getInstance();
+        Calendar current = Calendar.getInstance();
+        start.set(Calendar.YEAR, 1900);
+        Calendar end = Calendar.getInstance();
+        end.set(Calendar.YEAR, 2099);
+        TimePickerView pvTime = new TimePickerBuilder(context, listener)
+                .setTitleBgColor(0xFFFAFAFC)
+                .setBgColor(0xFFEEEEEE)
+                .setCancelColor(0xFFA0A0A0)
+                .setSubmitColor(0xFF202020)
+                .setDate(current)
+                .setLunarCalendar(false)
+                .setType(new boolean[]{true, true, true, false, false, false})//分别对应年月日时分秒，默认全部显示
+                .isCyclic(true)
+                .isDialog(true)
+                .build();
+        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                Gravity.BOTTOM);
+
+        params.leftMargin = 0;
+        params.rightMargin = 0;
+        pvTime.getDialogContainerLayout().setLayoutParams(params);
+        dialog = pvTime.getDialog();
+        if (dialog != null) {
+            Window dialogWindow = dialog.getWindow();
+            if (dialogWindow != null) {
+                dialogWindow.setWindowAnimations(com.bigkoo.pickerview.R.style.picker_view_slide_anim);//修改动画样式
+                dialogWindow.setGravity(Gravity.BOTTOM);//改成Bottom,底部显示
+            }
+            dialog.show();
+        }
+        return dialog;
+    }
+
+    public static Dialog showBirthdayPicker(Context context, OnTimeSelectListener listener) {
+        Dialog dialog = null;
+        Calendar start = Calendar.getInstance();
         start.set(Calendar.YEAR, 1900);
         Calendar end = Calendar.getInstance();
         TimePickerView pvTime = new TimePickerBuilder(context, listener)

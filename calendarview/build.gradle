@@ -21,6 +21,7 @@ android {
 }
 
 dependencies {
+//    https://github.com/huanghaibin-dev/CalendarView
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     api 'androidx.appcompat:appcompat:1.1.0'
     api 'androidx.recyclerview:recyclerview:1.1.0'

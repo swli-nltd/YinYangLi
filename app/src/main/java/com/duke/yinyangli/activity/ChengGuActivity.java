@@ -67,7 +67,7 @@ public class ChengGuActivity extends BaseActivity {
         mAriticle = (Article) getIntent().getSerializableExtra(Constants.INTENT_KEY.KEY_MODEL);
         title.setText(mAriticle.getTitle());
         image.setImageResource(R.mipmap.yuantiangang);
-        DialogUtils.showDatePicker(this, new OnTimeSelectListener() {
+        DialogUtils.showBirthdayPicker(this, new OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View v) {
                 final Calendar calendar = Calendar.getInstance();
