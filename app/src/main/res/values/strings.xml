@@ -12,4 +12,9 @@
     <string name="cancel">取消</string>
     <string name="go_download">去下载</string>
     <string name="loading">加载中</string>
+    <string-array name="setting_list" >
+        <item>日期跳转</item>
+        <item>日期推算</item>
+        <item>设置</item>
+    </string-array>
 </resources>

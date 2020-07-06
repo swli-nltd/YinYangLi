@@ -1,10 +1,12 @@
 package com.duke.yinyangli.activity;
 
 import com.duke.yinyangli.R;
+import com.duke.yinyangli.adapter.HomeSettingAdapter;
 import com.duke.yinyangli.adapter.MainInfoAdapter;
 import com.duke.yinyangli.base.BaseActivity;
 import com.duke.yinyangli.calendar.Lunar;
 import com.duke.yinyangli.constants.Constants;
+import com.duke.yinyangli.utils.DisplayUtils;
 import com.duke.yinyangli.utils.LogUtils;
 import com.duke.yinyangli.view.FloatViewBall;
 import com.haibin.calendarview.group.GroupItemDecoration;
@@ -20,11 +22,15 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.ListPopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -73,6 +79,7 @@ public class MainActivity extends BaseActivity implements
     private int mYear;
     private Lunar mCurrentLunar;
     private MainInfoAdapter mAdapter;
+    private ListPopupWindow mSettingWindow;
 
     public static void show(Context context) {
         context.startActivity(new Intent(context, MainActivity.class));
@@ -214,29 +221,17 @@ public class MainActivity extends BaseActivity implements
     }
 
     @Override
-    @OnClick(R.id.fab)
+    @OnClick({R.id.fab, R.id.action_settings})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.fab:
                 ChooseActivity.start(this);
                 break;
+            case R.id.action_settings:
+                showSettingWindow(view);
+                break;
             default:break;
         }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -273,5 +268,26 @@ public class MainActivity extends BaseActivity implements
     public void onMonthChange(int year, int month) {
         Log.e("onMonthChange", "  -- " + year + ", " + month);
         onSetMonthJiXiong(year, month);
+    }
+
+    private void showSettingWindow(View view) {
+        if (null == mSettingWindow) {
+            mSettingWindow = new ListPopupWindow(this);
+            mSettingWindow.setAdapter(new HomeSettingAdapter(this));
+            mSettingWindow.setBackgroundDrawable(
+                    getDrawable(R.drawable.home_bg_setting_popubwindow));
+            mSettingWindow.setAnchorView(view);
+            mSettingWindow.setWidth(DisplayUtils.dp2px(this, 136f));
+            mSettingWindow.setDropDownGravity(Gravity.BOTTOM | Gravity.END);
+            mSettingWindow.setModal(true);
+        }
+        mSettingWindow.show();
+        mSettingWindow.getListView().setDividerHeight(DisplayUtils.dp2px(this, 0));
+        mSettingWindow.getListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                mSettingWindow.dismiss();
+            }
+        });
     }
 }
