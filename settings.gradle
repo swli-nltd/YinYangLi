@@ -1,2 +1,2 @@
-include ':app', ':calendarview', ':lunarLibrary'
+include ':app', ':calendarview', ':lunarLibrary', ':pickerview', ':wheelview', ':switchButton'
 rootProject.name='YinYangLi'

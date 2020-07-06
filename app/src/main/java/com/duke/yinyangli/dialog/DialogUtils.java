@@ -41,9 +41,9 @@ public class DialogUtils {
         start.set(Calendar.YEAR, 1900);
         Calendar end = Calendar.getInstance();
         TimePickerView pvTime = new TimePickerBuilder(context, listener)
-                .setCancelText(" ")
                 .setTitleBgColor(0xFFFAFAFC)
                 .setBgColor(0xFFEEEEEE)
+                .setCancelColor(0xFFA0A0A0)
                 .setSubmitColor(0xFF202020)
                 .setRangDate(start, end)
                 .setDate(end)

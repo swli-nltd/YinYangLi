@@ -38,6 +38,7 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(path: ':lunarLibrary')
     implementation project(path: ':calendarview')
+    implementation project(path: ':pickerview')
     implementation 'com.bytedance.boost_multidex:boost_multidex:1.0.0'
     implementation 'androidx.annotation:annotation:1.1.0'
     implementation 'androidx.appcompat:appcompat:1.1.0'
@@ -62,7 +63,7 @@ dependencies {
     implementation 'org.greenrobot:eventbus:3.1.1'
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'com.text:alginlib:1.0.1'
-    implementation 'com.tencent.bugly:crashreport:3.2.2'
+    implementation 'com.tencent.bugly:crashreport:3.2.33'
     //其中latest.release指代最新Bugly SDK版本号，也可以指定明确的版本号，例如2.1.9
     implementation 'com.tencent.bugly:nativecrashreport:3.7.1'
     //其中latest.release指代最新Bugly NDK版本号，也可以指定明确的版本号，例如3.0
@@ -77,6 +78,4 @@ dependencies {
     implementation 'com.daimajia.androidanimations:library:2.3@aar'
     //圆形头像
     implementation 'de.hdodenhof:circleimageview:3.1.0'
-    //pickerview 日期选择器
-    implementation 'com.contrarywind:Android-PickerView:4.1.9'
 }
