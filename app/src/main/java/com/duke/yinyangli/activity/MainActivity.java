@@ -295,8 +295,6 @@ public class MainActivity extends BaseActivity implements
                 String text = mSettingAdapter.getItem(position);
                 if (getResources().getString(R.string.date_scroll).equals(text)) {
                     showSelectDatePicker();
-                } else if (getResources().getString(R.string.date_calculate).equals(text)) {
-
                 } else if (getResources().getString(R.string.setting).equals(text)) {
 
                 }
