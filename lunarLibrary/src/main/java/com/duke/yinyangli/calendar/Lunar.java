@@ -726,6 +726,14 @@ public class Lunar{
     return LunarUtil.ZHI[timeZhiIndex+1];
   }
 
+  public String getTimeZhiContent(){
+    return LunarUtil.SHI_CHEN_CONTENT[timeZhiIndex+1];
+  }
+
+  public String getTimeZhiDescription(){
+    return LunarUtil.SHI_CHEN_DESCRIPTION[timeZhiIndex+1];
+  }
+
   /**
    * 获取时辰（天干）
    * @return 时辰（天干）
