@@ -24,14 +24,12 @@ import com.duke.yinyangli.adapter.HomeSettingAdapter;
 import com.duke.yinyangli.adapter.MainInfoAdapter;
 import com.duke.yinyangli.base.BaseActivity;
 import com.duke.yinyangli.calendar.Lunar;
-import com.duke.yinyangli.calendar.util.LunarUtil;
 import com.duke.yinyangli.constants.Constants;
 import com.duke.yinyangli.dialog.DialogUtils;
 import com.duke.yinyangli.utils.DisplayUtils;
 import com.duke.yinyangli.utils.LogUtils;
 import com.duke.yinyangli.view.FloatViewBall;
 import com.haibin.calendarview.group.GroupItemDecoration;
-import com.haibin.calendarview.group.GroupRecyclerView;
 import com.haibin.calendarview.library.Article;
 import com.haibin.calendarview.library.Calendar;
 import com.haibin.calendarview.library.CalendarLayout;
@@ -44,6 +42,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -73,20 +72,12 @@ public class MainActivity extends BaseActivity implements
     @BindView(R.id.calendarLayout)
     CalendarLayout mCalendarLayout;
     @BindView(R.id.recyclerView)
-    GroupRecyclerView mRecyclerView;
+    RecyclerView mRecyclerView;
 
     @BindView(R.id.float_view)
     FloatViewBall floatViewBall;
     @BindView(R.id.fab)
     ImageView fab;
-    @BindView(R.id.current_lunar_date)
-    TextView currentLunarDate;
-    @BindView(R.id.current_lunar_time)
-    TextView currentLunarTime;
-    @BindView(R.id.current_lunar_time_content)
-    TextView currentLunarTimeContent;
-    @BindView(R.id.current_lunar_time_description)
-    TextView currentLunarTimeDescription;
 
     private int mYear;
     private Lunar mCurrentLunar;
@@ -273,12 +264,6 @@ public class MainActivity extends BaseActivity implements
 
     private void onSetCurrentLunar() {
         mAdapter.setLunar(mCurrentLunar);
-        mRecyclerView.notifyDataSetChanged();
-        currentLunarDate.setText(mCurrentLunar.getYearInGanZhi() + "年 " + mCurrentLunar.getMonthInGanZhi() + "月 " + mCurrentLunar.getDayInGanZhi() + "日");
-        String timeGan = mCurrentLunar.getTimeZhi();
-        currentLunarTime.setText("当前时辰：" + timeGan + "时");
-        currentLunarTimeContent.setText(mCurrentLunar.getTimeZhiContent());
-        currentLunarTimeDescription.setText(mCurrentLunar.getTimeZhiDescription());
     }
 
     @Override

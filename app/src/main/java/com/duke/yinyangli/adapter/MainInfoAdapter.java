@@ -1,81 +1,145 @@
 package com.duke.yinyangli.adapter;
 
 import android.content.Context;
-import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.RequestManager;
 import com.duke.yinyangli.R;
+import com.duke.yinyangli.base.BaseViewHolder;
+import com.duke.yinyangli.bean.MainInfoModel;
 import com.duke.yinyangli.calendar.Lunar;
-import com.haibin.calendarview.group.GroupRecyclerAdapter;
 import com.haibin.calendarview.library.Article;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * 适配器
  * Created by huanghaibin on 2017/12/4.
  */
 
-public class MainInfoAdapter extends GroupRecyclerAdapter<String, Article> {
+public class MainInfoAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
-    private RequestManager mLoader;
+    private static final String KEY_CURRENT_TIME = "KEY_CURRENT_TIME";
+
+    private static final int TYPE_CURRENT_TIME = 0;
+    private static final int TYPE_MAIN_LIST = 1;
+
+    private final Context mContext;
+    protected LayoutInflater mInflater;
     private Lunar mLunar;
+    private List<MainInfoModel> mData;
 
     public MainInfoAdapter(Context context) {
-        super(context);
-        mLoader = Glide.with(context.getApplicationContext());
+        mContext = context;
+        mInflater = LayoutInflater.from(context);
     }
 
     public void setLunar(Lunar lunar) {
         mLunar = lunar;
-        LinkedHashMap<String, List<Article>> map = new LinkedHashMap<>();
-        List<String> titles = new ArrayList<>();
-        map.put("今日宜忌", create(0));
-        map.put("时辰宜忌", create(1));
-        map.put("吉神凶煞", create(2));
-        map.put("星宿吉凶", create(3));
-        titles.add("今日宜忌");
-        titles.add("时辰宜忌");
-        titles.add("吉神凶煞");
-        titles.add("星宿吉凶");
-        resetGroups(map,titles);
-    }
-
-
-    @Override
-    protected RecyclerView.ViewHolder onCreateDefaultViewHolder(ViewGroup parent, int type) {
-        return new ArticleViewHolder(mInflater.inflate(R.layout.item_list_main, parent, false));
+        if (mData == null) {
+            mData = new ArrayList<>();
+        } else {
+            mData.clear();
+        }
+        mData.add(new MainInfoModel(KEY_CURRENT_TIME, new ArrayList<>()));
+        mData.add(new MainInfoModel("今日宜忌", create(0)));
+        mData.add(new MainInfoModel("时辰宜忌", create(1)));
+        mData.add(new MainInfoModel("吉神凶煞", create(2)));
+        mData.add(new MainInfoModel("星宿吉凶", create(3)));
+        notifyDataSetChanged();
     }
 
     @Override
-    protected void onBindViewHolder(RecyclerView.ViewHolder holder, Article item, int position) {
-        ArticleViewHolder h = (ArticleViewHolder) holder;
-        h.mTextTitle.setText(item.getTitle());
-        h.mTextContent.setText(item.getContent());
-        mLoader.load(!TextUtils.isEmpty(item.getImgUrl()) ? item.getImgUrl() : item.getImgRes())
-                .centerCrop()
-                .into(h.mImageView);
+    public int getItemViewType(int position) {
+        if (position == 0) {
+            return TYPE_CURRENT_TIME;
+        } else {
+            return TYPE_MAIN_LIST;
+        }
     }
 
-    private static class ArticleViewHolder extends RecyclerView.ViewHolder {
-        private TextView mTextTitle,
-                mTextContent;
-        private ImageView mImageView;
+    @NonNull
+    @Override
+    public BaseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        if (viewType == TYPE_MAIN_LIST) {
+            return new MainListHolder(mContext, mInflater.inflate(R.layout.item_list_main_parent, parent, false));
+        } else {
+            return new CurrentTimeHolder(mInflater.inflate(R.layout.item_current_time, parent, false));
+        }
+    }
 
-        private ArticleViewHolder(View itemView) {
+    @Override
+    public void onBindViewHolder(@NonNull BaseViewHolder holder, int position) {
+        if (holder instanceof MainListHolder) {
+            MainListHolder mainListHolder = (MainListHolder) holder;
+            mainListHolder.updateView(mData.get(position));
+        } else if (holder instanceof CurrentTimeHolder) {
+            CurrentTimeHolder currentTimeHolder = (CurrentTimeHolder) holder;
+            currentTimeHolder.updateView(mContext, mLunar);
+        }
+    }
+
+    @Override
+    public int getItemCount() {
+        return mData == null ? 0 : mData.size();
+    }
+
+    static final class MainListHolder extends BaseViewHolder {
+
+        @BindView(R.id.title)
+        TextView title;
+        @BindView(R.id.recyclerView)
+        RecyclerView recyclerView;
+
+        private MainItemAdapter mItemAdapter;
+
+        public MainListHolder(Context context, View itemView) {
             super(itemView);
-            mTextTitle = itemView.findViewById(R.id.tv_title);
-            mTextContent = itemView.findViewById(R.id.tv_content);
-            mImageView = itemView.findViewById(R.id.imageView);
+            ButterKnife.bind(this, itemView);
+            recyclerView.setLayoutManager(new LinearLayoutManager(context));
+            mItemAdapter = new MainItemAdapter(context);
+            recyclerView.setAdapter(mItemAdapter);
+        }
+
+        public void updateView(MainInfoModel mainInfoModel) {
+            title.setText(mainInfoModel.getTitle());
+            mItemAdapter.refreshData(mainInfoModel.getList());
+        }
+    }
+
+    static final class CurrentTimeHolder extends BaseViewHolder {
+
+        @BindView(R.id.current_lunar_date)
+        TextView currentLunarDate;
+        @BindView(R.id.current_lunar_time)
+        TextView currentLunarTime;
+        @BindView(R.id.current_lunar_time_content)
+        TextView currentLunarTimeContent;
+        @BindView(R.id.current_lunar_time_description)
+        TextView currentLunarTimeDescription;
+
+        public CurrentTimeHolder(@NonNull View itemView) {
+            super(itemView);
+            ButterKnife.bind(this, itemView);
+        }
+
+        public void updateView(Context context, Lunar lunar) {
+            currentLunarDate.setText(lunar.getYearInGanZhi() + "年 "
+                    + lunar.getMonthInGanZhi() + "月 "
+                    + lunar.getDayInGanZhi() + "日");
+            String timeGan = lunar.getTimeZhi();
+            currentLunarTime.setText("当前时辰：" + timeGan + "时");
+            currentLunarTimeContent.setText(lunar.getTimeZhiContent());
+            currentLunarTimeDescription.setText(lunar.getTimeZhiDescription());
         }
     }
 
