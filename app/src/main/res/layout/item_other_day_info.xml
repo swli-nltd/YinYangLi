@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="12dp"
+    android:layout_marginEnd="16dp"
+    android:background="@drawable/white_solid_radius_12dp"
+    android:padding="12dp">
+
+    <TextView
+        android:id="@+id/tv_gong"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="@color/black_343339"/>
+
+    <TextView
+        android:id="@+id/tv_zhixing"
+        android:layout_width="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="@color/black_343339"/>
+
+    <TextView
+        android:id="@+id/tv_shenshou"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_zhixing"
+        android:layout_marginTop="12dp"
+        android:textSize="14sp"
+        android:textColor="@color/black_343339"/>
+
+    <TextView
+        android:id="@+id/tv_zheng"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:layout_below="@+id/tv_zhixing"
+        android:layout_marginTop="12dp"
+        android:layout_alignParentEnd="true"
+        android:textColor="@color/black_343339"/>
+
+</RelativeLayout>

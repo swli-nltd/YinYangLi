@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.duke.yinyangli.R;
 import com.duke.yinyangli.base.BaseViewHolder;
+import com.duke.yinyangli.base.FooterViewHolder;
 import com.duke.yinyangli.bean.MainInfoModel;
 import com.duke.yinyangli.calendar.Lunar;
 import com.haibin.calendarview.library.Article;
@@ -29,12 +30,18 @@ import butterknife.ButterKnife;
 public class MainInfoAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     private static final String KEY_CURRENT_TIME = "KEY_CURRENT_TIME";
+    private static final String KEY_OTHER_DAY_INFO = "KEY_OTHER_DAY_INFO";
+    private static final String KEY_BOTTOM_EMPTY_FOOTER = "KEY_BOTTOM_EMPTY_FOOTER";
 
     private static final int TYPE_CURRENT_TIME = 0;
-    private static final int TYPE_MAIN_LIST = 1;
+    private static final int TYPE_OTHER_DAY_INFO = 1;
+    private static final int TYPE_MAIN_LIST = 2;
+    private static final int TYPE_BOTTOM_EMPTY_FOOTER = 3;
+
 
     private final Context mContext;
     protected LayoutInflater mInflater;
+
     private Lunar mLunar;
     private List<MainInfoModel> mData;
 
@@ -51,17 +58,25 @@ public class MainInfoAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             mData.clear();
         }
         mData.add(new MainInfoModel(KEY_CURRENT_TIME, new ArrayList<>()));
+        mData.add(new MainInfoModel(KEY_OTHER_DAY_INFO, new ArrayList<>()));
         mData.add(new MainInfoModel("今日宜忌", create(0)));
         mData.add(new MainInfoModel("时辰宜忌", create(1)));
         mData.add(new MainInfoModel("吉神凶煞", create(2)));
         mData.add(new MainInfoModel("星宿吉凶", create(3)));
+        mData.add(new MainInfoModel("彭祖百忌", create(4)));
+        mData.add(new MainInfoModel(KEY_BOTTOM_EMPTY_FOOTER, new ArrayList<>()));
         notifyDataSetChanged();
     }
 
     @Override
     public int getItemViewType(int position) {
-        if (position == 0) {
+        MainInfoModel mainInfoModel = mData.get(position);
+        if (KEY_CURRENT_TIME.equals(mainInfoModel.getTitle())) {
             return TYPE_CURRENT_TIME;
+        } else if (KEY_OTHER_DAY_INFO.equals(mainInfoModel.getTitle())) {
+            return TYPE_OTHER_DAY_INFO;
+        } else if (KEY_BOTTOM_EMPTY_FOOTER.equals(mainInfoModel.getTitle())) {
+            return TYPE_BOTTOM_EMPTY_FOOTER;
         } else {
             return TYPE_MAIN_LIST;
         }
@@ -72,6 +87,10 @@ public class MainInfoAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     public BaseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if (viewType == TYPE_MAIN_LIST) {
             return new MainListHolder(mContext, mInflater.inflate(R.layout.item_list_main_parent, parent, false));
+        } else if (viewType == TYPE_OTHER_DAY_INFO) {
+            return new OtherDayInfoHolder(mInflater.inflate(R.layout.item_other_day_info, parent, false));
+        } else if (viewType == TYPE_BOTTOM_EMPTY_FOOTER) {
+            return new FooterViewHolder(mInflater.inflate(R.layout.item_footer_view, parent, false));
         } else {
             return new CurrentTimeHolder(mInflater.inflate(R.layout.item_current_time, parent, false));
         }
@@ -85,6 +104,9 @@ public class MainInfoAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         } else if (holder instanceof CurrentTimeHolder) {
             CurrentTimeHolder currentTimeHolder = (CurrentTimeHolder) holder;
             currentTimeHolder.updateView(mContext, mLunar);
+        } else if (holder instanceof OtherDayInfoHolder) {
+            OtherDayInfoHolder dayInfoHolder = (OtherDayInfoHolder) holder;
+            dayInfoHolder.updateView(mLunar);
         }
     }
 
@@ -164,9 +186,36 @@ public class MainInfoAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             String title = "宿：" + mLunar.getXiu() + "  " + mLunar.getAnimal() + "  " + mLunar.getXiuLuck();
             list.add(Article.create(title, mLunar.getXiuSong().replace(",", ",\n")
                     .replace("，", "，\n"), image));
+        } else if (p == 4) {
+            list.add(Article.create("天干百忌", mLunar.getPengZuGan(), R.mipmap.jinriji));
+            list.add(Article.create("地支百忌", mLunar.getPengZuZhi(), R.mipmap.jinriji));
         }
 
 
         return list;
+    }
+
+    static final class OtherDayInfoHolder extends BaseViewHolder {
+
+        @BindView(R.id.tv_zheng)
+        TextView tvZheng;
+        @BindView(R.id.tv_gong)
+        TextView tvGong;
+        @BindView(R.id.tv_zhixing)
+        TextView tvZhixing;
+        @BindView(R.id.tv_shenshou)
+        TextView tvShenshou;
+
+        public OtherDayInfoHolder(View itemView) {
+            super(itemView);
+            ButterKnife.bind(this, itemView);
+        }
+
+        public void updateView(Lunar lunar) {
+            tvZheng.setText("七政（七纬/七耀）：" + lunar.getZheng());
+            tvGong.setText("四宫：" + lunar.getGong());
+            tvShenshou.setText("四神兽：" + lunar.getShou());
+            tvZhixing.setText("当日值星（建除十二神）：" + lunar.getZhiXing());
+        }
     }
 }
