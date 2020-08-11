@@ -38,6 +38,7 @@ public class StartActivity extends BaseActivity {
                     @Override
                     public void run() {
                         MainActivity.show(StartActivity.this);
+                        finish();
                     }
                 });
             }
