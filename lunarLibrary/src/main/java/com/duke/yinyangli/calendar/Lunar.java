@@ -706,7 +706,11 @@ public class Lunar{
    * @return 中文月，如正
    */
   public String getMonthInChinese(){
-    return (month<0?"闰":"")+LunarUtil.MONTH[Math.abs(month)];
+    return (month<0?"闰":"") + LunarUtil.MONTH[Math.abs(month)];
+  }
+
+  public String getMonthInChinese2(){
+    return LunarUtil.MONTH2[Math.abs(month)] + "月";
   }
 
   /**
@@ -717,6 +721,9 @@ public class Lunar{
   public String getDayInChinese(){
     return LunarUtil.DAY[day];
   }
+  public String getDayInChinese2(){
+    return LunarUtil.DAY[day] + "日";
+  }
 
   /**
    * 获取时辰（地支）
@@ -724,6 +731,9 @@ public class Lunar{
    */
   public String getTimeZhi(){
     return LunarUtil.ZHI[timeZhiIndex+1];
+  }
+  public String getTimeZhi2(){
+    return LunarUtil.ZHI[timeZhiIndex+1] + "时";
   }
 
   public String getTimeZhiContent(){

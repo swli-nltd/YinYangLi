@@ -145,6 +145,8 @@ public class LunarUtil{
   public static final String[] NUMBER = {"零","壹","贰","叁","肆","伍","陆","柒","捌","玖"};
   /** 月 */
   public static final String[] MONTH = {"","正","贰","叁","肆","伍","陆","柒","捌","玖","拾","冬","腊"};
+
+  public static final String[] MONTH2 = {"","正","二","三","四","五","六","七","八","九","十","十一","十二"};
   /** 季节 */
   public static final String[] SEASON = {"","孟春","仲春","季春","孟夏","仲夏","季夏","孟秋","仲秋","季秋","孟冬","仲冬","季冬"};
   /** 生肖 */

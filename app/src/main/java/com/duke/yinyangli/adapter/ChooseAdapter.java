@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.duke.yinyangli.R;
+import com.duke.yinyangli.activity.BaZiResultActivity;
 import com.duke.yinyangli.activity.ChengGuActivity;
 import com.duke.yinyangli.activity.GuaResultActivity;
 import com.duke.yinyangli.constants.Constants;
@@ -60,6 +61,7 @@ public class ChooseAdapter extends RecyclerView.Adapter<ChooseAdapter.ViewHolder
                         ChengGuActivity.start(mContext, article);
                         break;
                     case Constants.TYPE.TYPE_BAZI:
+                        BaZiResultActivity.start(mContext, article);
                         break;
                         default:break;
                 }

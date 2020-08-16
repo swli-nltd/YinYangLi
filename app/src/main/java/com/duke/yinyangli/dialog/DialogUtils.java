@@ -81,11 +81,16 @@ public class DialogUtils {
         TimePickerView pvTime = new TimePickerBuilder(context, listener)
                 .setTitleBgColor(0xFFFAFAFC)
                 .setBgColor(0xFFEEEEEE)
-                .setCancelColor(0xFFA0A0A0)
+                .setCancelColor(0xFFFFFFFF)
+                .addOnCancelClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                    }
+                })
+                .setOutSideCancelable(false)
                 .setSubmitColor(0xFF202020)
                 .setRangDate(start, end)
                 .setDate(end)
-                .setLunarCalendar(false)
                 .setType(new boolean[]{true, true, true, true, false, false})//分别对应年月日时分秒，默认全部显示
                 .isCyclic(true)
                 .isDialog(true)
