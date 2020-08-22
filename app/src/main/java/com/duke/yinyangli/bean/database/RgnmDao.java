@@ -22,7 +22,7 @@ public class RgnmDao extends AbstractDao<Rgnm, Long> {
      * Can be used for QueryBuilder and for referencing column names.
      */
     public static class Properties {
-        public final static Property Id = new Property(0, Long.class, "id", true, "_id");
+        public final static Property Id = new Property(0, Long.class, "id", true, "id");
         public final static Property Rgz = new Property(1, String.class, "rgz", false, "rgz");
         public final static Property Rgxx = new Property(2, String.class, "rgxx", false, "rgxx");
         public final static Property Rgcz = new Property(3, String.class, "rgcz", false, "rgcz");
@@ -41,28 +41,6 @@ public class RgnmDao extends AbstractDao<Rgnm, Long> {
     
     public RgnmDao(DaoConfig config, DaoSession daoSession) {
         super(config, daoSession);
-    }
-
-    /** Creates the underlying database table. */
-    public static void createTable(Database db, boolean ifNotExists) {
-        String constraint = ifNotExists? "IF NOT EXISTS ": "";
-        db.execSQL("CREATE TABLE " + constraint + "\"rgnm\" (" + //
-                "\"_id\" INTEGER PRIMARY KEY ," + // 0: id
-                "\"rgz\" TEXT," + // 1: rgz
-                "\"rgxx\" TEXT," + // 2: rgxx
-                "\"rgcz\" TEXT," + // 3: rgcz
-                "\"rgzfx\" TEXT," + // 4: rgzfx
-                "\"xgfx\" TEXT," + // 5: xgfx
-                "\"aqfx\" TEXT," + // 6: aqfx
-                "\"syfx\" TEXT," + // 7: syfx
-                "\"cyfx\" TEXT," + // 8: cyfx
-                "\"jkfx\" TEXT);"); // 9: jkfx
-    }
-
-    /** Drops the underlying database table. */
-    public static void dropTable(Database db, boolean ifExists) {
-        String sql = "DROP TABLE " + (ifExists ? "IF EXISTS " : "") + "\"rgnm\"";
-        db.execSQL(sql);
     }
 
     @Override

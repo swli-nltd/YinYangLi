@@ -9,8 +9,6 @@ import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 
 import com.bigkoo.pickerview.listener.OnTimeSelectListener;
-import com.daimajia.androidanimations.library.Techniques;
-import com.daimajia.androidanimations.library.YoYo;
 import com.duke.yinyangli.MyApplication;
 import com.duke.yinyangli.R;
 import com.duke.yinyangli.adapter.AllResultAdapter;
@@ -26,11 +24,11 @@ import com.duke.yinyangli.calendar.Lunar;
 import com.duke.yinyangli.calendar.Solar;
 import com.duke.yinyangli.constants.Constants;
 import com.duke.yinyangli.dialog.DialogUtils;
-import com.duke.yinyangli.utils.core.ChengguUtils;
 import com.haibin.calendarview.library.Article;
 
-import java.util.Calendar;
+import java.io.File;
 import java.util.Date;
+import java.util.List;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -46,6 +44,7 @@ public class BaZiResultActivity extends BaseActivity {
 
     private Article mAriticle;
     private AllResultAdapter mAdapter;
+    private Runnable mSuanmingRuannable;
 
     public static void start(Context context, Article article) {
         context.startActivity(new Intent(context, BaZiResultActivity.class)
@@ -85,40 +84,53 @@ public class BaZiResultActivity extends BaseActivity {
 
                 showProgressDialog();
                 startRotate();
-                mHandler.post(new Runnable() {
+                mHandler.post(mSuanmingRuannable = new Runnable() {
                     @Override
                     public void run() {
 
-                        String ganzhi = lunar.getDayInGanZhi();
-                        DaoSession daoSession = MyApplication.getInstance().getDao();
-                        if (daoSession != null) {
-                            Rgnm rgnm = daoSession.getRgnmDao().queryBuilder()
-                                    .where(RgnmDao.Properties.Rgz.eq(ganzhi)).unique();
+                        if (isSafe()) {
+                            String ganzhi = lunar.getDayInGanZhi();
+                            File outFileName = getDatabasePath(Constants.DB_NAME);
+                            boolean exists = outFileName.exists();
+                            long size = outFileName.length();
 
-                            Rysmn month = daoSession.getRysmnDao().queryBuilder()
-                                    .where(RysmnDao.Properties.Siceng.eq(lunar.getMonthInChinese2())).unique();
-                            Rysmn day = daoSession.getRysmnDao().queryBuilder()
-                                    .where(RysmnDao.Properties.Siceng.eq(lunar.getDayInChinese2())).unique();
-                            Rysmn time = daoSession.getRysmnDao().queryBuilder()
-                                    .where(RysmnDao.Properties.Siceng.eq(lunar.getTimeZhi2())).unique();
+                            DaoSession daoSession = MyApplication.getInstance().getDao();
+                            if (daoSession != null) {
 
-                            ShuXiang shuXiang = daoSession.getShuXiangDao().queryBuilder()
-                                    .where(ShuXiangDao.Properties.Title.eq(lunar.getYearShengXiao())).unique();
+                                List<Rgnm> rgnmList = daoSession.getRgnmDao().queryBuilder().list();
 
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    mAdapter.setResult(rgnm, month, day, time, shuXiang, lunar, solar);
-                                    dismissProgressDialog();
-                                }
-                            });
-                        } else {
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    dismissProgressDialog();
-                                }
-                            });
+                                Rgnm rgnm = daoSession.getRgnmDao().queryBuilder()
+                                        .where(RgnmDao.Properties.Rgz.eq(ganzhi)).unique();
+
+                                Rysmn month = daoSession.getRysmnDao().queryBuilder()
+                                        .where(RysmnDao.Properties.Siceng.eq(lunar.getMonthInChinese2())).unique();
+                                Rysmn day = daoSession.getRysmnDao().queryBuilder()
+                                        .where(RysmnDao.Properties.Siceng.eq(lunar.getDayInChinese2())).unique();
+                                Rysmn time = daoSession.getRysmnDao().queryBuilder()
+                                        .where(RysmnDao.Properties.Siceng.eq(lunar.getTimeZhi2())).unique();
+
+                                ShuXiang shuXiang = daoSession.getShuXiangDao().queryBuilder()
+                                        .where(ShuXiangDao.Properties.Title.eq(lunar.getYearShengXiao())).unique();
+
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        if (isSafe()) {
+                                            mAdapter.setResult(rgnm, month, day, time, shuXiang, lunar, solar);
+                                            dismissProgressDialog();
+                                        }
+                                    }
+                                });
+                            } else {
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        if (isSafe()) {
+                                            dismissProgressDialog();
+                                        }
+                                    }
+                                });
+                            }
                         }
                     }
                 });
@@ -131,5 +143,16 @@ public class BaZiResultActivity extends BaseActivity {
         LinearInterpolator lin = new LinearInterpolator();
         operatingAnim.setInterpolator(lin);
         image.startAnimation(operatingAnim);
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (mHandler != null && mSuanmingRuannable != null) {
+            mHandler.removeCallbacks(mSuanmingRuannable);
+        }
+        if (image != null) {
+            image.clearAnimation();
+        }
+        super.onDestroy();
     }
 }

@@ -22,7 +22,7 @@ public class RysmnDao extends AbstractDao<Rysmn, Long> {
      * Can be used for QueryBuilder and for referencing column names.
      */
     public static class Properties {
-        public final static Property Id = new Property(0, Long.class, "id", true, "_id");
+        public final static Property Id = new Property(0, Long.class, "id", true, "id");
         public final static Property Siceng = new Property(1, String.class, "siceng", false, "siceng");
         public final static Property Mingmi = new Property(2, String.class, "mingmi", false, "mingmi");
     }
@@ -34,21 +34,6 @@ public class RysmnDao extends AbstractDao<Rysmn, Long> {
     
     public RysmnDao(DaoConfig config, DaoSession daoSession) {
         super(config, daoSession);
-    }
-
-    /** Creates the underlying database table. */
-    public static void createTable(Database db, boolean ifNotExists) {
-        String constraint = ifNotExists? "IF NOT EXISTS ": "";
-        db.execSQL("CREATE TABLE " + constraint + "\"rysmn\" (" + //
-                "\"_id\" INTEGER PRIMARY KEY ," + // 0: id
-                "\"siceng\" TEXT," + // 1: siceng
-                "\"mingmi\" TEXT);"); // 2: mingmi
-    }
-
-    /** Drops the underlying database table. */
-    public static void dropTable(Database db, boolean ifExists) {
-        String sql = "DROP TABLE " + (ifExists ? "IF EXISTS " : "") + "\"rysmn\"";
-        db.execSQL(sql);
     }
 
     @Override

@@ -230,12 +230,14 @@ public class TimePickerView extends BasePickerView implements View.OnClickListen
         String tag = (String) v.getTag();
         if (tag.equals(TAG_SUBMIT)) {
             returnData();
+            dismiss();
         } else if (tag.equals(TAG_CANCEL)) {
             if (mPickerOptions.cancelListener != null) {
                 mPickerOptions.cancelListener.onClick(v);
+            } else {
+                dismiss();
             }
         }
-        dismiss();
     }
 
     public void returnData() {

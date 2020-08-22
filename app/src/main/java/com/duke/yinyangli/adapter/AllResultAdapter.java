@@ -43,11 +43,11 @@ public class AllResultAdapter extends RecyclerView.Adapter<AllResultAdapter.View
         List<String> birthdays = new ArrayList<>();
         birthdays.add("公历（阳历）：" + solar.getYear() + "年 " + solar.getMonth() + "月 " + solar.getDay() + "日 " + solar.getHour() + "时");
         birthdays.add("农历（阴历）：" + lunar.getYearInChinese() + "年 " + lunar.getMonthInChinese() + "月 " + lunar.getDayInChinese() + " " + lunar.getTimeZhi2());
-        mData.add(Article.create("出生日期：", birthdays, 0));
-        mData.add(Article.create("生肖：" + lunar.getYearShengXiao(), "生肖个性" + shuXiang.getContent(), 0));
-        mData.add(Article.create("八字", getStringFromList(lunar.getBaZi()), 0));
-        mData.add(Article.create("五行", getStringFromList(lunar.getBaZiWuXing()), 0));
-        mData.add(Article.create("纳音", getStringFromList(lunar.getBaZiNaYin()), 0));
+        mData.add(Article.create("出生日期：", getStringFromList(birthdays, true), 0));
+        mData.add(Article.create("生肖：" ,lunar.getYearShengXiao() ,0));
+        mData.add(Article.create("八字", getStringFromList(lunar.getBaZi(), false), 0));
+        mData.add(Article.create("五行", getStringFromList(lunar.getBaZiWuXing(),false), 0));
+        mData.add(Article.create("纳音", getStringFromList(lunar.getBaZiNaYin(), false), 0));
         mData.add(Article.create("十二值星", lunar.getZhiXing(), 0));
         List<String> shishen = new ArrayList<>();
         shishen.add("干：" + lunar.getBaZiShiShenGan());
@@ -69,16 +69,17 @@ public class AllResultAdapter extends RecyclerView.Adapter<AllResultAdapter.View
         mData.add(Article.create("事业分析", rgnm.getSyfx(), 0));
         mData.add(Article.create("财运分析", rgnm.getCyfx(), 0));
         mData.add(Article.create("健康分析", rgnm.getJkfx(), 0));
+        mData.add(Article.create("生肖分析",  shuXiang.getContent(), 0));
 
         notifyDataSetChanged();
     }
 
-    private String getStringFromList(List<String> list) {
+    private String getStringFromList(List<String> list, boolean huanhang) {
         StringBuilder sb = new StringBuilder();
         if (list != null && !list.isEmpty()) {
             for (String item : list) {
                 sb.append(item);
-                sb.append(" ");
+                sb.append(huanhang ? "\n" : " ");
             }
         }
         return sb.toString();
@@ -147,7 +148,12 @@ public class AllResultAdapter extends RecyclerView.Adapter<AllResultAdapter.View
 
         public void updateView(Context context, int position, Article article) {
             title.setText(article.getTitle());
-            content.setText(article.getContent());
+            if (!TextUtils.isEmpty(article.getContent())) {
+                content.setText(article.getContent().replace("<p>", ""));
+                content.setVisibility(View.VISIBLE);
+            } else {
+                content.setVisibility(View.GONE);
+            }
         }
     }
 }

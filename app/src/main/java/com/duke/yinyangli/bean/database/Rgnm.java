@@ -3,13 +3,13 @@ package com.duke.yinyangli.bean.database;
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Generated;
-import org.greenrobot.greendao.annotation.Keep;
 import org.greenrobot.greendao.annotation.Property;
 
-@Entity(nameInDb = "rgnm")
+@Entity(nameInDb = "rgnm", createInDb = false)
 public class Rgnm {
 
     @Id
+    @Property(nameInDb = "id")
     private Long id;
 
     @Property(nameInDb = "rgz")

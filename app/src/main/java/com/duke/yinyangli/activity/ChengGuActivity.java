@@ -37,6 +37,7 @@ public class ChengGuActivity extends BaseActivity {
 
     private Article mAriticle;
     private AllResultAdapter mAdapter;
+    private Runnable mChengGuRuannable;
 
     public static void start(Context context, Article article) {
         context.startActivity(new Intent(context, ChengGuActivity.class)
@@ -77,16 +78,26 @@ public class ChengGuActivity extends BaseActivity {
                         , calendar.get(Calendar.DAY_OF_MONTH)
                         , calendar.get(Calendar.HOUR));
                 showProgressDialog();
-                mHandler.postDelayed(() -> ChengguUtils.getInstance()
+                mHandler.postDelayed(mChengGuRuannable = () -> ChengguUtils.getInstance()
                         .getJson(ChengGuActivity.this
                                 , result[0] + "." + result[1]
                                 , (json, chengGuItem) -> runOnUiThread(
                                         () -> {
-                                            mAdapter.setResult(calendar, result, chengGuItem);
-                                            dismissProgressDialog();
+                                            if (isSafe()) {
+                                                mAdapter.setResult(calendar, result, chengGuItem);
+                                                dismissProgressDialog();
+                                            }
                                         }
                                 )), 2000);
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (mHandler != null && mChengGuRuannable != null) {
+            mHandler.removeCallbacks(mChengGuRuannable);
+        }
+        super.onDestroy();
     }
 }

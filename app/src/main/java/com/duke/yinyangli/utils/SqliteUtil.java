@@ -18,6 +18,7 @@ public class SqliteUtil {
     public static void copyDataBase(Context context, String dbname) throws IOException {
         // Open your local db as the input stream
         InputStream myInput = context.getAssets().open(dbname);
+
         // Path to the just created empty db
         File outFileName = context.getDatabasePath(dbname);
 
@@ -29,6 +30,7 @@ public class SqliteUtil {
             // transfer bytes from the inputfile to the outputfile
             byte[] buffer = new byte[1024];
             int length;
+
             while ((length = myInput.read(buffer)) > 0) {
                 myOutput.write(buffer, 0, length);
             }

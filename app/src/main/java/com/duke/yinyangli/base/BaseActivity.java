@@ -163,4 +163,9 @@ public abstract class BaseActivity extends AppCompatActivity {
     public void onHandleMessage(Message msg) {
 
     }
+
+
+    public boolean isSafe() {
+        return !isDestroyed() && !isFinishing();
+    }
 }

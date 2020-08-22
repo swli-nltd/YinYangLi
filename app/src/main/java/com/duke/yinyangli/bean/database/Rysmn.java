@@ -5,10 +5,11 @@ import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.annotation.Property;
 
-@Entity(nameInDb = "rysmn")
+@Entity(nameInDb = "rysmn", createInDb = false)
 public class Rysmn {
 
     @Id
+    @Property(nameInDb = "id")
     private Long id;
 
     @Property(nameInDb = "siceng")

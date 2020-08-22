@@ -13,7 +13,7 @@ import org.greenrobot.greendao.database.DatabaseStatement;
 /** 
  * DAO for table "shuxiang".
 */
-public class ShuXiangDao extends AbstractDao<ShuXiang, Long> {
+public class ShuXiangDao extends AbstractDao<ShuXiang, Void> {
 
     public static final String TABLENAME = "shuxiang";
 
@@ -22,9 +22,8 @@ public class ShuXiangDao extends AbstractDao<ShuXiang, Long> {
      * Can be used for QueryBuilder and for referencing column names.
      */
     public static class Properties {
-        public final static Property Id = new Property(0, Long.class, "id", true, "_id");
-        public final static Property Title = new Property(1, String.class, "title", false, "title");
-        public final static Property Content = new Property(2, String.class, "content", false, "content");
+        public final static Property Title = new Property(0, String.class, "title", false, "title");
+        public final static Property Content = new Property(1, String.class, "content", false, "content");
     }
 
 
@@ -36,38 +35,18 @@ public class ShuXiangDao extends AbstractDao<ShuXiang, Long> {
         super(config, daoSession);
     }
 
-    /** Creates the underlying database table. */
-    public static void createTable(Database db, boolean ifNotExists) {
-        String constraint = ifNotExists? "IF NOT EXISTS ": "";
-        db.execSQL("CREATE TABLE " + constraint + "\"shuxiang\" (" + //
-                "\"_id\" INTEGER PRIMARY KEY ," + // 0: id
-                "\"title\" TEXT," + // 1: title
-                "\"content\" TEXT);"); // 2: content
-    }
-
-    /** Drops the underlying database table. */
-    public static void dropTable(Database db, boolean ifExists) {
-        String sql = "DROP TABLE " + (ifExists ? "IF EXISTS " : "") + "\"shuxiang\"";
-        db.execSQL(sql);
-    }
-
     @Override
     protected final void bindValues(DatabaseStatement stmt, ShuXiang entity) {
         stmt.clearBindings();
  
-        Long id = entity.getId();
-        if (id != null) {
-            stmt.bindLong(1, id);
-        }
- 
         String title = entity.getTitle();
         if (title != null) {
-            stmt.bindString(2, title);
+            stmt.bindString(1, title);
         }
  
         String content = entity.getContent();
         if (content != null) {
-            stmt.bindString(3, content);
+            stmt.bindString(2, content);
         }
     }
 
@@ -75,62 +54,52 @@ public class ShuXiangDao extends AbstractDao<ShuXiang, Long> {
     protected final void bindValues(SQLiteStatement stmt, ShuXiang entity) {
         stmt.clearBindings();
  
-        Long id = entity.getId();
-        if (id != null) {
-            stmt.bindLong(1, id);
-        }
- 
         String title = entity.getTitle();
         if (title != null) {
-            stmt.bindString(2, title);
+            stmt.bindString(1, title);
         }
  
         String content = entity.getContent();
         if (content != null) {
-            stmt.bindString(3, content);
+            stmt.bindString(2, content);
         }
     }
 
     @Override
-    public Long readKey(Cursor cursor, int offset) {
-        return cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0);
+    public Void readKey(Cursor cursor, int offset) {
+        return null;
     }    
 
     @Override
     public ShuXiang readEntity(Cursor cursor, int offset) {
         ShuXiang entity = new ShuXiang( //
-            cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
-            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // title
-            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2) // content
+            cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0), // title
+            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1) // content
         );
         return entity;
     }
      
     @Override
     public void readEntity(Cursor cursor, ShuXiang entity, int offset) {
-        entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
-        entity.setTitle(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
-        entity.setContent(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
+        entity.setTitle(cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0));
+        entity.setContent(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
      }
     
     @Override
-    protected final Long updateKeyAfterInsert(ShuXiang entity, long rowId) {
-        entity.setId(rowId);
-        return rowId;
+    protected final Void updateKeyAfterInsert(ShuXiang entity, long rowId) {
+        // Unsupported or missing PK type
+        return null;
     }
     
     @Override
-    public Long getKey(ShuXiang entity) {
-        if(entity != null) {
-            return entity.getId();
-        } else {
-            return null;
-        }
+    public Void getKey(ShuXiang entity) {
+        return null;
     }
 
     @Override
     public boolean hasKey(ShuXiang entity) {
-        return entity.getId() != null;
+        // TODO
+        return false;
     }
 
     @Override

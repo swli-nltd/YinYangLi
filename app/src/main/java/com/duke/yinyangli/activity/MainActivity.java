@@ -205,8 +205,8 @@ public class MainActivity extends BaseActivity implements
             tempLunar = Lunar.fromDate(tempCalendar.getTime());
             ji = tempLunar.getDayTianShenLuck();
             color = "吉".equals(ji) ? greenColor : redColor;
-            map.put(getSchemeCalendar(year, month, i, color, ji).toString(),
-                    getSchemeCalendar(year, month, i, color, ji));
+            map.put(getSchemeCalendar(year, month, i + 1, color, ji).toString(),
+                    getSchemeCalendar(year, month, i + 1, color, ji));
         }
         //此方法在巨大的数据量上不影响遍历性能，推荐使用
         mCalendarView.setSchemeDate(map);

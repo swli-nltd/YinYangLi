@@ -1,5 +1,6 @@
 package com.duke.yinyangli;
 
+import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -10,8 +11,11 @@ import com.bytedance.boost_multidex.BoostMultiDex;
 import com.bytedance.boost_multidex.Result;
 import com.duke.yinyangli.bean.database.DaoMaster;
 import com.duke.yinyangli.bean.database.DaoSession;
+import com.duke.yinyangli.constants.Constants;
 import com.duke.yinyangli.utils.SqliteUtil;
 import com.tencent.mmkv.MMKV;
+
+import java.util.List;
 
 import cn.jpush.android.api.JPushInterface;
 
@@ -37,7 +41,7 @@ public class MyApplication extends Application {
 
     private void setDatabase() {
         //1.创建数据库
-        mHelper = new DaoMaster.DevOpenHelper(this, "suanming", null);
+        mHelper = new DaoMaster.DevOpenHelper(this, Constants.DB_NAME, null);
         //2.获取读写对象
         SQLiteDatabase db = mHelper.getWritableDatabase();
         db.disableWriteAheadLogging();
@@ -61,18 +65,22 @@ public class MyApplication extends Application {
         JPushInterface.setDebugMode(true);
         JPushInterface.init(this);
 
-        Handler handler = new Handler();
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    SqliteUtil.copyDataBase(MyApplication.this, "suanming.db");
-                } catch (Exception e) {
-                    e.printStackTrace();
+        if (Constants.PACKAGE_NAME.equals(getProcessName(this))) {
+            Handler handler = new Handler();
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    if (Constants.PACKAGE_NAME.equals(getProcessName(MyApplication.this))) {
+                        try {
+                            SqliteUtil.copyDataBase(MyApplication.this, Constants.DB_NAME);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        setDatabase();
+                    }
                 }
-                setDatabase();
-            }
-        });
+            });
+        }
     }
 
     public static MyApplication getInstance() {
@@ -89,5 +97,21 @@ public class MyApplication extends Application {
         } else {
             return null;
         }
+    }
+
+    private String getProcessName(Context context) {
+        ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        List<ActivityManager.RunningAppProcessInfo> runningApps = am.getRunningAppProcesses();
+        if (runningApps == null) {
+            return null;
+        }
+        for (ActivityManager.RunningAppProcessInfo proInfo : runningApps) {
+            if (proInfo.pid == android.os.Process.myPid()) {
+                if (proInfo.processName != null) {
+                    return proInfo.processName;
+                }
+            }
+        }
+        return null;
     }
 }

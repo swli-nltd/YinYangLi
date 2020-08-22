@@ -21,16 +21,10 @@ public class DaoMaster extends AbstractDaoMaster {
 
     /** Creates underlying database table using DAOs. */
     public static void createAllTables(Database db, boolean ifNotExists) {
-        RgnmDao.createTable(db, ifNotExists);
-        RysmnDao.createTable(db, ifNotExists);
-        ShuXiangDao.createTable(db, ifNotExists);
     }
 
     /** Drops underlying database table using DAOs. */
     public static void dropAllTables(Database db, boolean ifExists) {
-        RgnmDao.dropTable(db, ifExists);
-        RysmnDao.dropTable(db, ifExists);
-        ShuXiangDao.dropTable(db, ifExists);
     }
 
     /**

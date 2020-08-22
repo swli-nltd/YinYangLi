@@ -173,42 +173,53 @@ public class GuaResultActivity extends BaseActivity {
     }
 
     @Override
+    protected void onDestroy() {
+        if (mHandler != null) {
+            mHandler.removeMessages(0);
+        }
+        super.onDestroy();
+    }
+
+    @Override
     public void onHandleMessage(Message msg) {
         super.onHandleMessage(msg);
-        mCaoCount++;
-        if (mCaoCount >= 6) {
-            mHandler.removeMessages(0);
-            Collections.reverse(list);
+        if (isSafe()) {
+            mCaoCount++;
+            if (mCaoCount >= 6) {
+                mHandler.removeMessages(0);
+                Collections.reverse(list);
 
-            mOriginAdapter.refreshData(ZhanBuUtils.getGua(list, 1));
-            mMasterAdapter.refreshData(ZhanBuUtils.getGua(list, 2));
-            mChangedAdapter.refreshData(ZhanBuUtils.getGua(list, 3));
-            JieGuaUtils.getInstance().getGuaJson(this, ZhanBuUtils.getCode(list, false)
-                    , new OnLoadListener<JieGuaItem>() {
-                @Override
-                public void onLoad(String json, JieGuaItem jieGuaItem) {
-                    if (jieGuaItem != null) {
-                        resultMaster.setText("主卦：" + jieGuaItem.getName());
-                        mAllAdapter.setResult(jieGuaItem);
-                    }
-                }
-            });
-            JieGuaUtils.getInstance().getGuaJson(this, ZhanBuUtils.getCode(list, true)
-                    , new OnLoadListener<JieGuaItem>() {
-                @Override
-                public void onLoad(String json, JieGuaItem jieGuaItem) {
-                    if (jieGuaItem != null) {
-                        resultChanged.setText("变卦：" + jieGuaItem.getName());
-                    }
-                }
-            });
-        } else {
-            int result = mAriticle.getType() == Constants.TYPE.TYPE_CAO ? ZhanBuUtils.getResultCao()
-                    : ZhanBuUtils.getResultQian();
-            list.add(result);
-            mOriginAdapter.refreshData(ZhanBuUtils.getGua(list, 0));
-            mHandler.sendEmptyMessageDelayed(0, DURATION_DALEY_NRXT);
+                mOriginAdapter.refreshData(ZhanBuUtils.getGua(list, 1));
+                mMasterAdapter.refreshData(ZhanBuUtils.getGua(list, 2));
+                mChangedAdapter.refreshData(ZhanBuUtils.getGua(list, 3));
+                JieGuaUtils.getInstance().getGuaJson(this, ZhanBuUtils.getCode(list, false)
+                        , new OnLoadListener<JieGuaItem>() {
+                            @Override
+                            public void onLoad(String json, JieGuaItem jieGuaItem) {
+                                if (isSafe() && jieGuaItem != null) {
+                                    resultMaster.setText("主卦：" + jieGuaItem.getName());
+                                    mAllAdapter.setResult(jieGuaItem);
+                                }
+                            }
+                        });
+                JieGuaUtils.getInstance().getGuaJson(this, ZhanBuUtils.getCode(list, true)
+                        , new OnLoadListener<JieGuaItem>() {
+                            @Override
+                            public void onLoad(String json, JieGuaItem jieGuaItem) {
+                                if (isSafe() && jieGuaItem != null) {
+                                    resultChanged.setText("变卦：" + jieGuaItem.getName());
+                                }
+                            }
+                        });
+            } else {
+                int result = mAriticle.getType() == Constants.TYPE.TYPE_CAO ? ZhanBuUtils.getResultCao()
+                        : ZhanBuUtils.getResultQian();
+                list.add(result);
+                mOriginAdapter.refreshData(ZhanBuUtils.getGua(list, 0));
+                mHandler.sendEmptyMessageDelayed(0, DURATION_DALEY_NRXT);
+            }
         }
     }
+
 
 }

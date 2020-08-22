@@ -2,6 +2,9 @@ package com.duke.yinyangli.constants;
 
 public class Constants {
 
+    public static final String DB_NAME = "suanming.db";
+    public static final String PACKAGE_NAME = "com.duke.yinyangli";
+
     public interface INTENT_KEY {
         String KEY_ID = "KEY_ID";
         String KEY_MODEL = "KEY_MODEL";
