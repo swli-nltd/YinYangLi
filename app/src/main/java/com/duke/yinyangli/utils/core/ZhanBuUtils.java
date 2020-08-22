@@ -90,47 +90,62 @@ public class ZhanBuUtils {
         return "少阴";
     }
 
+    private static int getNextSum(int total, int split) {
+        return total - getYushu(split) - getYushu(total - split);
+    }
+
+    private static int getYushu(int origin) {
+        int yushu = origin % 4;
+        if (yushu == 0) {
+            yushu = 4;
+        }
+        return yushu;
+    }
+
     public static int getResultCao() {
         Random random = new Random();
-        int first = random.nextInt(40) + 5;
         int second;
         int third;
         int fourth;
-        if (first % 4 == 0) {
-            second = random.nextInt(32) + 5;
-            if (second % 4 == 1 || second % 4 == 2) {
-                third = random.nextInt(28) + 5;
-                if (third % 4 == 1 || third == 2) {
-                    fourth = 32;
-                } else {
-                    fourth = 28;
-                }
-            } else {
-                third = random.nextInt(24) + 5;
-                if (third % 4 == 1 || third == 2) {
-                    fourth = 28;
-                } else {
-                    fourth = 24;
-                }
-            }
-        } else {
-            second = random.nextInt(36) + 5;
-            if (second % 4 == 1 || second % 4 == 2) {
-                third = random.nextInt(32) + 5;
-                if (third % 4 == 1 || third % 4 == 2) {
-                    fourth = 36;
-                } else {
-                    fourth = 32;
-                }
-            } else {
-                third = random.nextInt(28) + 5;
-                if (third % 4 == 1 || third % 4 == 2) {
-                    fourth = 32;
-                } else {
-                    fourth = 28;
-                }
-            }
-        }
+
+        second = getNextSum(48, random.nextInt(48) + 1);
+        third = getNextSum(second, random.nextInt(second) + 1);
+        fourth = getNextSum(third, random.nextInt(third) + 1);
+//        if (first % 4 == 0) {
+//            second = random.nextInt(32) + 5;
+//            if (second % 4 == 1 || second % 4 == 2) {
+//                third = random.nextInt(28) + 5;
+//                if (third % 4 == 1 || third == 2) {
+//                    fourth = 32;
+//                } else {
+//                    fourth = 28;
+//                }
+//            } else {
+//                third = random.nextInt(24) + 5;
+//                if (third % 4 == 1 || third == 2) {
+//                    fourth = 28;
+//                } else {
+//                    fourth = 24;
+//                }
+//            }
+//        } else {
+//            second = random.nextInt(36) + 5;
+//            if (second % 4 == 1 || second % 4 == 2) {
+//                third = random.nextInt(32) + 5;
+//                if (third % 4 == 1 || third % 4 == 2) {
+//                    fourth = 36;
+//                } else {
+//                    fourth = 32;
+//                }
+//            } else {
+//                third = random.nextInt(28) + 5;
+//                if (third % 4 == 1 || third % 4 == 2) {
+//                    fourth = 32;
+//                } else {
+//                    fourth = 28;
+//                }
+//            }
+//        }
         return fourth;
     }
 
