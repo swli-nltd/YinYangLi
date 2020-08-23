@@ -90,63 +90,31 @@ public class ZhanBuUtils {
         return "少阴";
     }
 
-    private static int getNextSum(int total, int split) {
-        return total - getYushu(split) - getYushu(total - split);
-    }
-
-    private static int getYushu(int origin) {
-        int yushu = origin % 4;
-        if (yushu == 0) {
-            yushu = 4;
-        }
-        return yushu;
-    }
-
     public static int getResultCao() {
         Random random = new Random();
+        int first;
         int second;
         int third;
-        int fourth;
 
-        second = getNextSum(48, random.nextInt(48) + 1);
-        third = getNextSum(second, random.nextInt(second) + 1);
-        fourth = getNextSum(third, random.nextInt(third) + 1);
-//        if (first % 4 == 0) {
-//            second = random.nextInt(32) + 5;
-//            if (second % 4 == 1 || second % 4 == 2) {
-//                third = random.nextInt(28) + 5;
-//                if (third % 4 == 1 || third == 2) {
-//                    fourth = 32;
-//                } else {
-//                    fourth = 28;
-//                }
-//            } else {
-//                third = random.nextInt(24) + 5;
-//                if (third % 4 == 1 || third == 2) {
-//                    fourth = 28;
-//                } else {
-//                    fourth = 24;
-//                }
-//            }
-//        } else {
-//            second = random.nextInt(36) + 5;
-//            if (second % 4 == 1 || second % 4 == 2) {
-//                third = random.nextInt(32) + 5;
-//                if (third % 4 == 1 || third % 4 == 2) {
-//                    fourth = 36;
-//                } else {
-//                    fourth = 32;
-//                }
-//            } else {
-//                third = random.nextInt(28) + 5;
-//                if (third % 4 == 1 || third % 4 == 2) {
-//                    fourth = 32;
-//                } else {
-//                    fourth = 28;
-//                }
-//            }
-//        }
-        return fourth;
+        first = random.nextInt(48) + 1;
+        if (first % 4 == 0) {
+            first = 8;
+        } else {
+            first = 4;
+        }
+        second = random.nextInt(48 - first) + 1;
+        if (second % 4 == 1 || second % 4 == 2) {
+            second = 4;
+        } else {
+            second = 8;
+        }
+        third = random.nextInt(48 - first - second) + 1;
+        if (third % 4 == 1 || third % 4 == 2) {
+            third = 4;
+        } else {
+            third = 8;
+        }
+        return 48 - first - second - third;
     }
 
     public static List<GuaXiangItem> getGua(List<Integer> list, int type) {

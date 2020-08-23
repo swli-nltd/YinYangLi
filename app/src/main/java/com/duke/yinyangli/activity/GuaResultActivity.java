@@ -17,6 +17,7 @@ import com.duke.yinyangli.base.BaseActivity;
 import com.duke.yinyangli.bean.JieGuaItem;
 import com.duke.yinyangli.constants.Constants;
 import com.duke.yinyangli.interfaces.OnLoadListener;
+import com.duke.yinyangli.utils.LogUtils;
 import com.duke.yinyangli.utils.core.JieGuaUtils;
 import com.duke.yinyangli.utils.core.ZhanBuUtils;
 import com.duke.yinyangli.view.spiderview.SpiderWebView;
@@ -24,6 +25,7 @@ import com.haibin.calendarview.library.Article;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -188,6 +190,7 @@ public class GuaResultActivity extends BaseActivity {
             if (mCaoCount >= 6) {
                 mHandler.removeMessages(0);
                 Collections.reverse(list);
+//                testNewGua();
 
                 mOriginAdapter.refreshData(ZhanBuUtils.getGua(list, 1));
                 mMasterAdapter.refreshData(ZhanBuUtils.getGua(list, 2));
@@ -218,6 +221,25 @@ public class GuaResultActivity extends BaseActivity {
                 mOriginAdapter.refreshData(ZhanBuUtils.getGua(list, 0));
                 mHandler.sendEmptyMessageDelayed(0, DURATION_DALEY_NRXT);
             }
+        }
+    }
+
+    private void testNewGua() {
+        int num = 0;
+        int count = 0;
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < 1600000; i ++) {
+            num = ZhanBuUtils.getResultCao();
+            if (map.containsKey(num)) {
+                count = map.get(num);
+                count ++;
+                map.put(num, count);
+            } else {
+                map.put(num, 1);
+            }
+        }
+        for (int n : map.keySet()) {
+            LogUtils.d("generatecount:" + n + ", " + map.get(n));
         }
     }
 
