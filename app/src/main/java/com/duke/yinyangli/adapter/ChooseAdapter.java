@@ -35,6 +35,12 @@ public class ChooseAdapter extends RecyclerView.Adapter<ChooseAdapter.ViewHolder
         mData.add(Article.create("掷钱占卜", "", R.mipmap.qian).setType(Constants.TYPE.TYPE_QIAN));
         mData.add(Article.create("称骨算命", "", R.mipmap.chenggu).setType(Constants.TYPE.TYPE_CHENGGU));
         mData.add(Article.create("生辰八字", "", R.mipmap.bazi).setType(Constants.TYPE.TYPE_BAZI));
+        mData.add(Article.create("姓名打分", "", R.mipmap.bazi).setType(Constants.TYPE.TYPE_BAZI));
+        mData.add(Article.create("星座命运", "", R.mipmap.bazi).setType(Constants.TYPE.TYPE_BAZI));
+        mData.add(Article.create("星座配对", "", R.mipmap.bazi).setType(Constants.TYPE.TYPE_BAZI));
+        mData.add(Article.create("生肖配对", "", R.mipmap.bazi).setType(Constants.TYPE.TYPE_BAZI));
+        mData.add(Article.create("诸葛神算", "", R.mipmap.bazi).setType(Constants.TYPE.TYPE_BAZI));
+        mData.add(Article.create("周公解梦", "", R.mipmap.bazi).setType(Constants.TYPE.TYPE_BAZI));
         notifyDataSetChanged();
     }
 
