@@ -16,8 +16,13 @@ public class VersionResponse extends BaseModel {
         "totalBytes": 2,
         "forceUpdate": 1,
             "updateTitle": "有新的更新",
-            "updateMessage": "测试更新内容",
-            "downloadUrl": "https://github.com/gj009351/YinYangLi/blob/master/app/release/app-release.apk"
+            "updateMessage": "1.增加八卦算命
+2.在已有的四种算卦方式中增加温馨提示弹窗
+3.优化蓍草占卜法的算法
+4.在首页增加当天神兽等日期信息及时辰信息
+5.启动页底部增加版本号
+6.预增六种可选，敬请期待",
+            "downloadUrl": "http://d.firim.info/ntw7"
     }*/
     public long getTotalBytes() {
         return totalBytes;
