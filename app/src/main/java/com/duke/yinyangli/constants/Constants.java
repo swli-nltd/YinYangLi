@@ -22,5 +22,11 @@ public class Constants {
         int TYPE_QIAN = 1;
         int TYPE_CHENGGU = 2;
         int TYPE_BAZI = 3;
+        int TYPE_XINGMING = 4;
+        int TYPE_XINGZUOMINGYUN = 5;
+        int TYPE_XINGZUOPEIDUI = 6;
+        int TYPE_SHENGXIAOPEIDUI = 7;
+        int TYPE_ZHUGESHENSUAN = 8;
+        int TYPE_ZHOUGONGJIEMENG = 9;
     }
 }

@@ -12,6 +12,7 @@ import com.duke.yinyangli.activity.BaZiResultActivity;
 import com.duke.yinyangli.activity.ChengGuActivity;
 import com.duke.yinyangli.activity.GuaResultActivity;
 import com.duke.yinyangli.constants.Constants;
+import com.duke.yinyangli.utils.ToastUtil;
 import com.haibin.calendarview.library.Article;
 
 import java.util.ArrayList;
@@ -35,12 +36,12 @@ public class ChooseAdapter extends RecyclerView.Adapter<ChooseAdapter.ViewHolder
         mData.add(Article.create("掷钱占卜", "", R.mipmap.qian).setType(Constants.TYPE.TYPE_QIAN));
         mData.add(Article.create("称骨算命", "", R.mipmap.chenggu).setType(Constants.TYPE.TYPE_CHENGGU));
         mData.add(Article.create("生辰八字", "", R.mipmap.bazi).setType(Constants.TYPE.TYPE_BAZI));
-        mData.add(Article.create("姓名打分", "", R.mipmap.bazi).setType(Constants.TYPE.TYPE_BAZI));
-        mData.add(Article.create("星座命运", "", R.mipmap.bazi).setType(Constants.TYPE.TYPE_BAZI));
-        mData.add(Article.create("星座配对", "", R.mipmap.bazi).setType(Constants.TYPE.TYPE_BAZI));
-        mData.add(Article.create("生肖配对", "", R.mipmap.bazi).setType(Constants.TYPE.TYPE_BAZI));
-        mData.add(Article.create("诸葛神算", "", R.mipmap.bazi).setType(Constants.TYPE.TYPE_BAZI));
-        mData.add(Article.create("周公解梦", "", R.mipmap.bazi).setType(Constants.TYPE.TYPE_BAZI));
+        mData.add(Article.create("姓名打分", "", R.mipmap.bazi).setType(Constants.TYPE.TYPE_XINGMING));
+        mData.add(Article.create("星座命运", "", R.mipmap.bazi).setType(Constants.TYPE.TYPE_XINGZUOMINGYUN));
+        mData.add(Article.create("星座配对", "", R.mipmap.bazi).setType(Constants.TYPE.TYPE_XINGZUOPEIDUI));
+        mData.add(Article.create("生肖配对", "", R.mipmap.bazi).setType(Constants.TYPE.TYPE_SHENGXIAOPEIDUI));
+        mData.add(Article.create("诸葛神算", "", R.mipmap.bazi).setType(Constants.TYPE.TYPE_ZHUGESHENSUAN));
+        mData.add(Article.create("周公解梦", "", R.mipmap.bazi).setType(Constants.TYPE.TYPE_ZHOUGONGJIEMENG));
         notifyDataSetChanged();
     }
 
@@ -69,7 +70,9 @@ public class ChooseAdapter extends RecyclerView.Adapter<ChooseAdapter.ViewHolder
                     case Constants.TYPE.TYPE_BAZI:
                         BaZiResultActivity.start(mContext, article);
                         break;
-                        default:break;
+                    default:
+                        ToastUtil.show(mContext, R.string.wait_open);
+                        break;
                 }
 
             }
