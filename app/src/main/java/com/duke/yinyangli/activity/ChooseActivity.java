@@ -3,6 +3,7 @@ package com.duke.yinyangli.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.duke.yinyangli.R;
 import com.duke.yinyangli.adapter.ChooseAdapter;
@@ -30,6 +31,7 @@ public class ChooseActivity extends BaseActivity {
     public void initView() {
         super.initView();
         title.setText(R.string.select);
+        right.setVisibility(View.INVISIBLE);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new ChooseAdapter(this));
     }

@@ -24,6 +24,7 @@ import com.duke.yinyangli.calendar.Lunar;
 import com.duke.yinyangli.calendar.Solar;
 import com.duke.yinyangli.constants.Constants;
 import com.duke.yinyangli.dialog.DialogUtils;
+import com.duke.yinyangli.dialog.SimpleDialog;
 import com.haibin.calendarview.library.Article;
 
 import java.io.File;
@@ -75,6 +76,18 @@ public class BaZiResultActivity extends BaseActivity {
         mAriticle = (Article) getIntent().getSerializableExtra(Constants.INTENT_KEY.KEY_MODEL);
         title.setText(mAriticle.getTitle());
         image.setImageResource(R.mipmap.bazi);
+
+        right.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SimpleDialog.init(BaZiResultActivity.this, mAriticle.getTitle()
+                        , getString(R.string.tip_baguasuanming), null)
+                        .showCancel(false)
+                        .setConfirmText(R.string.known)
+                        .setConfirmTextColor(R.color.blue_2288BB)
+                        .showDialog();
+            }
+        });
 
         DialogUtils.showBirthdayPicker(this, new OnTimeSelectListener() {
             @Override

@@ -69,6 +69,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     public void initView() {
         title = findViewById(R.id.title);
         left = findViewById(R.id.left);
+        right = findViewById(R.id.right);
         if (left != null) {
             left.setOnClickListener(new View.OnClickListener() {
                 @Override

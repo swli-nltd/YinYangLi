@@ -7,6 +7,7 @@ import android.animation.AnimatorSet;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Message;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,6 +17,7 @@ import com.duke.yinyangli.adapter.GuaXiangAdapter;
 import com.duke.yinyangli.base.BaseActivity;
 import com.duke.yinyangli.bean.JieGuaItem;
 import com.duke.yinyangli.constants.Constants;
+import com.duke.yinyangli.dialog.SimpleDialog;
 import com.duke.yinyangli.interfaces.OnLoadListener;
 import com.duke.yinyangli.utils.LogUtils;
 import com.duke.yinyangli.utils.core.JieGuaUtils;
@@ -105,6 +107,27 @@ public class GuaResultActivity extends BaseActivity {
             playFlip(image);
             playFlip(imageRight);
         }
+
+        right.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mAriticle.getType() == Constants.TYPE.TYPE_QIAN) {
+                    SimpleDialog.init(GuaResultActivity.this, mAriticle.getTitle()
+                            , getString(R.string.tip_zhiqianzhanbu), null)
+                            .showCancel(false)
+                            .setConfirmText(R.string.known)
+                            .setConfirmTextColor(R.color.blue_2288BB)
+                            .showDialog();
+                } else {
+                    SimpleDialog.init(GuaResultActivity.this, mAriticle.getTitle()
+                            , getString(R.string.tip_shicaozhanbu), null)
+                            .showCancel(false)
+                            .setConfirmText(R.string.known)
+                            .setConfirmTextColor(R.color.blue_2288BB)
+                            .showDialog();
+                }
+            }
+        });
     }
 
     private void playFlip(ImageView imageView) {

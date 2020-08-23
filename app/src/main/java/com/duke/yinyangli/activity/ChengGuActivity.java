@@ -15,6 +15,7 @@ import com.duke.yinyangli.base.BaseActivity;
 import com.duke.yinyangli.bean.ChengGuItem;
 import com.duke.yinyangli.constants.Constants;
 import com.duke.yinyangli.dialog.DialogUtils;
+import com.duke.yinyangli.dialog.SimpleDialog;
 import com.duke.yinyangli.interfaces.OnLoadListener;
 import com.duke.yinyangli.utils.core.ChengguUtils;
 import com.duke.yinyangli.view.spiderview.SpiderWebView;
@@ -89,6 +90,18 @@ public class ChengGuActivity extends BaseActivity {
                                             }
                                         }
                                 )), 2000);
+            }
+        });
+
+        right.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SimpleDialog.init(ChengGuActivity.this, mAriticle.getTitle()
+                        , getString(R.string.tip_chenggusuanming), null)
+                        .showCancel(false)
+                        .setConfirmText(R.string.known)
+                        .setConfirmTextColor(R.color.blue_2288BB)
+                        .showDialog();
             }
         });
     }

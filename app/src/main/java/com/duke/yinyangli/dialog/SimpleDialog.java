@@ -5,11 +5,16 @@ import android.app.Dialog;
 import android.content.Context;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.duke.yinyangli.R;
+import com.duke.yinyangli.utils.LogUtils;
 
 import androidx.annotation.NonNull;
 
@@ -19,6 +24,7 @@ public class SimpleDialog extends Dialog {
     private TextView content;
     private TextView update;
     private TextView cancel;
+    private ScrollView scrollView;
 
     public SimpleDialog(@NonNull Context context) {
         this(context, "", "", null);
@@ -67,6 +73,19 @@ public class SimpleDialog extends Dialog {
                 dismiss();
             }
         });
+
+        scrollView = findViewById(R.id.scrollView);
+        scrollView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+            @Override
+            public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop,
+                                       int oldRight, int oldBottom) {
+                ViewGroup.LayoutParams params = scrollView.getLayoutParams();
+                if (scrollView.getHeight() > 700) {
+                    params.height = 700;
+                    scrollView.setLayoutParams(params);
+                }
+            }
+        });
     }
 
     public SimpleDialog showCancel(boolean show) {
@@ -79,6 +98,19 @@ public class SimpleDialog extends Dialog {
     public SimpleDialog setConfirmText(String confirmText) {
         if (update != null) {
             update.setText(confirmText);
+        }
+        return this;
+    }
+
+    public SimpleDialog setConfirmTextColor(int resId) {
+        if (update != null) {
+            update.setTextColor(update.getResources().getColor(resId));
+        }
+        return this;
+    }
+    public SimpleDialog setConfirmText(int resId) {
+        if (update != null) {
+            update.setText(update.getResources().getString(resId));
         }
         return this;
     }
