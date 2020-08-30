@@ -96,4 +96,6 @@ dependencies {
     implementation 'com.daimajia.androidanimations:library:2.3@aar'
     //圆形头像
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+    //edittext
+    implementation 'com.rengwuxian.materialedittext:library:2.1.4'
 }

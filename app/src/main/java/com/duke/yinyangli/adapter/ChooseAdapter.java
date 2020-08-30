@@ -11,6 +11,7 @@ import com.duke.yinyangli.R;
 import com.duke.yinyangli.activity.BaZiResultActivity;
 import com.duke.yinyangli.activity.ChengGuActivity;
 import com.duke.yinyangli.activity.GuaResultActivity;
+import com.duke.yinyangli.activity.XingMingDaFenActivity;
 import com.duke.yinyangli.constants.Constants;
 import com.duke.yinyangli.utils.ToastUtil;
 import com.haibin.calendarview.library.Article;
@@ -62,13 +63,40 @@ public class ChooseAdapter extends RecyclerView.Adapter<ChooseAdapter.ViewHolder
                 switch (article.getType()) {
                     case Constants.TYPE.TYPE_CAO:
                     case Constants.TYPE.TYPE_QIAN:
+                        //占卜结果
                         GuaResultActivity.start(mContext, article);
                         break;
                     case Constants.TYPE.TYPE_CHENGGU:
+                        //称骨算命
                         ChengGuActivity.start(mContext, article);
                         break;
                     case Constants.TYPE.TYPE_BAZI:
+                        //八字算命
                         BaZiResultActivity.start(mContext, article);
+                        break;
+                    case Constants.TYPE.TYPE_XINGMING:
+                        //姓名打分
+                        XingMingDaFenActivity.start(mContext, article);
+                        break;
+                    case Constants.TYPE.TYPE_XINGZUOMINGYUN:
+                        //星座命运
+                        ToastUtil.show(mContext, R.string.wait_open);
+                        break;
+                    case Constants.TYPE.TYPE_XINGZUOPEIDUI:
+                        //星座配对
+                        ToastUtil.show(mContext, R.string.wait_open);
+                        break;
+                    case Constants.TYPE.TYPE_SHENGXIAOPEIDUI:
+                        //生肖配对
+                        ToastUtil.show(mContext, R.string.wait_open);
+                        break;
+                    case Constants.TYPE.TYPE_ZHUGESHENSUAN:
+                        //诸葛神算
+                        ToastUtil.show(mContext, R.string.wait_open);
+                        break;
+                    case Constants.TYPE.TYPE_ZHOUGONGJIEMENG:
+                        //周公解梦
+                        ToastUtil.show(mContext, R.string.wait_open);
                         break;
                     default:
                         ToastUtil.show(mContext, R.string.wait_open);
