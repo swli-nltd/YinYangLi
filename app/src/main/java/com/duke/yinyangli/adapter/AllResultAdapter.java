@@ -149,7 +149,13 @@ public class AllResultAdapter extends RecyclerView.Adapter<AllResultAdapter.View
         public void updateView(Context context, int position, Article article) {
             title.setText(article.getTitle());
             if (!TextUtils.isEmpty(article.getContent())) {
-                content.setText(article.getContent().replace("<p>", ""));
+                content.setText(article.getContent()
+                        .replace("<p>", "")
+                        .replace("<br>", "")
+                        .replace("<br/>", "")
+                        .replace("<br />", "")
+                        .replace("</font>", "")
+                        .replaceAll("<font.*>", ""));
                 content.setVisibility(View.VISIBLE);
             } else {
                 content.setVisibility(View.GONE);

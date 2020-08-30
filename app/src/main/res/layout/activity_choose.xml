@@ -6,6 +6,23 @@
 
     <include layout="@layout/top_view"/>
 
+    <TextView
+        android:id="@+id/tips"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableStart="@mipmap/tips_black"
+        android:gravity="center_vertical"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:paddingTop="6dp"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:drawablePadding="8dp"
+        android:textSize="14sp"
+        android:paddingBottom="6dp"
+        android:background="@color/content_background"
+        android:text="创作不易，每天仅限免一次，如需要更多次数请付费购买                       "/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"

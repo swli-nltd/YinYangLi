@@ -32,16 +32,16 @@ public class ChooseAdapter extends RecyclerView.Adapter<ChooseAdapter.ViewHolder
     }
 
     private void loadRes() {
-        mData.add(Article.create("蓍草占卜", "", R.mipmap.zhanbushicao).setType(Constants.TYPE.TYPE_CAO));
-        mData.add(Article.create("掷钱占卜", "", R.mipmap.qian).setType(Constants.TYPE.TYPE_QIAN));
-        mData.add(Article.create("称骨算命", "", R.mipmap.chenggu).setType(Constants.TYPE.TYPE_CHENGGU));
-        mData.add(Article.create("生辰八字", "", R.mipmap.bazi).setType(Constants.TYPE.TYPE_BAZI));
-        mData.add(Article.create("姓名打分", "", R.mipmap.bazi).setType(Constants.TYPE.TYPE_XINGMING));
-        mData.add(Article.create("星座命运", "", R.mipmap.bazi).setType(Constants.TYPE.TYPE_XINGZUOMINGYUN));
-        mData.add(Article.create("星座配对", "", R.mipmap.bazi).setType(Constants.TYPE.TYPE_XINGZUOPEIDUI));
-        mData.add(Article.create("生肖配对", "", R.mipmap.bazi).setType(Constants.TYPE.TYPE_SHENGXIAOPEIDUI));
-        mData.add(Article.create("诸葛神算", "", R.mipmap.bazi).setType(Constants.TYPE.TYPE_ZHUGESHENSUAN));
-        mData.add(Article.create("周公解梦", "", R.mipmap.bazi).setType(Constants.TYPE.TYPE_ZHOUGONGJIEMENG));
+        mData.add(Article.create("蓍草占卜", "", R.mipmap.zhanbushicao, R.mipmap.cao_black).setType(Constants.TYPE.TYPE_CAO));
+        mData.add(Article.create("掷钱占卜", "", R.mipmap.qian, R.mipmap.qian_black).setType(Constants.TYPE.TYPE_QIAN));
+        mData.add(Article.create("称骨算命", "", R.mipmap.chenggu, R.mipmap.chenggu_black).setType(Constants.TYPE.TYPE_CHENGGU));
+        mData.add(Article.create("生辰八字", "", R.mipmap.bazipan, R.mipmap.bazi).setType(Constants.TYPE.TYPE_BAZI));
+        mData.add(Article.create("姓名打分", "", R.mipmap.dafen, R.mipmap.dafen).setType(Constants.TYPE.TYPE_XINGMING));
+        mData.add(Article.create("星座命运", "", R.mipmap.xingzuoyunshi, R.mipmap.xingzuoyunshi).setType(Constants.TYPE.TYPE_XINGZUOMINGYUN));
+        mData.add(Article.create("星座配对", "", R.mipmap.xingzuopeidui, R.mipmap.xingzuopeidui).setType(Constants.TYPE.TYPE_XINGZUOPEIDUI));
+        mData.add(Article.create("生肖配对", "", R.mipmap.shengxiaopeidui, R.mipmap.shengxiaopeidui).setType(Constants.TYPE.TYPE_SHENGXIAOPEIDUI));
+        mData.add(Article.create("诸葛神算", "", R.mipmap.zhugeshensuan, R.mipmap.zhugeshensuan).setType(Constants.TYPE.TYPE_ZHUGESHENSUAN));
+        mData.add(Article.create("周公解梦", "", R.mipmap.zhougongjiemeng, R.mipmap.zhougongjiemeng).setType(Constants.TYPE.TYPE_ZHOUGONGJIEMENG));
         notifyDataSetChanged();
     }
 
@@ -54,7 +54,7 @@ public class ChooseAdapter extends RecyclerView.Adapter<ChooseAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Article article = mData.get(position);
-        holder.imageView.setImageResource(article.getImgRes());
+        holder.imageView.setImageResource(article.getLogoRes());
         holder.titleView.setText(article.getTitle());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

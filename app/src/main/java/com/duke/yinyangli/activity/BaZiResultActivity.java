@@ -75,7 +75,7 @@ public class BaZiResultActivity extends BaseActivity {
         mHandler = new MyHandler(this);
         mAriticle = (Article) getIntent().getSerializableExtra(Constants.INTENT_KEY.KEY_MODEL);
         title.setText(mAriticle.getTitle());
-        image.setImageResource(R.mipmap.bazi);
+        image.setImageResource(R.mipmap.bazipan);
 
         right.setOnClickListener(new View.OnClickListener() {
             @Override

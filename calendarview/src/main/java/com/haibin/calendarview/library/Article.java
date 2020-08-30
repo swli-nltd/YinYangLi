@@ -17,6 +17,7 @@ public class Article implements Serializable {
     private String date;
     private int type;
     private int imgRes;
+    private int logoRes;
 
 
     public static Article create(String title, String content, String imgUrl) {
@@ -48,6 +49,15 @@ public class Article implements Serializable {
         article.setTitle(title);
         article.setContent(content);
         article.setImgResource(imgRes);
+        return article;
+    }
+
+    public static Article create(String title, String content, int imgRes, int logoRes) {
+        Article article = new Article();
+        article.setTitle(title);
+        article.setContent(content);
+        article.setImgResource(imgRes);
+        article.setLogoRes(logoRes);
         return article;
     }
 
@@ -124,5 +134,13 @@ public class Article implements Serializable {
 
     public void setImgResource(int imgRes) {
         this.imgRes = imgRes;
+    }
+
+    public int getLogoRes() {
+        return logoRes;
+    }
+
+    public void setLogoRes(int logoRes) {
+        this.logoRes = logoRes;
     }
 }
