@@ -120,6 +120,16 @@ public class AllResultAdapter extends RecyclerView.Adapter<AllResultAdapter.View
         notifyDataSetChanged();
     }
 
+    public void setResult(List<Article> list) {
+        if (mData == null) {
+            mData = new ArrayList<>();
+        } else {
+            mData.clear();
+        }
+        mData.addAll(list);
+        notifyDataSetChanged();
+    }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -138,12 +148,13 @@ public class AllResultAdapter extends RecyclerView.Adapter<AllResultAdapter.View
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        TextView title, content;
+        TextView title, content, tips;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.tv_title);
             content = itemView.findViewById(R.id.tv_content);
+            tips = itemView.findViewById(R.id.tv_tips);
         }
 
         public void updateView(Context context, int position, Article article) {
@@ -159,6 +170,12 @@ public class AllResultAdapter extends RecyclerView.Adapter<AllResultAdapter.View
                 content.setVisibility(View.VISIBLE);
             } else {
                 content.setVisibility(View.GONE);
+            }
+            if (!TextUtils.isEmpty(article.getDesc())) {
+                tips.setVisibility(View.VISIBLE);
+                tips.setText(article.getDesc());
+            } else {
+                tips.setVisibility(View.GONE);
             }
         }
     }

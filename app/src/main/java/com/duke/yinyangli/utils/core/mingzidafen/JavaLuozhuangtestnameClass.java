@@ -14,7 +14,7 @@ public class JavaLuozhuangtestnameClass {
         {"5", "（五行之数）五行俱权，循环相生，圆通畅达，福祉无穷。", "（吉）"},
         {"6", "（六爻之数）六爻之数，发展变化，天赋美德，吉祥安泰。", "（吉）"},
         {"7", "（七政之数）七政之数，精悍严谨，天赋之力，吉星照耀。", "（吉）"},
-        {"8", "（八卦之数）八卦之数，乾坎艮震，巽离坤兑，无穷无尽。(半吉)"},
+        {"8", "（八卦之数）八卦之数，乾坎艮震，巽离坤兑，无穷无尽。", "(半吉)"},
         {"9", "（大成之数）大成之数，蕴涵凶险，或成或败，难以把握。", "（凶）"},
         {"10", "(终结之数）终结之数，雪暗飘零，偶或有成，回顾茫然。", "（凶）"},
         {"11", "（旱苗逢雨）万物更新，调顺发达，恢弘泽世，繁荣富贵。", "（吉）"},
@@ -29,7 +29,7 @@ public class JavaLuozhuangtestnameClass {
         {"20", "（屋下藏金）非业破运，灾难重重，进退维谷，万事难成。", "（凶）"},
         {"21", "（明月中天）光风霁月，万物确立，官运亨通，大搏名利。女性不宜此数。（吉）"},
         {"22", "（秋草逢霜）秋草逢霜，困难疾弱，虽出豪杰，人生波折。", "（凶）"},
-        {"23", "（壮丽）旭日东升，壮丽壮观，权威旺盛，功名荣达。女性不宜此数。（吉）"},
+        {"23", "（壮丽）旭日东升，壮丽壮观，权威旺盛，功名荣达。女性不宜此数。", "（吉）"},
         {"24", "（掘藏得金）家门余庆，金钱丰盈，白手成家，财源广进。", "（吉）"},
         {"25", "（荣俊）资性英敏，才能奇特，克服傲慢，尚可成功。", "（半吉）"},
         {"26", "（变怪）变怪之谜，英雄豪杰，波澜重叠，而奏大功。", "（凶）"},
@@ -100,8 +100,8 @@ public class JavaLuozhuangtestnameClass {
         {"木火金", "凶", "★為人坦誠直率，做事衝動而積極，能得朋友相助，花錢較浪費；事業不振，身心過勞，雖然能夠得到一時的成功，但防因為基礎不穩固而致不幸。家庭運差，夫妻常見爭吵不悅，個性有不和現象。健康注意腦神經衰弱、呼吸系統、肢體災疾、皮膚病。"},
         {"木火水", "凶", "★能言善道，急性不服輸，爭強好勝，易得罪人，乃畢生最大缺失；或有一時之成就，只恐曇花一現，好景不長，做事最好三思退守。夫妻一般感情不好，常有不悅事生；晚年財運不穩，心神比較不安寧。健康注意外傷、心、腎之災。"},
         {"木土木", "凶", "★運途不佳，性情孤獨，雖有理想大志，很難如願。待人處事很熱心，意志力卻很不堅定，目標變化大，造成容易失去許多好機會；縱有努力，財錢收穫不多，一生比較勞心勞力，最好步步為營，才是良策。夫妻常為小事爭吵。健康注意腸胃、肝疾。"},
-        {"木土火	小	吉	★為人表面達觀，內心實多憂苦，有人緣，能成功發展。有堅強意志力，能夠辛勤努力以赴，財錢還算小有積蓄。夫妻時有爭吵，感情大致圓滿。晚年健康注意腸胃、皮膚病、精神難得安寧。	"},
-        {"木土土	小	吉	★待人誠懇，表現樂觀，其實是一個內心多存苦憂之人。一生辛勤勞力，財錢收益不多。做事缺乏果斷力，很容易衝動，難以掌握目標。夫妻時有相爭，家內不太合睦。切勿爭強好勝，其實平安才是真正的幸福。健康注意腸胃、筋骨、肝疾。	"},
+        {"木土火", "小吉", "★為人表面達觀，內心實多憂苦，有人緣，能成功發展。有堅強意志力，能夠辛勤努力以赴，財錢還算小有積蓄。夫妻時有爭吵，感情大致圓滿。晚年健康注意腸胃、皮膚病、精神難得安寧。"},
+        {"木土土", "小吉", "★待人誠懇，表現樂觀，其實是一個內心多存苦憂之人。一生辛勤勞力，財錢收益不多。做事缺乏果斷力，很容易衝動，難以掌握目標。夫妻時有相爭，家內不太合睦。切勿爭強好勝，其實平安才是真正的幸福。健康注意腸胃、筋骨、肝疾。"},
         {"木土金", "吉", "★常為家庭而辛勤奮力，是一個能負責任的人。行為處事謙恭有禮，人緣很好，工作能力也強，可惜耐心不足、眼高手低。雖有展穫，四十歲前只能小見成就；若要發展，除去前述缺失，中年而後，定能事業如意，名利兼得。夫妻大致和樂，要防桃花情遇事生。健康注意腸胃、外傷。"},
         {"木土水", "凶", "★人緣不錯，要領欠佳，事職過程比較辛苦，諸事很難如意，心情苦惱事多；必須自力更生，貴人少助，作事總是勞碌，財錢收穫不多，一生財運難旺，只能勤儉行事。夫妻相處不和，家運有欠平安。健康注意腸胃、肝、腎之疾。"},
         {"木金木", "凶", "★做事雖然勤奮，主觀太強，意志也不很堅定，乃造成見有食無現象，表面風光，其實內心憂鬱、很難一展才能；財運很差，終生勞苦少成少得，晚年有難以預測的災厄。夫妻感情難偕，家運方面，亦多見不幸情形只怕中途孤雁紛飛。健康注意腦神經、筋骨肢體、肺、外傷事故。"},
@@ -113,15 +113,15 @@ public class JavaLuozhuangtestnameClass {
         {"木水火", "凶", "★能成功，但恐不能持久。易生急變及病患，有心臟或腦部之病災。"},
         {"木水土", "凶", "★一旦成功，即會崩潰。有災難、突變與病難之可能性。"},
         {"木水金", "凶", "★可得成功。但，容易有腦部的病疾。"},
-        {"木水水	中	吉	★有成功的機會。但，容易有破亂及病難。假如數理多帶吉數者，則可長壽、富豪。	"},
+        {"木水水", "中吉", "★有成功的機會。但，容易有破亂及病難。假如數理多帶吉數者，則可長壽、富豪。"},
         {"火木木", "吉", "★勤儉。有生機，境遇安泰，能得長壽享福。"},
         {"火木火", "吉", "★基礎穩固，順利發展。身心健康，能得長壽。喜歡幫助他人；但，容易受人利用。"},
         {"火木土", "吉", "★有進取心則成功富貴。基礎穩固，身心健全，能得長壽。"},
         {"火木金", "凶", "★一成功，即多變。耐力不足。易見身心過於勞累，有腦部及胸部之病疾。"},
         {"火木水", "凶", "★為人機智。此格者，家庭易生雜亂，有急變的災難。"},
         {"火火木", "吉", "★一帆風順。基礎穩固，身心健全，長壽享福。但，須節制色慾。"},
-        {"火火火	中	吉	★雖然有進展的機會，但因基礎不穩且缺乏耐力，所以易成易敗。要注意心臟及血管方面的健康。	"},
-        {"火火土	中	吉	★可成功。但因缺乏耐力，易生分離作用。假若能忍柔當事，則可保持吉祥。	"},
+        {"火火火", "中吉", "★雖然有進展的機會，但因基礎不穩且缺乏耐力，所以易成易敗。要注意心臟及血管方面的健康。"},
+        {"火火土", "中吉", "★可成功。但因缺乏耐力，易生分離作用。假若能忍柔當事，則可保持吉祥。"},
         {"火火金", "凶", "★身心過勞。故，容易罹患腦部及呼吸系統的病疾。"},
         {"火火水", "凶", "★易生意外的凶厄。有腦溢血或心臟麻痺之病災。"},
         {"火土木", "凶", "★依靠祖上餘德或長輩的提拔，而得成功發展。然而，個人之基礎多見不穩固。容易有腹部、胃腸方面之病疾。"},
@@ -140,25 +140,25 @@ public class JavaLuozhuangtestnameClass {
         {"火水金", "凶", "★難以發展。容易有病痛，多災多難。"},
         {"火水水", "凶", "★難以成功。多困苦，多災多難。"},
         {"土木木", "凶", "★多有苦悶與煩惱。晚年稍可平安。"},
-        {"土木火	中	吉	★身心多苦悶。只有數理很好的情況下，才能平安。	"},
+        {"土木火", "中吉", "★身心多苦悶。只有數理很好的情況下，才能平安。	"},
         {"土木土", "凶", "★常感苦悶。有神經衰弱或其它病難。"},
         {"土木金", "凶", "★日常不安。有神經衰弱及呼吸器官的病疾。"},
         {"土木水", "凶", "★流轉離難，多病難。有急變的災厄而損失生命與財產。"},
-        {"土火木	中	吉	★數理吉，則身心平安能得長壽幸福。若數理凶，則有腦病之慮。	"},
+        {"土火木", "中吉", "★數理吉，則身心平安能得長壽幸福。若數理凶，則有腦病之慮。	"},
         {"土火火", "吉", "★若能柔忍當事，可得成功；且，足以揚名。"},
         {"土火土", "吉", "★飛黃騰達。基礎穩固而安泰，身心健全，長壽享福。"},
         {"土火金", "凶", "★身心勞病。基礎不穩，家庭不幸。"},
         {"土火水", "凶", "★基礎不穩。易生急變，易生災厄。"},
         {"土土木", "凶", "★基礎不穩，易生變動。容易罹患腹部、胃腸、神經衰弱等病疾。"},
         {"土土火", "吉", "★名利雙收。基礎穩固，長壽享福。"},
-        {"土土土	中	吉	★可以成功、平安。但，假如數理多帶凶數者，則有不足與災難；婦女則不貞。	"},
+        {"土土土", "中吉", "★可以成功、平安。但，假如數理多帶凶數者，則有不足與災難；婦女則不貞。	"},
         {"土土金", "吉", "★成功發展。身心健全，長壽享福。"},
         {"土土水", "凶", "★基礎不穩。容易崩潰與失敗。有急禍而致失財。"},
         {"土金木", "凶", "★基礎不穩。有腦病與意外的災難。男命則剋妻與子。"},
         {"土金火", "凶", "★境遇不安。易生腦病與肺病。家庭不睦。"},
         {"土金土", "吉", "★成功發展，境遇安泰。身心健和，能得長壽享福。"},
         {"土金金", "吉", "★名利雙收。但，性情剛強而與人不睦。假如能和氣待人，則可成功。"},
-        {"土金水	中	吉	★數理吉，可得平安。數理凶，則多悲運。	"},
+        {"土金水", "中吉", "★數理吉，可得平安。數理凶，則多悲運。"},
         {"土水木", "凶", "★徒勞無功。多病弱，有短命之慮。"},
         {"土水火", "凶", "★多破亂，有失財或失命之慮。男命剋妻子。"},
         {"土水土", "凶", "★境遇不安，徒勞無功。容易有腦溢血或心臟麻痺的病疾。"},
@@ -202,7 +202,7 @@ public class JavaLuozhuangtestnameClass {
         {"水土木", "凶", "★做事多受阻礙，難以成功。容易罹患胃腸或肺部的病疾。"},
         {"水土火", "凶", "★基礎運健全，可保平安。但是，家庭中常有明爭暗鬥的事情發生。"},
         {"水土土", "吉", "★穩重，能得平安。"},
-        {"水土金	中	吉	★年輕時較消極。中年而後，漸得進展，安定吉祥。	"},
+        {"水土金", "中吉", "★年輕時較消極。中年而後，漸得進展，安定吉祥。"},
         {"水土水", "凶", "★做事多阻礙。性情頑固。有急變的災厄，容易罹患胃病或腎臟方面的病疾。"},
         {"水金木", "凶", "★基礎不穩，常有變動。有外傷之慮。"},
         {"水金火", "凶", "★基礎不穩。容易過勞，而致肺病。有急變或急死之慮。"},
@@ -256,75 +256,75 @@ public class JavaLuozhuangtestnameClass {
         return arraytotal[number - 1];
     }
  
-    public void testname ()  throws IllegalArgumentException{
-        Luozhuangnamewuxing myLuozhuangnamewuxing = new Luozhuangnamewuxing();
-        int[] temp = myLuozhuangnamewuxing.getnameliborder(myName.getName());
-        int[] wuxing = myLuozhuangnamewuxing.getnameWX(temp);
-        int[] BH = myLuozhuangnamewuxing.getnameBH(temp);
-        System.out.println(myName.getName() + "的五行");
-        myLuozhuangnamewuxing.pringst(myLuozhuangnamewuxing.getnameWXarray(wuxing));
-        System.out.println(myName.getName() + "的笔画");
-        myLuozhuangnamewuxing.pringst(BH);
- 
- 
-        System.out.println(myName.getName() + "的天格");
-        System.out.println(getMyName().getNamesky());
-        System.out.println(myName.getNameWX(getMyName().getNamesky()));
- 
-        System.out.println(myName.getName() + "的地格");
-        System.out.println(getMyName().getNameearth());
- 
-        System.out.println(myName.getNameWX(getMyName().getNameearth()));
-        System.out.println(myName.getName() + "的人格");
-        System.out.println(getMyName().getNamepeople());
- 
-        System.out.println(myName.getNameWX(getMyName().getNamepeople()));
-        System.out.println(myName.getName() + "的外格");
-        System.out.println(getMyName().getNameout());
-        System.out.println(myName.getNameWX(getMyName().getNameout()));
- 
-        System.out.print("此人总笔画");
-        System.out.println((myName.getTotal()));
- 
-        System.out.println("说明：字的笔划以《康熙字典》为准，康熙笔划计算方法与简体笔划有所区别，不能以现在计算笔划的方法去计算。为保证本站提供的测算内容精准，编辑人员花费了大量时间和精力与《康熙字典》原版进行核对。如果您发现错误，敬请及时与我们联系，谢谢！");
- 
-        System.out.println("天格的解析：天格数是先祖留传下来的，其数理对人影响不大。 什么是天格？\n"
-                + "什么是天格：天格是由您的姓决定的，姓是祖辈流传下来的。它的数理对人生并无直接的影响。所以，天格的吉凶数理不用重视。在测名字的时候，也会有天格的数理吉凶解释，那是对这个数字的解释，本身无太大意义。  ");
-        myLuozhuangnamewuxing.pringst(gettotalnameji(myName.getNamesky()));
- 
- 
- 
-        System.out.println("人格的解析：人格数又称主运，是姓名的中心点，影响人一生的命运。 什么是人格？\n"
-                + "什么是人格：人格非常重要，是这个名字的中心、精髓！人格的吉凶，对人的影响很大，就如四柱当中的日柱一样，是判断名字好坏吉凶的一个标准。  ");
-        myLuozhuangnamewuxing.pringst(gettotalnameji(myName.getNamepeople()));
- 
- 
-        System.out.println("地格的解析：地格数又称前运，影响人中年（36岁）以前的活动力。 什么是地格？\n"
-                + "什么是地格：地格和人格有密切的关系，主要影响人年轻时的命运，地格也比较重要。其数理吉凶，也代表与子女、部属、晚辈的关系。  ");
-        myLuozhuangnamewuxing.pringst(gettotalnameji(myName.getNameearth()));
- 
- 
-        System.out.println("外格的解析：外格又称变格，影响人的社交能力、智慧等。 什么是外格？\n"
-                + "什么是外格：外格通常指和社会上的关系的融洽程度，在实际预测中其准确度较低，对人生的作用不是很大，在专业预测当中也很少去用。外格的数理不用重视。  ");
-        myLuozhuangnamewuxing.pringst(gettotalnameji(myName.getNameout()));
- 
- 
-        System.out.println("总格的解析：总格又称后运，影响人中年（36岁）以后的命运。 什么是总格？\n"
-                + "什么是总格：判断名字的吉凶，一般先看总格，再看人格。总格对人的晚运和一生运势均有影响。总格就如植物的根，根好则枝繁叶茂。因此，名字吉凶一定要看总格。  ");
-        myLuozhuangnamewuxing.pringst(gettotalnameji(myName.getTotal()));
-        System.out.print("此人天地人三才格参考");
-        myLuozhuangnamewuxing.pringst(getwuxji());
- 
-    }
+//    public void testname()  throws IllegalArgumentException{
+//        Luozhuangnamewuxing myLuozhuangnamewuxing = new Luozhuangnamewuxing();
+//        int[] temp = myLuozhuangnamewuxing.getnameliborder(myName.getName());
+//        int[] wuxing = myLuozhuangnamewuxing.getnameWX(temp);
+//        int[] BH = myLuozhuangnamewuxing.getnameBH(temp);
+//        System.out.println(myName.getName() + "的五行");
+//        myLuozhuangnamewuxing.pringst(myLuozhuangnamewuxing.getnameWXarray(wuxing));
+//        System.out.println(myName.getName() + "的笔画");
+//        myLuozhuangnamewuxing.pringst(BH);
+//
+//
+//        System.out.println(myName.getName() + "的天格");
+//        System.out.println(getMyName().getNamesky());
+//        System.out.println(myName.getNameWX(getMyName().getNamesky()));
+//
+//        System.out.println(myName.getName() + "的地格");
+//        System.out.println(getMyName().getNameearth());
+//
+//        System.out.println(myName.getNameWX(getMyName().getNameearth()));
+//        System.out.println(myName.getName() + "的人格");
+//        System.out.println(getMyName().getNamepeople());
+//
+//        System.out.println(myName.getNameWX(getMyName().getNamepeople()));
+//        System.out.println(myName.getName() + "的外格");
+//        System.out.println(getMyName().getNameout());
+//        System.out.println(myName.getNameWX(getMyName().getNameout()));
+//
+//        System.out.print("此人总笔画");
+//        System.out.println((myName.getTotal()));
+//
+//        System.out.println("说明：字的笔划以《康熙字典》为准，康熙笔划计算方法与简体笔划有所区别，不能以现在计算笔划的方法去计算。为保证本站提供的测算内容精准，编辑人员花费了大量时间和精力与《康熙字典》原版进行核对。如果您发现错误，敬请及时与我们联系，谢谢！");
+//
+//        System.out.println("天格的解析：天格数是先祖留传下来的，其数理对人影响不大。 什么是天格？\n"
+//                + "什么是天格：天格是由您的姓决定的，姓是祖辈流传下来的。它的数理对人生并无直接的影响。所以，天格的吉凶数理不用重视。在测名字的时候，也会有天格的数理吉凶解释，那是对这个数字的解释，本身无太大意义。  ");
+//        myLuozhuangnamewuxing.pringst(gettotalnameji(myName.getNamesky()));
+//
+//
+//
+//        System.out.println("人格的解析：人格数又称主运，是姓名的中心点，影响人一生的命运。 什么是人格？\n"
+//                + "什么是人格：人格非常重要，是这个名字的中心、精髓！人格的吉凶，对人的影响很大，就如四柱当中的日柱一样，是判断名字好坏吉凶的一个标准。  ");
+//        myLuozhuangnamewuxing.pringst(gettotalnameji(myName.getNamepeople()));
+//
+//
+//        System.out.println("地格的解析：地格数又称前运，影响人中年（36岁）以前的活动力。 什么是地格？\n"
+//                + "什么是地格：地格和人格有密切的关系，主要影响人年轻时的命运，地格也比较重要。其数理吉凶，也代表与子女、部属、晚辈的关系。  ");
+//        myLuozhuangnamewuxing.pringst(gettotalnameji(myName.getNameearth()));
+//
+//
+//        System.out.println("外格的解析：外格又称变格，影响人的社交能力、智慧等。 什么是外格？\n"
+//                + "什么是外格：外格通常指和社会上的关系的融洽程度，在实际预测中其准确度较低，对人生的作用不是很大，在专业预测当中也很少去用。外格的数理不用重视。  ");
+//        myLuozhuangnamewuxing.pringst(gettotalnameji(myName.getNameout()));
+//
+//
+//        System.out.println("总格的解析：总格又称后运，影响人中年（36岁）以后的命运。 什么是总格？\n"
+//                + "什么是总格：判断名字的吉凶，一般先看总格，再看人格。总格对人的晚运和一生运势均有影响。总格就如植物的根，根好则枝繁叶茂。因此，名字吉凶一定要看总格。  ");
+//        myLuozhuangnamewuxing.pringst(gettotalnameji(myName.getTotal()));
+//        System.out.print("此人天地人三才格参考");
+//        myLuozhuangnamewuxing.pringst(getwuxji());
+//
+//    }
  
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
- 
-        JavaLuozhuangtestnameClass myJavaLuozhuangtestname = new JavaLuozhuangtestnameClass("罗庄");
-        myJavaLuozhuangtestname.testname();
-    }
+//    public static void main(String[] args) {
+//
+//        JavaLuozhuangtestnameClass myJavaLuozhuangtestname = new JavaLuozhuangtestnameClass("罗庄");
+//        myJavaLuozhuangtestname.testname();
+//    }
  
     /**
      * @return the myName

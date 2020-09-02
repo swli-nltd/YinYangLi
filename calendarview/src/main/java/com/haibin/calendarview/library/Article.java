@@ -20,13 +20,14 @@ public class Article implements Serializable {
     private int logoRes;
 
 
-    public static Article create(String title, String content, String imgUrl) {
+    public static Article create(String title, String content, String desc) {
         Article article = new Article();
         article.setTitle(title);
         article.setContent(content);
-        article.setImgUrl(imgUrl);
+        article.setDesc(desc);
         return article;
     }
+
     public static Article create(String title, List<String> list, int imgRes) {
         Article article = new Article();
         article.setTitle(title);
@@ -35,6 +36,22 @@ public class Article implements Serializable {
             for (int i = 0; i < list.size(); i ++) {
                 sb.append(list.get(i));
                 if (i < list.size() - 1) {
+                    sb.append(",");
+                }
+            }
+            article.setContent(sb.toString());
+        }
+        article.setImgResource(imgRes);
+        return article;
+    }
+    public static Article create(String title, String[] list, int imgRes) {
+        Article article = new Article();
+        article.setTitle(title);
+        StringBuilder sb = new StringBuilder();
+        if (list != null && list.length > 0) {
+            for (int i = 0; i < list.length; i ++) {
+                sb.append(list[i]);
+                if (i < list.length - 1) {
                     sb.append(",");
                 }
             }
