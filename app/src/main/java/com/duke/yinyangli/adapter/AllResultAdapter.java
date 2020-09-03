@@ -162,6 +162,7 @@ public class AllResultAdapter extends RecyclerView.Adapter<AllResultAdapter.View
             if (!TextUtils.isEmpty(article.getContent())) {
                 content.setText(article.getContent()
                         .replace("<p>", "")
+                        .replace("</p>", "")
                         .replace("<br>", "")
                         .replace("<br/>", "")
                         .replace("<br />", "")

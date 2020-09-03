@@ -11,7 +11,6 @@ import com.duke.yinyangli.adapter.AllResultAdapter;
 import com.duke.yinyangli.base.BaseActivity;
 import com.duke.yinyangli.constants.Constants;
 import com.duke.yinyangli.dialog.SimpleDialog;
-import com.duke.yinyangli.utils.SoftKeyBoardListener;
 import com.duke.yinyangli.utils.ThreadHelper;
 import com.duke.yinyangli.utils.ToastUtil;
 import com.duke.yinyangli.utils.core.mingzidafen.JavaLuozhuangtestnameClass;

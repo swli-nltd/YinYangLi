@@ -43,9 +43,11 @@ public class DaoMaster extends AbstractDaoMaster {
 
     public DaoMaster(Database db) {
         super(db, SCHEMA_VERSION);
+        registerDaoClass(AstroDao.class);
         registerDaoClass(RgnmDao.class);
         registerDaoClass(RysmnDao.class);
         registerDaoClass(ShuXiangDao.class);
+        registerDaoClass(XingZuoDao.class);
     }
 
     public DaoSession newSession() {

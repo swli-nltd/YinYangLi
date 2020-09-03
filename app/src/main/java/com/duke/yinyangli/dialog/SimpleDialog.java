@@ -80,8 +80,8 @@ public class SimpleDialog extends Dialog {
             public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop,
                                        int oldRight, int oldBottom) {
                 ViewGroup.LayoutParams params = scrollView.getLayoutParams();
-                if (scrollView.getHeight() > 700) {
-                    params.height = 700;
+                if (scrollView.getHeight() > 600) {
+                    params.height = 600;
                     scrollView.setLayoutParams(params);
                 }
             }

@@ -12,6 +12,8 @@ import com.duke.yinyangli.activity.BaZiResultActivity;
 import com.duke.yinyangli.activity.ChengGuActivity;
 import com.duke.yinyangli.activity.GuaResultActivity;
 import com.duke.yinyangli.activity.XingMingDaFenActivity;
+import com.duke.yinyangli.activity.XingZuoMingYunActivity;
+import com.duke.yinyangli.activity.XingZuoPeiDuiActivity;
 import com.duke.yinyangli.constants.Constants;
 import com.duke.yinyangli.utils.ToastUtil;
 import com.haibin.calendarview.library.Article;
@@ -80,11 +82,11 @@ public class ChooseAdapter extends RecyclerView.Adapter<ChooseAdapter.ViewHolder
                         break;
                     case Constants.TYPE.TYPE_XINGZUOMINGYUN:
                         //星座命运
-                        ToastUtil.show(mContext, R.string.wait_open);
+                        XingZuoMingYunActivity.start(mContext, article);
                         break;
                     case Constants.TYPE.TYPE_XINGZUOPEIDUI:
                         //星座配对
-                        ToastUtil.show(mContext, R.string.wait_open);
+                        XingZuoPeiDuiActivity.start(mContext, article);
                         break;
                     case Constants.TYPE.TYPE_SHENGXIAOPEIDUI:
                         //生肖配对
