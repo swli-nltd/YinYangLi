@@ -48,6 +48,7 @@ public class DaoMaster extends AbstractDaoMaster {
         registerDaoClass(RysmnDao.class);
         registerDaoClass(ShuXiangDao.class);
         registerDaoClass(XingZuoDao.class);
+        registerDaoClass(XingZuoLoveDao.class);
     }
 
     public DaoSession newSession() {

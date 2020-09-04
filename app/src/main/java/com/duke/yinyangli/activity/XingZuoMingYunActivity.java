@@ -19,6 +19,7 @@ import com.duke.yinyangli.constants.Constants;
 import com.duke.yinyangli.dialog.SimpleDialog;
 import com.duke.yinyangli.utils.ThreadHelper;
 import com.duke.yinyangli.utils.ToastUtil;
+import com.duke.yinyangli.utils.core.XingZuoImageUtil;
 import com.haibin.calendarview.library.Article;
 
 import org.angmarch.views.NiceSpinner;
@@ -146,7 +147,7 @@ public class XingZuoMingYunActivity extends BaseActivity {
                                 mXingZuoSpinner.setEnabled(false);
                                 mXueXingSpinner.setEnabled(false);
                                 mSubmit.setVisibility(View.GONE);
-                                setImage();
+                                XingZuoImageUtil.setImage(mImage, mXingZuo);
                                 dismissProgressDialog();
                             }
                         });
@@ -157,45 +158,4 @@ public class XingZuoMingYunActivity extends BaseActivity {
         }
     }
 
-    private void setImage() {
-        switch (mXingZuo) {
-            case "水瓶座":
-                mImage.setImageResource(R.mipmap.xingzuo_shuiping);
-                break;
-            case "白羊座":
-                mImage.setImageResource(R.mipmap.xingzuo_baiyang);
-                break;
-            case "金牛座":
-                mImage.setImageResource(R.mipmap.xingzuo_jinniu);
-                break;
-            case "双子座":
-                mImage.setImageResource(R.mipmap.xingzuo_shuangzi);
-                break;
-            case "巨蟹座":
-                mImage.setImageResource(R.mipmap.xingzuo_juxie);
-                break;
-            case "狮子座":
-                mImage.setImageResource(R.mipmap.xingzuo_shizi);
-                break;
-            case "处女座":
-                mImage.setImageResource(R.mipmap.xingzuo_chunv);
-                break;
-            case "天秤座":
-                mImage.setImageResource(R.mipmap.xingzuo_tiancheng);
-                break;
-            case "天蝎座":
-                mImage.setImageResource(R.mipmap.xingzuo_tianxie);
-                break;
-            case "射手座":
-                mImage.setImageResource(R.mipmap.xingzuo_sheshou);
-                break;
-            case "摩羯座":
-                mImage.setImageResource(R.mipmap.xingzuo_mojie);
-                break;
-            case "双鱼座":
-                mImage.setImageResource(R.mipmap.xingzuo_shuangyu);
-                break;
-            default:break;
-        }
-    }
 }
