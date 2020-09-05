@@ -12,6 +12,7 @@ import com.duke.yinyangli.bean.database.Astro;
 import com.duke.yinyangli.bean.database.Rgnm;
 import com.duke.yinyangli.bean.database.Rysmn;
 import com.duke.yinyangli.bean.database.ShuXiang;
+import com.duke.yinyangli.bean.database.ShuXiangLove;
 import com.duke.yinyangli.bean.database.XingZuo;
 import com.duke.yinyangli.bean.database.XingZuoLove;
 
@@ -19,6 +20,7 @@ import com.duke.yinyangli.bean.database.AstroDao;
 import com.duke.yinyangli.bean.database.RgnmDao;
 import com.duke.yinyangli.bean.database.RysmnDao;
 import com.duke.yinyangli.bean.database.ShuXiangDao;
+import com.duke.yinyangli.bean.database.ShuXiangLoveDao;
 import com.duke.yinyangli.bean.database.XingZuoDao;
 import com.duke.yinyangli.bean.database.XingZuoLoveDao;
 
@@ -35,6 +37,7 @@ public class DaoSession extends AbstractDaoSession {
     private final DaoConfig rgnmDaoConfig;
     private final DaoConfig rysmnDaoConfig;
     private final DaoConfig shuXiangDaoConfig;
+    private final DaoConfig shuXiangLoveDaoConfig;
     private final DaoConfig xingZuoDaoConfig;
     private final DaoConfig xingZuoLoveDaoConfig;
 
@@ -42,6 +45,7 @@ public class DaoSession extends AbstractDaoSession {
     private final RgnmDao rgnmDao;
     private final RysmnDao rysmnDao;
     private final ShuXiangDao shuXiangDao;
+    private final ShuXiangLoveDao shuXiangLoveDao;
     private final XingZuoDao xingZuoDao;
     private final XingZuoLoveDao xingZuoLoveDao;
 
@@ -61,6 +65,9 @@ public class DaoSession extends AbstractDaoSession {
         shuXiangDaoConfig = daoConfigMap.get(ShuXiangDao.class).clone();
         shuXiangDaoConfig.initIdentityScope(type);
 
+        shuXiangLoveDaoConfig = daoConfigMap.get(ShuXiangLoveDao.class).clone();
+        shuXiangLoveDaoConfig.initIdentityScope(type);
+
         xingZuoDaoConfig = daoConfigMap.get(XingZuoDao.class).clone();
         xingZuoDaoConfig.initIdentityScope(type);
 
@@ -71,6 +78,7 @@ public class DaoSession extends AbstractDaoSession {
         rgnmDao = new RgnmDao(rgnmDaoConfig, this);
         rysmnDao = new RysmnDao(rysmnDaoConfig, this);
         shuXiangDao = new ShuXiangDao(shuXiangDaoConfig, this);
+        shuXiangLoveDao = new ShuXiangLoveDao(shuXiangLoveDaoConfig, this);
         xingZuoDao = new XingZuoDao(xingZuoDaoConfig, this);
         xingZuoLoveDao = new XingZuoLoveDao(xingZuoLoveDaoConfig, this);
 
@@ -78,6 +86,7 @@ public class DaoSession extends AbstractDaoSession {
         registerDao(Rgnm.class, rgnmDao);
         registerDao(Rysmn.class, rysmnDao);
         registerDao(ShuXiang.class, shuXiangDao);
+        registerDao(ShuXiangLove.class, shuXiangLoveDao);
         registerDao(XingZuo.class, xingZuoDao);
         registerDao(XingZuoLove.class, xingZuoLoveDao);
     }
@@ -87,6 +96,7 @@ public class DaoSession extends AbstractDaoSession {
         rgnmDaoConfig.clearIdentityScope();
         rysmnDaoConfig.clearIdentityScope();
         shuXiangDaoConfig.clearIdentityScope();
+        shuXiangLoveDaoConfig.clearIdentityScope();
         xingZuoDaoConfig.clearIdentityScope();
         xingZuoLoveDaoConfig.clearIdentityScope();
     }
@@ -105,6 +115,10 @@ public class DaoSession extends AbstractDaoSession {
 
     public ShuXiangDao getShuXiangDao() {
         return shuXiangDao;
+    }
+
+    public ShuXiangLoveDao getShuXiangLoveDao() {
+        return shuXiangLoveDao;
     }
 
     public XingZuoDao getXingZuoDao() {

@@ -19,7 +19,7 @@ import com.duke.yinyangli.constants.Constants;
 import com.duke.yinyangli.dialog.SimpleDialog;
 import com.duke.yinyangli.utils.ThreadHelper;
 import com.duke.yinyangli.utils.ToastUtil;
-import com.duke.yinyangli.utils.core.XingZuoImageUtil;
+import com.duke.yinyangli.utils.core.ImageUtil;
 import com.haibin.calendarview.library.Article;
 
 import org.angmarch.views.NiceSpinner;
@@ -147,7 +147,7 @@ public class XingZuoMingYunActivity extends BaseActivity {
                                 mXingZuoSpinner.setEnabled(false);
                                 mXueXingSpinner.setEnabled(false);
                                 mSubmit.setVisibility(View.GONE);
-                                XingZuoImageUtil.setImage(mImage, mXingZuo);
+                                ImageUtil.setXingZuoImage(mImage, mXingZuo);
                                 dismissProgressDialog();
                             }
                         });

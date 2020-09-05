@@ -38,14 +38,14 @@
                     android:textColor="@color/black_333333"
                     android:textSize="14sp"
                     android:layout_weight="1"
-                    android:text="请选择女方的星座："/>
+                    android:text="请选择女方的属相："/>
 
 
                 <org.angmarch.views.NiceSpinner
                     android:id="@+id/spinner_first"
                     android:layout_width="160dp"
                     android:layout_height="wrap_content"
-                    app:entries="@array/array_xingzuo"
+                    app:entries="@array/array_shuxiang"
                     android:layout_margin="16dp"/>
             </LinearLayout>
             <LinearLayout
@@ -62,14 +62,14 @@
                     android:textColor="@color/black_333333"
                     android:textSize="14sp"
                     android:layout_weight="1"
-                    android:text="请选择男方的星座："/>
+                    android:text="请选择男方的属相："/>
 
 
                 <org.angmarch.views.NiceSpinner
                     android:id="@+id/spinner_second"
                     android:layout_width="160dp"
                     android:layout_height="wrap_content"
-                    app:entries="@array/array_xingzuo"
+                    app:entries="@array/array_shuxiang"
                     android:layout_margin="16dp"/>
             </LinearLayout>
 

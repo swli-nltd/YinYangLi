@@ -11,6 +11,7 @@ import com.duke.yinyangli.R;
 import com.duke.yinyangli.activity.BaZiResultActivity;
 import com.duke.yinyangli.activity.ChengGuActivity;
 import com.duke.yinyangli.activity.GuaResultActivity;
+import com.duke.yinyangli.activity.ShengXiaoPeiDuiActivity;
 import com.duke.yinyangli.activity.XingMingDaFenActivity;
 import com.duke.yinyangli.activity.XingZuoMingYunActivity;
 import com.duke.yinyangli.activity.XingZuoPeiDuiActivity;
@@ -90,7 +91,7 @@ public class ChooseAdapter extends RecyclerView.Adapter<ChooseAdapter.ViewHolder
                         break;
                     case Constants.TYPE.TYPE_SHENGXIAOPEIDUI:
                         //生肖配对
-                        ToastUtil.show(mContext, R.string.wait_open);
+                        ShengXiaoPeiDuiActivity.start(mContext, article);
                         break;
                     case Constants.TYPE.TYPE_ZHUGESHENSUAN:
                         //诸葛神算

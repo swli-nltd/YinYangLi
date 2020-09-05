@@ -9,10 +9,11 @@
     android:gravity="center_vertical"
     android:paddingBottom="8dp">
 
-    <de.hdodenhof.circleimageview.CircleImageView
+    <ImageView
         android:id="@+id/item_image"
-        android:layout_width="45dp"
-        android:layout_height="45dp"/>
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:scaleType="center"/>
 
     <TextView
         android:id="@+id/item_title"

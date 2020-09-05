@@ -11,8 +11,8 @@ import com.duke.yinyangli.R;
 import com.duke.yinyangli.adapter.AllResultAdapter;
 import com.duke.yinyangli.base.BaseActivity;
 import com.duke.yinyangli.bean.database.DaoSession;
-import com.duke.yinyangli.bean.database.XingZuoLove;
-import com.duke.yinyangli.bean.database.XingZuoLoveDao;
+import com.duke.yinyangli.bean.database.ShuXiangLove;
+import com.duke.yinyangli.bean.database.ShuXiangLoveDao;
 import com.duke.yinyangli.constants.Constants;
 import com.duke.yinyangli.dialog.SimpleDialog;
 import com.duke.yinyangli.utils.ThreadHelper;
@@ -30,7 +30,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class XingZuoPeiDuiActivity extends BaseActivity {
+public class ShengXiaoPeiDuiActivity extends BaseActivity {
 
     @BindView(R.id.spinner_first)
     NiceSpinner mSpinner1;
@@ -52,11 +52,11 @@ public class XingZuoPeiDuiActivity extends BaseActivity {
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_xingzuopeidui;
+        return R.layout.activity_shengxiaopeidui;
     }
 
     public static void start(Context context, Article article) {
-        context.startActivity(new Intent(context, XingZuoPeiDuiActivity.class)
+        context.startActivity(new Intent(context, ShengXiaoPeiDuiActivity.class)
                 .putExtra(Constants.INTENT_KEY.KEY_MODEL, article));
     }
 
@@ -81,8 +81,8 @@ public class XingZuoPeiDuiActivity extends BaseActivity {
         right.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SimpleDialog.init(XingZuoPeiDuiActivity.this, mAriticle.getTitle()
-                        , getString(R.string.tip_xingzuopeidui), null)
+                SimpleDialog.init(ShengXiaoPeiDuiActivity.this, mAriticle.getTitle()
+                        , getString(R.string.tip_shengxiaopeidui), null)
                         .showCancel(false)
                         .setConfirmText(R.string.known)
                         .setConfirmTextColor(R.color.blue_2288BB)
@@ -95,26 +95,29 @@ public class XingZuoPeiDuiActivity extends BaseActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.submit:
-                String xingzuoNv = (String) mSpinner1.getSelectedItem();
-                String xingzuoNan = (String) mSpinner2.getSelectedItem();
-                if (TextUtils.isEmpty(xingzuoNv)) {
-                    ToastUtil.show(this, "请选择女方的星座");
+                String shengxiaoNv = (String) mSpinner1.getSelectedItem();
+                String shengxiaoNan = (String) mSpinner2.getSelectedItem();
+                if (TextUtils.isEmpty(shengxiaoNv)) {
+                    ToastUtil.show(this, "请选择女方的属相");
                 }
-                if (TextUtils.isEmpty(xingzuoNan)) {
-                    ToastUtil.show(this, "请选择男方的星座");
+                if (TextUtils.isEmpty(shengxiaoNan)) {
+                    ToastUtil.show(this, "请选择男方的属相");
                 }
                 showProgressDialog();
                 ThreadHelper.INST.execute(new Runnable() {
                     @Override
                     public void run() {
                         DaoSession daoSession = MyApplication.getInstance().getDao();
-                        XingZuoLove xingZuoLove = daoSession.getXingZuoLoveDao().queryBuilder()
-                                .where(XingZuoLoveDao.Properties.Xingzuo1.eq(xingzuoNv)
-                                        , XingZuoLoveDao.Properties.Xingzuo2.eq(xingzuoNan)).unique();
+                        ShuXiangLove shengxiaoLove = daoSession.getShuXiangLoveDao().queryBuilder()
+                                .where(ShuXiangLoveDao.Properties.Shengxiao1.eq(shengxiaoNan)
+                                        , ShuXiangLoveDao.Properties.Shengxiao2.eq(shengxiaoNv)).unique();
 
                         List<Article> articles = new ArrayList<>();
-                        articles.add(Article.create(xingZuoLove.getTitle(), xingZuoLove.getContent1(), ""));
-                        articles.add(Article.create(xingZuoLove.getContent2(), "", ""));
+                        int titleIndex = shengxiaoLove.getContent1().indexOf("：");
+                        int length = shengxiaoLove.getContent1().length();
+                        String title = "女" + shengxiaoNv + " + " + "男" + shengxiaoNan;
+                        String content = shengxiaoLove.getContent1().substring(titleIndex + 1, length);
+                        articles.add(Article.create(title, content, ""));
 
                         runOnUiThread(new Runnable() {
                             @Override
@@ -123,8 +126,8 @@ public class XingZuoPeiDuiActivity extends BaseActivity {
                                 mSpinner1.setEnabled(false);
                                 mSpinner2.setEnabled(false);
                                 mSubmit.setVisibility(View.GONE);
-                                ImageUtil.setXingZuoImage(mLeftImage, xingzuoNv);
-                                ImageUtil.setXingZuoImage(mRightImage, xingzuoNan);
+                                ImageUtil.setShuXiangImage(mLeftImage, shengxiaoNv);
+                                ImageUtil.setShuXiangImage(mRightImage, shengxiaoNan);
                                 mCenterImage.setVisibility(View.VISIBLE);
                                 dismissProgressDialog();
                             }
