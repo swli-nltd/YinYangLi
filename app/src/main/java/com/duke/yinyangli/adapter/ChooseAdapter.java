@@ -15,6 +15,7 @@ import com.duke.yinyangli.activity.ShengXiaoPeiDuiActivity;
 import com.duke.yinyangli.activity.XingMingDaFenActivity;
 import com.duke.yinyangli.activity.XingZuoMingYunActivity;
 import com.duke.yinyangli.activity.XingZuoPeiDuiActivity;
+import com.duke.yinyangli.activity.ZhuGeShenSuanActivity;
 import com.duke.yinyangli.constants.Constants;
 import com.duke.yinyangli.utils.ToastUtil;
 import com.haibin.calendarview.library.Article;
@@ -95,7 +96,7 @@ public class ChooseAdapter extends RecyclerView.Adapter<ChooseAdapter.ViewHolder
                         break;
                     case Constants.TYPE.TYPE_ZHUGESHENSUAN:
                         //诸葛神算
-                        ToastUtil.show(mContext, R.string.wait_open);
+                        ZhuGeShenSuanActivity.start(mContext, article);
                         break;
                     case Constants.TYPE.TYPE_ZHOUGONGJIEMENG:
                         //周公解梦

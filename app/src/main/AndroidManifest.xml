@@ -240,6 +240,7 @@
         <activity android:name=".activity.XingZuoMingYunActivity" />
         <activity android:name=".activity.XingZuoPeiDuiActivity" />
         <activity android:name=".activity.ShengXiaoPeiDuiActivity" />
+        <activity android:name=".activity.ZhuGeShenSuanActivity" />
 
         <!-- Required. For publish channel feature -->
         <!-- JPUSH_CHANNEL 是为了方便开发者统计 APK 分发渠道。-->
