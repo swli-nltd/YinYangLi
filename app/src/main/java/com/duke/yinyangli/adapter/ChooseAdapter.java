@@ -15,6 +15,7 @@ import com.duke.yinyangli.activity.ShengXiaoPeiDuiActivity;
 import com.duke.yinyangli.activity.XingMingDaFenActivity;
 import com.duke.yinyangli.activity.XingZuoMingYunActivity;
 import com.duke.yinyangli.activity.XingZuoPeiDuiActivity;
+import com.duke.yinyangli.activity.ZhouGongJieMengActivity;
 import com.duke.yinyangli.activity.ZhuGeShenSuanActivity;
 import com.duke.yinyangli.constants.Constants;
 import com.duke.yinyangli.utils.ToastUtil;
@@ -100,7 +101,7 @@ public class ChooseAdapter extends RecyclerView.Adapter<ChooseAdapter.ViewHolder
                         break;
                     case Constants.TYPE.TYPE_ZHOUGONGJIEMENG:
                         //周公解梦
-                        ToastUtil.show(mContext, R.string.wait_open);
+                        ZhouGongJieMengActivity.start(mContext, article);
                         break;
                     default:
                         ToastUtil.show(mContext, R.string.wait_open);

@@ -18,6 +18,7 @@ import com.duke.yinyangli.bean.database.Rysmn;
 import com.duke.yinyangli.bean.database.ShuXiang;
 import com.duke.yinyangli.calendar.Lunar;
 import com.duke.yinyangli.calendar.Solar;
+import com.duke.yinyangli.utils.StringUtils;
 import com.haibin.calendarview.library.Article;
 
 import java.util.ArrayList;
@@ -160,14 +161,7 @@ public class AllResultAdapter extends RecyclerView.Adapter<AllResultAdapter.View
         public void updateView(Context context, int position, Article article) {
             title.setText(article.getTitle());
             if (!TextUtils.isEmpty(article.getContent())) {
-                content.setText(article.getContent()
-                        .replace("<p>", "")
-                        .replace("</p>", "")
-                        .replace("<br>", "")
-                        .replace("<br/>", "")
-                        .replace("<br />", "")
-                        .replace("</font>", "")
-                        .replaceAll("<font.*>", ""));
+                content.setText(StringUtils.getString(article.getContent()));
                 content.setVisibility(View.VISIBLE);
             } else {
                 content.setVisibility(View.GONE);

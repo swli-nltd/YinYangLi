@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageView;
 
 import com.duke.yinyangli.MyApplication;
 import com.duke.yinyangli.R;
@@ -21,8 +20,6 @@ import com.duke.yinyangli.utils.ToastUtil;
 import com.duke.yinyangli.utils.core.mingzidafen.BhFTWxLib;
 import com.haibin.calendarview.library.Article;
 import com.luhuiguo.chinese.ChineseUtils;
-
-import org.angmarch.views.NiceSpinner;
 
 import java.util.ArrayList;
 import java.util.List;
