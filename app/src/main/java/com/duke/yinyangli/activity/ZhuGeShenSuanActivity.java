@@ -134,6 +134,7 @@ public class ZhuGeShenSuanActivity extends BaseActivity {
                             mEditText.setEnabled(false);
                             mSubmit.setVisibility(View.GONE);
                             mDivider.setBackgroundColor(mEditText.getCurrentTextColor());
+                            addTestCount(mAriticle);
                             dismissProgressDialog();
                         }
                     });

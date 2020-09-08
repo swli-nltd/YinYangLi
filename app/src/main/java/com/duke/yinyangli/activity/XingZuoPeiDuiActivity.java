@@ -126,6 +126,7 @@ public class XingZuoPeiDuiActivity extends BaseActivity {
                                 ImageUtil.setXingZuoImage(mLeftImage, xingzuoNv);
                                 ImageUtil.setXingZuoImage(mRightImage, xingzuoNan);
                                 mCenterImage.setVisibility(View.VISIBLE);
+                                addTestCount(mAriticle);
                                 dismissProgressDialog();
                             }
                         });

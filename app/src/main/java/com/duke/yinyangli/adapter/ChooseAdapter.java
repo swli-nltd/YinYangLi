@@ -17,10 +17,14 @@ import com.duke.yinyangli.activity.XingZuoMingYunActivity;
 import com.duke.yinyangli.activity.XingZuoPeiDuiActivity;
 import com.duke.yinyangli.activity.ZhouGongJieMengActivity;
 import com.duke.yinyangli.activity.ZhuGeShenSuanActivity;
+import com.duke.yinyangli.bean.TimeCount;
+import com.duke.yinyangli.calendar.Solar;
+import com.duke.yinyangli.calendar.util.LunarUtil;
 import com.duke.yinyangli.constants.Constants;
 import com.duke.yinyangli.utils.StringUtils;
 import com.duke.yinyangli.utils.ToastUtil;
 import com.haibin.calendarview.library.Article;
+import com.tencent.mmkv.MMKV;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,9 +36,11 @@ public class ChooseAdapter extends RecyclerView.Adapter<ChooseAdapter.ViewHolder
 
     private Context mContext;
     private List<Article> mData = new ArrayList<>();
+    private Solar mSolar;
 
     public ChooseAdapter(Context context) {
         mContext = context;
+        mSolar = new Solar();
         loadRes();
     }
 
@@ -79,6 +85,16 @@ public class ChooseAdapter extends RecyclerView.Adapter<ChooseAdapter.ViewHolder
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                TimeCount timeCount = MMKV.defaultMMKV()
+                        .decodeParcelable(Constants.SP_KEY.CHOOSE_TYPE + article.getType()
+                                , TimeCount.class);
+                if (timeCount != null && timeCount.getYear() == mSolar.getYear()
+                        && timeCount.getMonth() == mSolar.getMonth()
+                        && timeCount.getDay() == mSolar.getDay()
+                        && timeCount.getCount() >= article.getCount()) {
+                    ToastUtil.show(mContext, "您今日该项测算服务免费次数已用光，请先前往付费");
+                    return;
+                }
                 switch (article.getType()) {
                     case Constants.TYPE.TYPE_CAO:
                     case Constants.TYPE.TYPE_QIAN:

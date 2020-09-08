@@ -129,6 +129,7 @@ public class ShengXiaoPeiDuiActivity extends BaseActivity {
                                 ImageUtil.setShuXiangImage(mLeftImage, shengxiaoNv);
                                 ImageUtil.setShuXiangImage(mRightImage, shengxiaoNan);
                                 mCenterImage.setVisibility(View.VISIBLE);
+                                addTestCount(mAriticle);
                                 dismissProgressDialog();
                             }
                         });

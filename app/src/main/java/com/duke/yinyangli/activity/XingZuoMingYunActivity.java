@@ -148,6 +148,7 @@ public class XingZuoMingYunActivity extends BaseActivity {
                                 mXueXingSpinner.setEnabled(false);
                                 mSubmit.setVisibility(View.GONE);
                                 ImageUtil.setXingZuoImage(mImage, mXingZuo);
+                                addTestCount(mAriticle);
                                 dismissProgressDialog();
                             }
                         });

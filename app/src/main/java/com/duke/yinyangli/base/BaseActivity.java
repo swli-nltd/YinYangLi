@@ -1,15 +1,10 @@
 package com.duke.yinyangli.base;
 
 import android.app.Dialog;
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.provider.Settings;
 import android.text.TextUtils;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -20,7 +15,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.duke.yinyangli.BuildConfig;
 import com.duke.yinyangli.R;
+import com.duke.yinyangli.bean.TimeCount;
 import com.duke.yinyangli.bean.VersionResponse;
+import com.duke.yinyangli.calendar.Solar;
+import com.duke.yinyangli.constants.Constants;
 import com.duke.yinyangli.constants.Event;
 import com.duke.yinyangli.dialog.DialogUtils;
 import com.duke.yinyangli.dialog.SimpleDialog;
@@ -28,6 +26,8 @@ import com.duke.yinyangli.utils.AppUtils;
 import com.duke.yinyangli.utils.JsonUtils;
 import com.duke.yinyangli.utils.LogUtils;
 import com.gyf.immersionbar.ImmersionBar;
+import com.haibin.calendarview.library.Article;
+import com.tencent.mmkv.MMKV;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -48,6 +48,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     public MyHandler mHandler;
     private SimpleDialog mDialog;
     private Dialog progressDialog;
+    private Solar mSolar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -59,6 +60,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         if (requestButterKnife()) {
             unbinder = ButterKnife.bind(this);
         }
+        mSolar = new Solar();
         initView();
         initData();
     }
@@ -168,5 +170,22 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     public boolean isSafe() {
         return !isDestroyed() && !isFinishing();
+    }
+
+    public void addTestCount(Article article) {
+        TimeCount timeCount = MMKV.defaultMMKV()
+                .decodeParcelable(Constants.SP_KEY.CHOOSE_TYPE + article.getType()
+                        , TimeCount.class);
+        if (timeCount != null && timeCount.getYear() == mSolar.getYear()
+                && timeCount.getMonth() == mSolar.getMonth()
+                && timeCount.getDay() == mSolar.getDay()) {
+            //同一天
+            if (timeCount.getCount() < article.getCount()) {
+                timeCount.setCount(timeCount.getCount() + 1);
+            }
+        } else {
+            timeCount = new TimeCount(mSolar.getYear(), mSolar.getMonth(), mSolar.getDay(), 1);
+        }
+        MMKV.defaultMMKV().encode(Constants.SP_KEY.CHOOSE_TYPE + article.getType(), timeCount);
     }
 }

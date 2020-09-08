@@ -225,6 +225,7 @@ public class GuaResultActivity extends BaseActivity {
                                 if (isSafe() && jieGuaItem != null) {
                                     resultMaster.setText("主卦：" + jieGuaItem.getName());
                                     mAllAdapter.setResult(jieGuaItem);
+                                    addTestCount(mAriticle);
                                 }
                             }
                         });

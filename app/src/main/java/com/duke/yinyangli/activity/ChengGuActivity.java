@@ -86,6 +86,7 @@ public class ChengGuActivity extends BaseActivity {
                                         () -> {
                                             if (isSafe()) {
                                                 mAdapter.setResult(calendar, result, chengGuItem);
+                                                addTestCount(mAriticle);
                                                 dismissProgressDialog();
                                             }
                                         }

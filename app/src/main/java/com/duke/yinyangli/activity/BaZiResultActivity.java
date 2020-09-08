@@ -130,6 +130,7 @@ public class BaZiResultActivity extends BaseActivity {
                                     public void run() {
                                         if (isSafe()) {
                                             mAdapter.setResult(rgnm, month, day, time, shuXiang, lunar, solar);
+                                            addTestCount(mAriticle);
                                             dismissProgressDialog();
                                         }
                                     }

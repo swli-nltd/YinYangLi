@@ -147,6 +147,7 @@ public class XingMingDaFenActivity extends BaseActivity {
                                     editName.setEnabled(false);
                                     submit.setVisibility(View.GONE);
                                     divider.setBackgroundColor(editName.getCurrentTextColor());
+                                    addTestCount(mAriticle);
                                     dismissProgressDialog();
                                 }
                             });
