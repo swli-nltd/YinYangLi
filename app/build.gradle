@@ -8,8 +8,8 @@ android {
         applicationId "com.duke.yinyangli"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 3
-        versionName "0.0.3"
+        versionCode 4
+        versionName "1.0.0"
 //        1d116b92c3f969af8a5e60da344755d6
 
         multiDexEnabled true
