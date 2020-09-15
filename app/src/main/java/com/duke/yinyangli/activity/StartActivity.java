@@ -12,6 +12,7 @@ import com.daimajia.androidanimations.library.YoYo;
 import com.duke.yinyangli.BuildConfig;
 import com.duke.yinyangli.R;
 import com.duke.yinyangli.base.BaseActivity;
+import com.duke.yinyangli.calendar.Lunar;
 
 import butterknife.BindView;
 
@@ -22,6 +23,8 @@ public class StartActivity extends BaseActivity {
     ImageView logo;
     @BindView(R.id.slogen)
     TextView slogen;
+    @BindView(R.id.current_time)
+    TextView currentTime;
     @BindView(R.id.version)
     TextView version;
 
@@ -54,6 +57,8 @@ public class StartActivity extends BaseActivity {
 //        YoYo.with(Techniques.RotateIn).duration(DURATION_DELAY / 2).pivotX(50).pivotY(50).repeatMode(1).playOn(logo);
         YoYo.with(Techniques.Landing).duration(DURATION_DELAY / 2).repeatMode(-1).playOn(slogen);
 
+        Lunar lunar = new Lunar();
+        currentTime.setText(lunar.getTimeZhiContent());
         version.setText("V" + BuildConfig.VERSION_NAME);
     }
 }

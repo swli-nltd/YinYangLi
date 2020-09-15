@@ -79,22 +79,23 @@ public class ChooseAdapter extends RecyclerView.Adapter<ChooseAdapter.ViewHolder
         Article article = mData.get(position);
         holder.imageView.setImageResource(article.getLogoRes());
         holder.titleView.setText(article.getTitle());
-        StringUtils.setTextTwoLast(mContext, holder.descView
-                , article.getCount() > 0 ? "（每天限免" + article.getCount() + "次，每次" : "（每次"
-                , Float.toString(article.getPrice()), "元）", R.color.red_D81B60);
+        holder.descView.setText("（限时免费）");
+//        StringUtils.setTextTwoLast(mContext, holder.descView
+//                , article.getCount() > 0 ? "（每天限免" + article.getCount() + "次，每次" : "（每次"
+//                , Float.toString(article.getPrice()), "元）", R.color.red_D81B60);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                TimeCount timeCount = MMKV.defaultMMKV()
-                        .decodeParcelable(Constants.SP_KEY.CHOOSE_TYPE + article.getType()
-                                , TimeCount.class);
-                if (timeCount != null && timeCount.getYear() == mSolar.getYear()
-                        && timeCount.getMonth() == mSolar.getMonth()
-                        && timeCount.getDay() == mSolar.getDay()
-                        && timeCount.getCount() >= article.getCount()) {
-                    ToastUtil.show(mContext, "您今日该项测算服务免费次数已用光，请先前往付费");
-                    return;
-                }
+//                TimeCount timeCount = MMKV.defaultMMKV()
+//                        .decodeParcelable(Constants.SP_KEY.CHOOSE_TYPE + article.getType()
+//                                , TimeCount.class);
+//                if (timeCount != null && timeCount.getYear() == mSolar.getYear()
+//                        && timeCount.getMonth() == mSolar.getMonth()
+//                        && timeCount.getDay() == mSolar.getDay()
+//                        && timeCount.getCount() >= article.getCount()) {
+//                    ToastUtil.show(mContext, "您今日该项测算服务免费次数已用光，请先前往付费");
+//                    return;
+//                }
                 switch (article.getType()) {
                     case Constants.TYPE.TYPE_CAO:
                     case Constants.TYPE.TYPE_QIAN:

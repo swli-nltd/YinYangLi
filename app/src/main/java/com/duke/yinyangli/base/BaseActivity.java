@@ -173,19 +173,19 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     public void addTestCount(Article article) {
-        TimeCount timeCount = MMKV.defaultMMKV()
-                .decodeParcelable(Constants.SP_KEY.CHOOSE_TYPE + article.getType()
-                        , TimeCount.class);
-        if (timeCount != null && timeCount.getYear() == mSolar.getYear()
-                && timeCount.getMonth() == mSolar.getMonth()
-                && timeCount.getDay() == mSolar.getDay()) {
-            //同一天
-            if (timeCount.getCount() < article.getCount()) {
-                timeCount.setCount(timeCount.getCount() + 1);
-            }
-        } else {
-            timeCount = new TimeCount(mSolar.getYear(), mSolar.getMonth(), mSolar.getDay(), 1);
-        }
-        MMKV.defaultMMKV().encode(Constants.SP_KEY.CHOOSE_TYPE + article.getType(), timeCount);
+//        TimeCount timeCount = MMKV.defaultMMKV()
+//                .decodeParcelable(Constants.SP_KEY.CHOOSE_TYPE + article.getType()
+//                        , TimeCount.class);
+//        if (timeCount != null && timeCount.getYear() == mSolar.getYear()
+//                && timeCount.getMonth() == mSolar.getMonth()
+//                && timeCount.getDay() == mSolar.getDay()) {
+//            //同一天
+//            if (timeCount.getCount() < article.getCount()) {
+//                timeCount.setCount(timeCount.getCount() + 1);
+//            }
+//        } else {
+//            timeCount = new TimeCount(mSolar.getYear(), mSolar.getMonth(), mSolar.getDay(), 1);
+//        }
+//        MMKV.defaultMMKV().encode(Constants.SP_KEY.CHOOSE_TYPE + article.getType(), timeCount);
     }
 }
